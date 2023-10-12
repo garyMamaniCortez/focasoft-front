@@ -1,7 +1,12 @@
-const Label = (props) => {
+import React from "react";
+
+const Label = ({LabelType, children}) => {
     return (
-      <label className="LabelForm">
-        {props.children}
+      <label  className={`${LabelType == "FormLabel" ? "FormLabel" : ""}
+      ${LabelType == "FormTitle" ? "FormTitle" : ""}
+      ${LabelType == "ListBody" ? "ListBody" : ""}
+      `}>
+        {children}
       </label>
     );
   }
