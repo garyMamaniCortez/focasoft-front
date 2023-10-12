@@ -1,9 +1,12 @@
-
+import Label from "./components/atoms/label/Label";
 
 function App() {
   return (
     <div>
-      App
+      Esta es una etiqueta
+      <br/><Label>
+        Gato
+      </Label><br/>
     </div>
   );
 }
