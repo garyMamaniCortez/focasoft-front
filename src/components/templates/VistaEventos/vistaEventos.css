@@ -3,11 +3,12 @@
     width: 20%;
 }
 .vistaEventosContent{
-    width: 85%;
+    width: 83%;
 }
 .titulo-buscador{
     padding-top: 2%;
     padding-right: 1%;
+    padding-left: 4%;
 }
 h1{
     font-size: 40px;
