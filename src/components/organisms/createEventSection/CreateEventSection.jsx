@@ -5,7 +5,6 @@ import Background from "../../atoms/background/Background.jsx";
 const CreateEventSection = ({campos}) => {
 
   return (
-    <div>
       <Background>
       <CreateEventForm campos= {campos}/>
         <div className="w3-row w3-center">
@@ -16,8 +15,7 @@ const CreateEventSection = ({campos}) => {
           <Boton text="Crear evento" buttonType="crudButton"></Boton>
           </div>
         </div>
-      </Background >
-    </div>
+      </Background>
   );
 }
 
