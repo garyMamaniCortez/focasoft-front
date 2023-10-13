@@ -1,7 +1,9 @@
+import './Background.css'
+
 const Background = ({children}) => {
 
     return(
-        <div>
+        <div className='back'>
             {children}
         </div>
     );

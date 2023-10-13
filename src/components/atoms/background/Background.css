@@ -1,0 +1,9 @@
+.back{
+    text-decoration: none;
+    background-color: #90b2da;    
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: filter 0.8s ease, box-shadow 0.8s ease;
+}
