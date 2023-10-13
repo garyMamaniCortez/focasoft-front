@@ -7,7 +7,7 @@ const TextInput = ({InputType, Select}) => {
         <div>
         <input 
         className={`${InputType === "text" ? "Text" : 
-        InputType == "date" ? "Date" :
+        InputType == "date" ? "Text" :
         InputType == "description" ? "Description" : ""}
         `}
 

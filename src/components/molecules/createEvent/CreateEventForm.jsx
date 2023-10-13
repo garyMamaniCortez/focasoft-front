@@ -8,14 +8,12 @@ const CreateEventForm = ({campos}) => {
 
   return (
     <div>
-      <Background>
       {campos.map((item) => (
         <div className='itemContainer'>
         <Label LabelType={item.LabelType}>{item.etiqueta}</Label>
         <TextInput InputType={item.InputType} />
         </div>
     ))}
-      </Background>
     </div>
   );
 }

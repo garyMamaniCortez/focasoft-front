@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="row">
       <div className="col-4">
-        <Navbar/>
+        <CreateEvent/>
       </div>
       <div className="col-8">
       </div>
