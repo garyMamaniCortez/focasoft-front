@@ -1,25 +1,22 @@
-import Label from "./components/atoms/label/Label";
-import Background from "./components/atoms/background/Background";
-import TextInput from "./components/atoms/textInput/TextInput";
+import CreateEventForm from "./components/molecules/createEvent/CreateEventForm";
+
+const campos = [
+  { etiqueta: 'TItulo del evento', LabelType: 'FormLabel', InputType: 'text', Select: false },
+  { etiqueta: 'Fecha del evento', LabelType: 'FormLabel', InputType: 'date', Select: false  },
+  { etiqueta: 'Tipo del evento', LabelType: 'FormLabel', InputType: 'text', Select: true  },
+  { etiqueta: 'Descripcion', LabelType: 'FormLabel', InputType: 'description', Select: false  },
+  { etiqueta: 'Afiche del evento', LabelType: 'FormLabel', InputType: 'text', Select: false  },
+  { etiqueta: 'Requsitos', LabelType: 'FormLabel', InputType: 'text', Select: false  },
+  { etiqueta: 'Premios', LabelType: 'FormLabel', InputType: 'text'  },
+  { etiqueta: 'Patrocinadores', LabelType: 'FormLabel', InputType: 'text', Select: false  },
+  { etiqueta: 'Contactos', LabelType: 'FormLabel', InputType: 'text', Select: 'false'},
+];
 
 function App() {
+
   return (
     <div>
-      Esta es una etiqueta
-      <Background>
-        <div style={{textAlign: "center", paddingBottom: "72px"}}>
-          <Label LabelType="FormTitle" >
-            Competencia de Clasificación <br/>
-            UMSS
-          </Label>
-        </div>
-        <div style={{textAlign: "center"}}>
-          <Label LabelType="FormLabel" >
-              Nombre
-          </Label>
-          <TextInput InputType="date"/>
-        </div>
-      </Background>
+      <CreateEventForm campos= {campos}/>
     </div>
   );
 }

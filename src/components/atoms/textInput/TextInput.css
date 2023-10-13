@@ -5,6 +5,13 @@
     text-align: center;
 }
 
+.Description {
+    font-size: 24px;
+    height: 80px;
+    width: 818px;
+    text-align: center;
+}
+
 .Date {
     font-size: 24px;
     height: 52px;
