@@ -1,10 +1,16 @@
 import'./TextInput.css'
 
-const TextInput = ({children}) => {
+const TextInput = ({InputType}) => {
     return (
-        <div>
-            {children}
-        </div>
+        <input 
+        className={`${InputType === "text" ? "Text" : 
+        InputType == "date" ? "Date" : ""}`}
+
+        type={`${InputType}`}
+        
+        placeholder={`${InputType === "text" ? "Texto" : 
+        InputType == "email" ? "correo@gmail.com" : 
+        InputType == "date" ? "2018-07-22" : ""}`}/>
     );
 }
 

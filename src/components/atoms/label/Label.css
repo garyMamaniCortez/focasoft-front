@@ -6,6 +6,9 @@
     color: black;
     font-size: 24px;
     width: 208px;
+    display: inline-block;
+    width: 208px;
+    text-align: left;
 }
 
 .FormTitle{
