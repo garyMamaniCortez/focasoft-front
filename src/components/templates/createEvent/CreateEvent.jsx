@@ -18,7 +18,15 @@ const CreateEvent = () => {
     return (
       <div>
         <h1 className="H1CreateEvent">Crear Evento</h1>
-        <CreateEventSection campos={campos}/>
+        <div className="row">
+          <div className="col-4">
+
+          </div>
+          <div className="col-8">
+                  <CreateEventSection campos={campos}/>
+
+          </div>
+        </div>
       </div>
     );
   }

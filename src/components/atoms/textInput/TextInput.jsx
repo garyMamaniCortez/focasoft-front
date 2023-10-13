@@ -13,7 +13,7 @@ const TextInput = ({InputType, Select}) => {
 
         type={`${InputType === "text" ? "text" : 
         InputType == "description" ? "text" : 
-        InputType == "date" ? "2018-07-22" : ""}`}
+        InputType == "date" ? "date" : ""}`}
         
         placeholder={`${InputType === "text" ? "Texto" : 
         InputType == "email" ? "correo@gmail.com" :
