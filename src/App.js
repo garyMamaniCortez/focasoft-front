@@ -1,10 +1,11 @@
+<<<<<<< HEAD
 import CreateEvent from "./components/templates/createEvent/CreateEvent";
 
 function App() {
 
   return (
     <div>
-      <CreateEvent/>
+      App.JS
     </div>
   );
 }
