@@ -3,13 +3,16 @@
 }
 
 .FormLabel {
-    font-size: 24px;
     color: black;
+    font-size: 24px;
+    width: 208px;
 }
 
 .FormTitle{
     font-size: 40px;
     color: white;
+    text-align: center;
+    margin: auto;
 }
 
 .ListBody{
