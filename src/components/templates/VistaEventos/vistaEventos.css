@@ -1,0 +1,14 @@
+.buscarSide{
+    margin: 0;
+    width: 20%;
+}
+.vistaEventosContent{
+    width: 85%;
+}
+.titulo-buscador{
+    padding-top: 2%;
+    padding-right: 1%;
+}
+h1{
+    font-size: 40px;
+}

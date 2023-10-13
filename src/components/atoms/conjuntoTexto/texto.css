@@ -1,0 +1,18 @@
+.textContent{
+    width: 100%;
+}
+.textContent .categoryEvent{
+    margin: auto;
+    color: #153A65;
+    font-size: 32px;
+    text-align: center;
+}
+.textContent .titleEvent{
+    color: #153A65;
+    font-size: 24px;
+    margin: auto;
+    text-align: center;
+}
+.textContent p{
+    font-size: 16px;
+}
