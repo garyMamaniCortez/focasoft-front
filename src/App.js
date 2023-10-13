@@ -1,10 +1,10 @@
-import CreateEventSection from "./components/organisms/createEventSection/CreateEventSection";
+import CreateEvent from "./components/templates/createEvent/CreateEvent";
 
 function App() {
 
   return (
     <div>
-      <CreateEventSection/>
+      <CreateEvent/>
     </div>
   );
 }
