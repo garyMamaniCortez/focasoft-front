@@ -1,0 +1,12 @@
+.cardSTi{
+    text-align: center;
+    font-size: 40px;
+}
+.cardSectionContent{
+    padding-inline: 8%;
+    margin: auto;
+}
+
+.card{
+    padding: 3%;
+}

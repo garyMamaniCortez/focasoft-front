@@ -1,0 +1,39 @@
+.inputBuscarContent{
+    background-color: rgba(254, 186, 18, .34);
+    width: 100%;
+    margin: auto;
+    vertical-align: middle;
+    
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 3px;
+    padding-right: 6px;
+
+    border-top-left-radius: 400px 200px;
+    -moz-border-top-left-radius: 400px 200px;
+    -webkit-border-radius: 20px;
+
+    border: 2px solid black;
+   
+
+}
+.inputBuscarContent img {
+    width: 34px;
+    margin-right: 0;
+    margin-left: auto;
+    
+}
+.inputBuscarContent .inputB {
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    margin: auto;
+    width: max-content;
+    color: black;
+
+}
+
+.inputBuscarContent .inputB:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+}
