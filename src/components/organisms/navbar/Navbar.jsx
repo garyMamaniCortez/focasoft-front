@@ -1,12 +1,19 @@
 import React from "react"
-import "./navbar.css"
+
 import face from "./facebook.png"
 import wpp from "./whatsapp.png"
+
+import Boton from "../../atoms/boton/Boton"
+
+import "./navbar.css"
 function Navbar(){
     return(
         <div className="navbarContent w3-left w3-col">
             <nav className="navbar">
             <ul>
+                <li className="option">
+                    <Boton text="Login" buttonType="formButton"></Boton>
+                </li>
                 <li className="option">
                     <a href="#">Inicio</a>
                 </li>
