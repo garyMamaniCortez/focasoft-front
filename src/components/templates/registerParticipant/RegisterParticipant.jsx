@@ -1,5 +1,6 @@
 import CreateFormRegisterSec from "../../organisms/registerParticipantsSec/RegisterParticipantsSec.jsx"
 import "./RegisterParticipant.css"
+import "w3-css"
 
 const RegisterParticipant = () => {
     const Evento = "Evento de Programación";
@@ -12,7 +13,7 @@ const RegisterParticipant = () => {
     ];
 
     return (
-        <div>
+        <div className="vistaContent w3-right">
             <h1 className="H1Register">{Evento}</h1>
             <div className="row">
                 <div className="est1">

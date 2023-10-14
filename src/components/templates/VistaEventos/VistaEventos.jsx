@@ -4,7 +4,7 @@ import InputBuscar from "../../atoms/inputBuscar/InputBuscar"
 import "./vistaEventos.css"
 function VistaEventos(){
     return(
-        <div className="vistaEventosContent w3-right">
+        <div className="vistaContent w3-right">
             <div className="w3-row titulo-buscador">
                 <div className="w3-col l3">
                     <h1>Eventos pasados</h1>
