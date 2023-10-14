@@ -1,4 +1,5 @@
 import CreateFormRegisterSec from "../../organisms/createFormRegisterSec/CreateFormRegisterSec.jsx"
+import './CreateRegister.css'
 import "w3-css"
 const CreateRegister = () => {
     const campos = [
@@ -12,14 +13,8 @@ const CreateRegister = () => {
     return (
         <div className="vistaContent w3-right">
             <h1 className="H1CreateEvent">Crear Formulario de Registro</h1>
-            <div className="row">
-                <div className="est2">
-
-                </div>
-                <div className="est1">
-                    <CreateFormRegisterSec campos={campos}/>
-
-                </div>
+            <div className="SeccionCrearFormularioDeRegistro">
+                <CreateFormRegisterSec campos={campos}/>
             </div>
         </div>
     );
