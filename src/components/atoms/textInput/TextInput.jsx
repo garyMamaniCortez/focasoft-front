@@ -19,7 +19,7 @@ const TextInput = ({InputType}) => {
         
         disabled={InputType == "select" ? true : false}
         hidden={InputType == "select" ? true : false}/>
-
+{/* Esto no funciona */}
         <select name="" id=""
         className="Select"
         disabled={InputType != "select" ? true : false}

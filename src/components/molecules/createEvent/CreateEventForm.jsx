@@ -7,16 +7,12 @@ import './CreateEventForm.css'
 const CreateEventForm = ({campos}) => {
 
   return (
-    <div>
+    <div className='CreateEventalign'>
       {campos.map((item) => (
-        <div className='itemContainer'>
-          <div className='CreateEventLabel'>
-            <Label LabelType={item.LabelType}>{item.etiqueta}</Label>
+          <div className='CreateEventContainer'>
+            <Label LabelType={item.LabelType}>{item.etiqueta}</Label>            
+            <TextInput InputType={item.InputType} />
           </div>
-          <div className='CreateEventInput'>
-          <TextInput InputType={item.InputType} />
-          </div>
-        </div>
     ))}
     </div>
   );
