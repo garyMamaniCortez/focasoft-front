@@ -1,6 +1,8 @@
-import CreateFormRegisterSec from "../../organisms/createFormRegisterSec/CreateFormRegisterSec.jsx"
+import CreateFormRegisterSec from "../../organisms/registerParticipantsSec/RegisterParticipantsSec.jsx"
+import "./RegisterParticipant.css"
 
-const CreateRegister = () => {
+const RegisterParticipant = () => {
+    const Evento = "Evento de Programación";
     const campos = [
         { etiqueta: 'Nombres', LabelType: 'FormLabel', InputType: 'text', Select: false },
         { etiqueta: 'Apellidos', LabelType: 'FormLabel', InputType: 'text', Select: false  },
@@ -11,12 +13,12 @@ const CreateRegister = () => {
 
     return (
         <div>
-            <h1 className="H1CreateEvent">Crear Formulario de Registro</h1>
+            <h1 className="H1Register">{Evento}</h1>
             <div className="row">
-                <div className="est2">
+                <div className="est1">
 
                 </div>
-                <div className="est1">
+                <div className="est2">
                     <CreateFormRegisterSec campos={campos}/>
 
                 </div>
@@ -25,4 +27,4 @@ const CreateRegister = () => {
     );
 }
 
-export default CreateRegister;
+export default RegisterParticipant;
