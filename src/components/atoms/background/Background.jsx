@@ -3,7 +3,7 @@ import './Background.css'
 const Background = ({children}) => {
 
     return(
-        <div className='back'>
+        <div className="background">
             {children}
         </div>
     );
