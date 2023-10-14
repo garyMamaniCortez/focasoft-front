@@ -16,6 +16,7 @@ function App() {
       <br/><Label LabelType="ListBody" >
         Gato
       </Label><br/>
+      <CreateRegister/>
     </div>
   );
 }
