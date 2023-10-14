@@ -4,11 +4,13 @@
     width: 480px;
     text-align: center;
     content: "";
+    background-color: white;
 }
 
 .Text::file-selector-button {
     width: 480px;
     height: 40px;
+    background-color: white;
   }
 
 .Description {
