@@ -12,22 +12,10 @@ function App() {
 
   return (
     <div>
-      <Background>
-        <p>datos</p>
-        <br/><Label LabelType="ListBody" >
+      Esta es una etiqueta
+      <br/><Label LabelType="ListBody" >
         Gato
       </Label><br/>
-      
-        <Boton buttonType='formButton' text='holi'/>
-      </Background>
-    <div className="row">
-      <div className="col-4">  
-      </div>
-      <div className="col-8">
-      </div>
-    </div>
-
-    <CreateRegister></CreateRegister>
     </div>
   );
 }
