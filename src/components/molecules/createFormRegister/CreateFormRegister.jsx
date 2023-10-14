@@ -7,16 +7,14 @@ import './CreateFormRegister.css'
 const CreateFormRegister = ({campos}) => {
 
     return (
-        <div>
-            <Background>
+            <div>
                 {campos.map((item) => (
                     <div className='itemContainer'>
                     <Label LabelType={item.LabelType}>{item.etiqueta}</Label>
                     <TextInput InputType={item.InputType} />
                     </div>
                 ))}
-            </Background>
-        </div>
+            </div>
     );
 }
 

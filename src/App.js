@@ -11,7 +11,6 @@ function App() {
   return (
     <div className="w3-row">
       <Navbar></Navbar>
-    <RegisterParticipant></RegisterParticipant>
     </div>
   );
 }

@@ -7,15 +7,16 @@
     font-size: 18px;
     width: 192px;
     display: inline-block;
-    width: px;
     text-align: left;
 }
 
 .FormTitle{
-    font-size: 16px;
+    font-size: 40px;
     color: white;
+    width: 100%;
+    display: inline-block;
     text-align: center;
-    margin: auto;
+    padding-bottom: 20px;
 }
 
 .ListBody{

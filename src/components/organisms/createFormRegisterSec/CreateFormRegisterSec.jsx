@@ -1,11 +1,12 @@
 import CreateFormRegister from "../../molecules/createFormRegister/CreateFormRegister";
+import Background from "../../atoms/background/Background";
 
 const CreateFormRegisterSec = ({campos}) => {
 
   return (
-    <div>
+    <Background>
       <CreateFormRegister campos= {campos}/>
-    </div>
+    </Background>
   );
 }
 
