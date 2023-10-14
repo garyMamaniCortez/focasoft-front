@@ -1,6 +1,14 @@
 .itemContainer {
-    padding-bottom: 22px;
+    padding-bottom: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
   };
+
+.CreateEventLabel{
+    width: 200xp;
+}
+
+.CreateEventInput{
+  width: 480xp;
+}

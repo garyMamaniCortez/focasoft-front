@@ -1,18 +1,14 @@
-import Background from "./components/atoms/background/Background";
-import Boton from "./components/atoms/boton/Boton";
-import Label from "./components/atoms/label/Label";
-import "./components/atoms/label/Label.css"
-import CreateRegister from "./components/templates/createRegister/CreateRegister.jsx"
-
-import CreateEvent from "./components/templates/createEvent/CreateEvent";
-import VistaEventos from "./components/templates/VistaEventos/VistaEventos"
+import CreateEvent from "./components/templates/createEvent/CreateEvent"
+import VistaEventos from "./components/templates/VistaEventos/VistaEventos";
 import Navbar from "./components/organisms/navbar/Navbar"
-
+import "w3-css"
 function App() {
 
   return (
-    <div>
-      <CreateRegister/>
+    <div className="w3-row">
+        <Navbar/>
+      <div className="l10 w3-col w3-right">
+      </div>
     </div>
   );
 }
