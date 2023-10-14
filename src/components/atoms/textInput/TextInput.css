@@ -1,0 +1,11 @@
+.Text, .Description, .Date {
+    font-size: 18px;
+    padding-left: 8px;
+    height: 40px;
+    width: 480px;
+    text-align: center;
+}
+
+.Description {
+    height: 60px;
+}
