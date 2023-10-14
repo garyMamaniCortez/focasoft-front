@@ -6,7 +6,7 @@
     padding-left: 16px;
 }
 
-.CreateEventContentSection {
-    display: grid;
+.CreateEventSection {
     justify-content: center;
+    display: flex;
 }
