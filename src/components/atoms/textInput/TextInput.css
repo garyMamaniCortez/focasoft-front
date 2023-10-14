@@ -1,22 +1,11 @@
-.Text {
-    font-size: 16px;
+.Text, .Description, .Date {
+    font-size: 18px;
     padding-left: 8px;
-    height: 52px;
-    width: 640px;
+    height: 40px;
+    width: 480px;
     text-align: center;
 }
 
 .Description {
-    padding-left: 8px;
-    font-size: 16px;
-    height: 80px;
-    width: 640px;
-    text-align: center;
-}
-
-.Date {
-    padding-left: 8px;
-    font-size: 16px;
-    height: 52px;
-    width: 640px;
+    height: 60px;
 }

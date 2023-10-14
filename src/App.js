@@ -1,14 +1,14 @@
-import CreateEvent from "./components/templates/createEvent/CreateEvent";
-import VistaEventos from "./components/templates/VistaEventos/VistaEventos"
+import CreateEvent from "./components/templates/createEvent/CreateEvent"
+import VistaEventos from "./components/templates/VistaEventos/VistaEventos";
 import Navbar from "./components/organisms/navbar/Navbar"
+import "w3-css"
 function App() {
 
   return (
-    <div className="row">
-      <div className="col-4">
+    <div className="w3-row">
         <Navbar/>
-      </div>
-      <div className="col-8">
+      <div className="l10 w3-col w3-right">
+        <CreateEvent/>
       </div>
     </div>
   );
