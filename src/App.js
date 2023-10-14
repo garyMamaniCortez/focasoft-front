@@ -8,7 +8,6 @@ function App() {
     <div className="w3-row">
         <Navbar/>
       <div className="l10 w3-col w3-right">
-        <CreateEvent/>
       </div>
     </div>
   );
