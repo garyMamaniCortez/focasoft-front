@@ -34,10 +34,12 @@ const TextInput = ({TipoDeEntrada, Identificador, ManejarCambio}) => {
         
         onChange={ManejarCambio}
         
-        hidden={TipoDeEntrada !== "select" ? true : false}>
+        hidden={TipoDeEntrada !== "select" ? true : false}
+        
+        >
+            <option value="Tipo">Selecciona un tipo</option>
             <option value="Competencia">Competencia</option>
             <option value="Curso">Curso</option>
-
         </select>
 
         </div>
