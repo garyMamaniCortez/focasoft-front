@@ -10,7 +10,7 @@ export default function Boton({children, f, TipoDeBoton, ClaseDeBoton}) {
                   ${ClaseDeBoton == "botonAzul" ? "botonAzul" : ""}
       `}
       
-      TipoDeBoton={TipoDeBoton}
+      TipoDeBoton={TipoDeBoton === "submit" ? "submit" : ""}
       >
         {children}
     </button>

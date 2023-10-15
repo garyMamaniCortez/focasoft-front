@@ -29,14 +29,7 @@ const CreateEventSection = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Titulo Del Evento: ${formData.TituloDelEvento} 
-    \nFecha del evento: ${formData.FechaDelEvento}
-    \nTipo del evento: ${formData.TipoDelEvento} 
-    \nDescripcion: ${formData.Descripcion}
-    \nRequisitos: ${formData.Requisitos}
-    \nPremios: ${formData.Premios}
-    \nPatrocinadores: ${formData.Patrocinadores}
-    \nContactos: ${formData.Contactos}`
+    alert(`Campos: ${formData}`
     );
 };
 
