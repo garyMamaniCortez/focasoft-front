@@ -14,7 +14,6 @@ const CreateEvent = () => {
         { Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'9'},
       ];
       
-
     return (
       <div className="CreateEventContent vistaContent w3-right">
         <h1 className="H1CreateEvent">Crear Evento</h1>
