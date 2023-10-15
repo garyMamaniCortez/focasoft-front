@@ -10,10 +10,10 @@ const CreateEventSection = ({CamposDeEntrada}) => {
       <Formulario CamposDeEntrada= {CamposDeEntrada}/>
         <div className="w3-row w3-center">
           <div className="createEventButton w3-col l6">
-          <Link to="/CrearFormulario"><Boton text="Formulario de registro" buttonType="formButton"></Boton></Link>
+          <Link to="/CrearFormulario"><Boton text="Formulario de registro" buttonType="botonAmarilloGrand"></Boton></Link>
           </div>
           <div className="w3-col l6">
-          <Boton text="Crear evento" buttonType="crudButton"></Boton>
+          <Boton text="Crear evento" buttonType="botonRojoGrand"></Boton>
           </div>
         </div>
 
