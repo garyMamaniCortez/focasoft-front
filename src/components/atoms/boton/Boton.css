@@ -6,17 +6,37 @@ button{
     border-radius: 50px;
     padding: 10px 20px;
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
-    transition: filter 0.8s ease, box-shadow 0.8s ease;    
+    transition: filter 0.8s ease, box-shadow 0.8s ease; 
+
 }
 
-.crudButton{
+.botonRojoPeq{
     background-color: #b12a1c;
+    width: 160px;
+    height: 57px;
 }
-.formButton{
+
+.botonRojoGrand{
+    background-color: #b12a1c;
+    width: 350px;
+    height: 57px;
+}
+
+.botonAmarilloPeq{
     background-color: #f9a029;
+    width: 160px;
+    height: 57px;
 }
-.submitButton{
+
+.botonAmarilloGrand{
+    background-color: #f9a029;
+    width: 352px;
+    height: 57px;
+}
+.botonAzul{
     background-color: #192795;
+    width: 352px;
+    height: 57px;
 }
 
 button:hover{
