@@ -1,6 +1,6 @@
 import'./TextInput.css'
 
-const TextInput = ({InputType}) => {
+const TextInput = ({InputType, Id}) => {
 
     return (
         <div>
@@ -19,6 +19,8 @@ const TextInput = ({InputType}) => {
         InputType == "file" ? "file" : 
         InputType == "email" ? "email" : ""}`}
         
+        id={Id}
+
         disabled={InputType == "select" ? true : false}
         hidden={InputType == "select" ? true : false}/>
 {/* Esto no funciona */}
