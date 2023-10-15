@@ -12,7 +12,7 @@ function Navbar(){
             <nav className="navbar">
             <ul>
                 <li className="option">
-                    <Boton text="Login" buttonType="formButton"></Boton>
+                    <Boton ClaseDeBoton="botonAmarilloPeq">Login</Boton>
                 </li>
                 <li className="option">
                     <a href="#">Inicio</a>

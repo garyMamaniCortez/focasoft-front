@@ -1,33 +1,45 @@
 import'./TextInput.css'
 
-const TextInput = ({InputType}) => {
-
+const TextInput = ({TipoDeEntrada, Identificador, ManejarCambio}) => {
     return (
         <div>
         <input 
-        className={`${InputType === "text" ? "Text" : 
-        InputType == "date" ? "Text" :
-        InputType == "description" ? "Description" :
-        InputType == "file" ? "Text" :
-        InputType == "select" ? "Text" :
-        InputType == "email" ? "Text" : ""}
+        id={TipoDeEntrada !== "select" ? Identificador : ""}
+        name={TipoDeEntrada !== "select" ? Identificador : ""}  
+        
+        className={`${TipoDeEntrada === "text" ? "EntradaDeTexto" : 
+        TipoDeEntrada === "date" ? "EntradaDeTexto" :
+        TipoDeEntrada === "description" ? "EntradaDeTexto" :
+        TipoDeEntrada === "file" ? "EntradaDeTexto" :
+        TipoDeEntrada === "select" ? "EntradaDeTexto" :
+        TipoDeEntrada === "email" ? "EntradaDeTexto" : ""}
         `}
 
-        type={`${InputType === "text" ? "text" : 
-        InputType == "description" ? "text" : 
-        InputType == "date" ? "date" : 
-        InputType == "file" ? "file" : 
-        InputType == "email" ? "email" : ""}`}
-        
-        disabled={InputType == "select" ? true : false}
-        hidden={InputType == "select" ? true : false}/>
+        type={`${TipoDeEntrada === "text" ? "text" : 
+        TipoDeEntrada === "description" ? "text" : 
+        TipoDeEntrada === "date" ? "date" : 
+        TipoDeEntrada === "file" ? "file" : 
+        TipoDeEntrada === "email" ? "email" : ""}`}
+
+        onChange={ManejarCambio}
+
+        disabled={TipoDeEntrada === "select" ? true : false}
+        hidden={TipoDeEntrada === "select" ? true : false}/>
 {/* Esto no funciona */}
-        <select name="" id=""
-        className="Select"
-        disabled={InputType != "select" ? true : false}
-        hidden={InputType != "select" ? true : false}>
-            <option value="volvo">Competencia</option>
-            <option value="saab">Curso</option>
+        <select
+        id={TipoDeEntrada === "select" ? Identificador : ""}
+        name={TipoDeEntrada === "select" ? Identificador : ""}
+        className="EntradaDeTexto"
+        disabled={TipoDeEntrada !== "select" ? true : false}
+        
+        onChange={ManejarCambio}
+        
+        hidden={TipoDeEntrada !== "select" ? true : false}
+        
+        >
+            <option value="Tipo">Selecciona un tipo</option>
+            <option value="Competencia">Competencia</option>
+            <option value="Curso">Curso</option>
         </select>
 
         </div>

@@ -1,13 +1,18 @@
 import './Boton.css'
 
-export default function Boton({text, f, buttonType}) {
+export default function Boton({children, f, TipoDeBoton, ClaseDeBoton}) {
   return (
     <button onClick={() => f}
-      className={`${buttonType == "crudButton" ? "crudButton" : ""}
-                  ${buttonType == "formButton" ? "formButton" : ""}
-                  ${buttonType == "submitButton" ? "submitButton" : ""}
-      `}>
-        {text}
+      className={`${ClaseDeBoton == "botonRojoGrand" ? "botonRojoGrand" : ""}
+                  ${ClaseDeBoton == "botonRojoPeq" ? "botonRojoPeq" : ""}
+                  ${ClaseDeBoton == "botonAmarilloGrand" ? "botonAmarilloGrand" : ""}
+                  ${ClaseDeBoton == "botonAmarilloPeq" ? "botonAmarilloPeq" : ""}
+                  ${ClaseDeBoton == "botonAzul" ? "botonAzul" : ""}
+      `}
+      
+      TipoDeBoton={TipoDeBoton === "submit" ? "submit" : ""}
+      >
+        {children}
     </button>
   )
 }
