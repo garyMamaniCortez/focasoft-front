@@ -2,16 +2,16 @@ import CreateEventSection from "../../organisms/createEventSection/CreateEventSe
 import './CreateEvent.css'
 const CreateEvent = () => {
 
-    const campos = [
-        { etiqueta: 'TItulo del evento', LabelType: 'FormLabel', InputType: 'text'},
-        { etiqueta: 'Fecha del evento', LabelType: 'FormLabel', InputType: 'date'},
-        { etiqueta: 'Tipo del evento', LabelType: 'FormLabel', InputType: 'select'},
-        { etiqueta: 'Descripcion', LabelType: 'FormLabel', InputType: 'description'},
-        { etiqueta: 'Afiche del evento', LabelType: 'FormLabel', InputType: 'file'},
-        { etiqueta: 'Requsitos', LabelType: 'FormLabel', InputType: 'text'},
-        { etiqueta: 'Premios', LabelType: 'FormLabel', InputType: 'text'},
-        { etiqueta: 'Patrocinadores', LabelType: 'FormLabel', InputType: 'text'},
-        { etiqueta: 'Contactos', LabelType: 'FormLabel', InputType: 'text'},
+    const CamposDeEntrada = [
+        { Etiqueta: 'TItulo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'1'},
+        { Etiqueta: 'Fecha del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date', Identificador:'2'},
+        { Etiqueta: 'Tipo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'select', Identificador:'3'},
+        { Etiqueta: 'Descripcion', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'description', Identificador:'4'},
+        { Etiqueta: 'Afiche del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'file', Identificador:'5'},
+        { Etiqueta: 'Requsitos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'6'},
+        { Etiqueta: 'Premios', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'7'},
+        { Etiqueta: 'Patrocinadores', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'8'},
+        { Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'9'},
       ];
       
 
@@ -19,7 +19,7 @@ const CreateEvent = () => {
       <div className="CreateEventContent vistaContent w3-right">
         <h1 className="H1CreateEvent">Crear Evento</h1>
         <div className="CreateEventSection">
-          <CreateEventSection campos={campos}/>
+          <CreateEventSection CamposDeEntrada={CamposDeEntrada}/>
         </div>
       </div>
     );
