@@ -1,4 +1,4 @@
-.Text, .Description, .Date, .Select {
+.EntradaDeTexto, .Descripcion {
     font-size: 18px;
     height: 40px;
     width: 480px;
@@ -7,12 +7,12 @@
     background-color: white;
 }
 
-.Text::file-selector-button {
+.EntradaDeTexto::file-selector-button {
     width: 480px;
     height: 40px;
     background-color: white;
   }
 
-.Description {
+.Descripcion {
     height: 60px;
 }

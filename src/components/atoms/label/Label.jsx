@@ -1,11 +1,11 @@
 import React from "react";
 import './Label.css'
 
-const Label = ({LabelType, children}) => {
+const Label = ({TipoDeEtiqueta, children}) => {
     return (
-      <label  className={`${LabelType === "FormLabel" ? "FormLabel" : ""}
-      ${LabelType === "FormTitle" ? "FormTitle" : ""}
-      ${LabelType ==="ListBody" ? "ListBody" : ""}
+      <label  className={`${TipoDeEtiqueta === "FormLabel" ? "FormLabel" : ""}
+      ${TipoDeEtiqueta === "FormTitle" ? "FormTitle" : ""}
+      ${TipoDeEtiqueta ==="ListBody" ? "ListBody" : ""}
       `}>
         {children}
       </label>
