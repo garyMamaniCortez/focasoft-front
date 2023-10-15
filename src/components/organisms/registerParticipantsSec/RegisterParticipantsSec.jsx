@@ -11,7 +11,7 @@ const RegisterParticipantsSec = ({CamposDeEntrada}) => {
       <Formulario CamposDeEntrada= {CamposDeEntrada}/>
       <div className="w3-row w3-center">
           <div className="createEventButton w3-col l12">
-          <Boton text="Registrarse" buttonType="crudButton"></Boton>
+          <Boton text="Registrarse" buttonType="botonRojoGrand"></Boton>
           </div>
         </div>
     </Background>
