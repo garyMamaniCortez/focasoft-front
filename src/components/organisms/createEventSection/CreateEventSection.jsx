@@ -73,7 +73,6 @@ const CreateEventSection = () => {
 
     if (isValid) {
       // Si pasa la validación, continúa aquí
-      alert("Los datos son válidos. Puedes enviar el formulario.");
       axios.post("http://localhost:8000/api/evento",{
         titulo: formData.TituloDelEvento,
         fecha_ini: formData.FechaDelEvento,
@@ -89,16 +88,13 @@ const CreateEventSection = () => {
     })
     .then(function (response) {
       console.log(response);
+      navigate('/')
     })
     .catch(function (error) {
       console.log(error.response.data.error);
-      alert(error.response.data.error);
-      isValid=false;
-    
+      alert(error.response.data.error);      
     });
-
-    }
-    navigate('/')  
+  } 
   };
 
   return (
@@ -107,7 +103,7 @@ const CreateEventSection = () => {
           <Formulario CamposDeEntrada= {CamposDeEntrada} handleChange = {handleChange}/>
           <div className="w3-row w3-center">
             <div className="createEventButton w3-col l6">
-            <Link to="/CrearFormulario">
+            <Link to="/CrearEvento/AgregarFormulario">
               <Boton ClaseDeBoton="botonAmarilloGrand">Formulario de registro</Boton></Link>
             </div>
             <div className="w3-col l6">

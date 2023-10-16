@@ -4,8 +4,11 @@ import Background from "../../atoms/background/Background";
 import Boton from "../../atoms/boton/Boton";
 import Formulario from "../../molecules/formulario/Formulario";
 
+import { useNavigate } from "react-router-dom";
+
 const CreateFormRegisterSec = () => {
 
+  const navigate = useNavigate()
   const CamposDeEntrada = [
     { Etiqueta: 'Nombres', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:"Nombres" },
     { Etiqueta: 'Apellidos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:"Apellidos" },
@@ -32,19 +35,23 @@ const handleSubmit = (event) => {
   );
 };
 
+const goBack = () => {
+  navigate(-1)
+};
+
   return (
     <Background>
-      <form onSubmit={handleSubmit}>
+      <form >
         <Formulario CamposDeEntrada= {CamposDeEntrada} handleSubmit={handleChange}/>
         <div className="w3-center w3-margin">
           <Boton ClaseDeBoton="botonAzul">Añadir Pregunta</Boton>
         </div>
         <div className="w3-row w3-center">             
           <div className="createEventButton w3-col l6">
-          <Boton ClaseDeBoton="botonAmarilloGrand"  TipoDeBoton="submit">Guardar Informacion</Boton>
+          <Boton ClaseDeBoton="botonAmarilloGrand"  TipoDeBoton="submit">Guardar formulario</Boton>
           </div>
           <div className="w3-col l6">
-            <Boton ClaseDeBoton="botonRojoGrand">Cancelar</Boton>
+            <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="button" f={goBack} >Cancelar</Boton>
           </div>
         </div>
       </form>
