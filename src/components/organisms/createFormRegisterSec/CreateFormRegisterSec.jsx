@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 const CreateFormRegisterSec = () => {
 
+const navigate = useNavigate()
+
   const [CamposDeEntrada, setCamposDeEntrada] = useState([
     { Etiqueta: 'Nombres', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
     Identificador:"Nombres", Desactivado: true,
