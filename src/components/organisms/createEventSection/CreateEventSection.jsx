@@ -52,6 +52,7 @@ const CreateEventSection = () => {
         alert(`El campo ${fieldName} contiene caracteres especiales no permitidos.`);
         isValid = false;
       }
+    });
 
     if (isValid) {
       // Si pasa la validación, continúa aquí
