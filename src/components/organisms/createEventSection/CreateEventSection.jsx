@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import axios from "axios"
 import Formulario from "../../molecules/formulario/Formulario.jsx";
 import Boton from "../../atoms/boton/Boton.jsx"
 import Background from "../../atoms/background/Background.jsx"; 
+
+const endpoint = 'http:///localhost:8000/api/evento'
 
 const CreateEventSection = () => {
 
@@ -19,8 +21,18 @@ const CreateEventSection = () => {
     { Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Contactos'},
   ];
 
-  const [formData, setFormData] = useState({TituloDelEvento: "",FechaDelEvento: "", TipoDelEvento: ""
-  , Descripcion: "",AficheDelEvento: "",Requisitos: "",Premios: "", Patrocinadores:"", Contactos:""});
+  const [formData, setFormData] = useState(
+    {titulo: "",
+    fecha_ini: null,
+    fecha_fin: null, 
+    tipo: "", 
+    descripcion: "",
+    id_formulario: null,
+    afiche: null,
+    requisitos: "",
+    premios: "", 
+    patrocinadores:"", 
+    contactos:""});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -31,6 +43,11 @@ const CreateEventSection = () => {
     event.preventDefault();
     alert(`Campos: ${formData}`
     );
+    console.log(
+      formData
+    )
+   axios.post(endpoint,{titulo: formData.titulo, fecha_ini: formData.fecha_ini, fecha_fin: formData.fecha_fin, tipo: formData.tipo, descripcion: formData.descripcion, afiche: formData.afiche, id_formulario: formData.id_formulario
+  })
 };
 
   return (
