@@ -3,8 +3,11 @@ import { useState } from "react";
 import Background from "../../atoms/background/Background";
 import Boton from "../../atoms/boton/Boton";
 import Formulario from "../../molecules/formulario/Formulario";
+
 import TextInput from "../../atoms/textInput/TextInput";
 import Label from "../../atoms/label/Label";
+import { useNavigate } from "react-router-dom";
+
 const CreateFormRegisterSec = () => {
 
   const [CamposDeEntrada, setCamposDeEntrada] = useState([
@@ -27,6 +30,8 @@ const CreateFormRegisterSec = () => {
 
 const [formData, setFormData] = useState({Carrera: 0,TallaDePolera: 0, CarnetDeIdentidad: 0
 , CodigoSISOInstitucion: 0,Semestre: 0});
+
+
 
 const [auxFormData, setAuxFormData] = useState("");
 
@@ -63,6 +68,10 @@ const AgregarCampo = () => {
   }
 
   
+};
+
+const goBack = () => {
+  navigate(-1)
 };
 
   return (

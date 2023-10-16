@@ -20,7 +20,6 @@ function CardSection(){
     const getAllEvents = async () => {
         const response = await axios.get("http://localhost:8000/api/eventos")
         setEventos(response.data)
-        console.log(response.data)
     }
 
     return(

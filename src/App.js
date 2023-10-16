@@ -12,14 +12,17 @@ function App() {
   return (
     <div className="w3-row">
       <Navbar></Navbar>
-    <BrowserRouter>
       <Routes>
         <Route path="/CrearEvento" element={<CreateEvent />}/>
-        <Route path="/CrearFormulario" element={<CreateRegister/>}/>
-        <Route path="/VistaEventos" element={<VistaEventos/>}/>
+        <Route path = "/CrearEvento/AgregarFormulario" element = { <CreateRegister/>}
+
+/>
+
+
+       
+        <Route path="/" element={<VistaEventos/>}/>
         <Route path="/RegistrarParticipante" element={<RegisterParticipant/>}/>
       </Routes>
-    </BrowserRouter>
     </div>
   );
 }

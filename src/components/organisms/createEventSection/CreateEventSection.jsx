@@ -5,7 +5,14 @@ import Formulario from "../../molecules/formulario/Formulario.jsx";
 import Boton from "../../atoms/boton/Boton.jsx"
 import Background from "../../atoms/background/Background.jsx"; 
 
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
+
+const endpoint = 'http:///localhost:8000/api/evento'  
+
 const CreateEventSection = () => {
+
+  const navigate = useNavigate()
 
   const CamposDeEntrada = [
     { Etiqueta: 'Titulo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
@@ -44,8 +51,18 @@ const CreateEventSection = () => {
     OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
   ];
 
-  const [formData, setFormData] = useState({TituloDelEvento: "",FechaDelEvento: "", TipoDelEvento: ""
-  , Descripcion: "",AficheDelEvento: "",Requisitos: "",Premios: "", Patrocinadores:"", Contactos:""});
+  const [formData, setFormData] = useState({
+    TituloDelEvento: null,
+    FechaDelEvento: null,
+    FechaFinDelEvento: null, 
+    TipoDelEvento: null, 
+    Descripcion: null,
+    AficheDelEvento: null,
+    Requisitos: null,
+    Premios: null, 
+    Patrocinadores:null, 
+    idFormulario: null,
+    Contactos:null});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -90,6 +107,30 @@ const CreateEventSection = () => {
       console.log(formData)
     )
     
+    if (isValid) {
+      // Si pasa la validación, continúa aquí
+      axios.post("http://localhost:8000/api/evento",{
+        titulo: formData.TituloDelEvento,
+        fecha_ini: formData.FechaDelEvento,
+        fecha_fin: formData.FechaFinDelEvento,
+        tipo: formData.TipoDelEvento,
+        descripcion: formData.Descripcion,
+        afiche: formData.AficheDelEvento,
+        id_formulario: formData.idFormulario,
+        requisitos: formData.Requisitos,
+        premios: formData.Premios,
+        patrocinadores: formData.Patrocinadores,
+        contactos: formData.Contactos
+    })
+    .then(function (response) {
+      console.log(response);
+      navigate('/')
+    })
+    .catch(function (error) {
+      console.log(error.response.data.error);
+      alert(error.response.data.error);      
+    });
+  } 
   };
 
   return (
@@ -98,7 +139,7 @@ const CreateEventSection = () => {
           <Formulario CamposDeEntrada= {CamposDeEntrada} handleChange = {handleChange} Desactivado={false}/>
           <div className="w3-row w3-center">
             <div className="createEventButton w3-col l6">
-            <Link to="/CrearFormulario">
+            <Link to="/CrearEvento/AgregarFormulario">
               <Boton ClaseDeBoton="botonAmarilloGrand">Formulario de registro</Boton></Link>
             </div>
             <div className="w3-col l6">

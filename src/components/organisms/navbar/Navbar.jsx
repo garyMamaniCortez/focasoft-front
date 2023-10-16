@@ -6,16 +6,17 @@ import wpp from "./whatsapp.png"
 import Boton from "../../atoms/boton/Boton"
 
 import "./navbar.css"
+import { Link } from "react-router-dom"
 function Navbar(){
     return(
         <div className="navbarContent w3-left w3-col">
             <nav className="navbar">
             <ul>
                 <li className="option">
-                    <Boton ClaseDeBoton="botonAmarilloPeq">Login</Boton>
+                    <Boton ClaseDeBoton="botonAmarilloPeq">Iniciar sesión</Boton>
                 </li>
                 <li className="option">
-                    <a href="#">Inicio</a>
+                <Link to="/">Inicio</Link>
                 </li>
                 <li className="option">
                 <a href="#">Eventos pasados</a>
