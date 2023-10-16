@@ -3,7 +3,7 @@ import TextInput from "../../atoms/textInput/TextInput";
 
 import './Formulario.css'
 
-const Formulario = ({CamposDeEntrada, handleChange, OpcionesDelDesplegable,Desactivado}) => {
+const Formulario = ({CamposDeEntrada, handleChange}) => {
     const h = handleChange
 
     return (
@@ -12,7 +12,7 @@ const Formulario = ({CamposDeEntrada, handleChange, OpcionesDelDesplegable,Desac
                 <div className='itemContainer'>
                     <Label TipoDeEtiqueta={item.TipoDeEtiqueta}>{item.Etiqueta}</Label>
                     <TextInput TipoDeEntrada={item.TipoDeEntrada} Identificador={item.Identificador}
-                    ManejarCambio={h} OpcionesDelDesplegable={OpcionesDelDesplegable} Desactivado={Desactivado}/>
+                    ManejarCambio={h} OpcionesDelDesplegable={item.OpcionesDelDesplegable} Desactivado={item.Desactivado}/>
                 </div>
             ))}
         </div>

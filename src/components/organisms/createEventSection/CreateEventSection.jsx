@@ -8,26 +8,41 @@ import Background from "../../atoms/background/Background.jsx";
 const CreateEventSection = () => {
 
   const CamposDeEntrada = [
-    { Etiqueta: 'Titulo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'TituloDelEvento'},
-    { Etiqueta: 'Fecha del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date', Identificador:'FechaDelEvento'},
-    { Etiqueta: 'Tipo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'select', Identificador:'TipoDelEvento'},
-    { Etiqueta: 'Descripcion', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'description', Identificador:'Descripcion'},
-    { Etiqueta: 'Afiche del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'file', Identificador:'AficheDelEvento'},
-    { Etiqueta: 'Requisitos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Requisitos'},
-    { Etiqueta: 'Premios', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Premios'},
-    { Etiqueta: 'Patrocinadores', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Patrocinadores'},
-    { Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Contactos'},
+    { Etiqueta: 'Titulo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:'TituloDelEvento',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Fecha del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date', 
+    Identificador:'FechaDelEvento',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Tipo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'select',
+    Identificador:'TipoDelEvento', Desactivado: false,
+    OpcionesDelDesplegable: [
+      {Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      {Valor:"Reclutamiento", Etiqueta: "Reclutamiento" },
+      {Valor:"Taller de entrenamiento", Etiqueta: "Taller de entrenamiento" },
+      {Valor:"Competencia de entrenamiento", Etiqueta: "Competencia de entrenamiento" },
+      {Valor:"Clasificatorio interno", Etiqueta: "Clasificatorio interno" },
+      {Valor:"Competencia", Etiqueta: "Competencia" },
+  ]},
+    { Etiqueta: 'Descripcion', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'description', 
+    Identificador:'Descripcion',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Afiche del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'file',
+    Identificador:'AficheDelEvento',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Requisitos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:'Requisitos',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Premios', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:'Premios',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Patrocinadores', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:'Patrocinadores',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:'Contactos', Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
   ];
-
-
-  const OpcionesDelDesplegable = [
-    {Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-    {Valor:"Reclutamiento", Etiqueta: "Reclutamiento" },
-    {Valor:"Taller de entrenamiento", Etiqueta: "Taller de entrenamiento" },
-    {Valor:"Competencia de entrenamiento", Etiqueta: "Competencia de entrenamiento" },
-    {Valor:"Clasificatorio interno", Etiqueta: "Clasificatorio interno" },
-    {Valor:"Competencia", Etiqueta: "Competencia" },
-]
 
   const [formData, setFormData] = useState({TituloDelEvento: "",FechaDelEvento: "", TipoDelEvento: ""
   , Descripcion: "",AficheDelEvento: "",Requisitos: "",Premios: "", Patrocinadores:"", Contactos:""});
@@ -80,8 +95,7 @@ const CreateEventSection = () => {
   return (
       <Background>
         <form onSubmit={handleSubmit}>
-          <Formulario CamposDeEntrada= {CamposDeEntrada} handleChange = {handleChange} 
-          OpcionesDelDesplegable ={OpcionesDelDesplegable} Desactivado={false}/>
+          <Formulario CamposDeEntrada= {CamposDeEntrada} handleChange = {handleChange} Desactivado={false}/>
           <div className="w3-row w3-center">
             <div className="createEventButton w3-col l6">
             <Link to="/CrearFormulario">

@@ -38,7 +38,7 @@ const TextInput = ({TipoDeEntrada, Identificador, ManejarCambio, OpcionesDelDesp
         
         >
             {OpcionesDelDesplegable.map((item) => (
-         
+        
                 <option value={item.Valor}>{item.Etiqueta}</option>
             ))}
         </select>
