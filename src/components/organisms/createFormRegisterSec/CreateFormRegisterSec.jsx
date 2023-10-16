@@ -44,7 +44,9 @@ const handleChange = (event) => {
 
 const handleSubmit = (event) => {
   event.preventDefault();
+  console.log(formData)
 };
+
 
 const AgregarCampo = () => {
   if (auxFormData !== "") {
@@ -66,10 +68,14 @@ const AgregarCampo = () => {
         }
       ]));
     }
-    console.log(formData)
   }
+};
 
-  
+const EliminarCampo = () => {
+  if (auxFormData !== "") {
+    setFormData((prevFormData) => ({ ...prevFormData, [auxFormData]: 0 }));
+    setCamposDeEntrada((prevFormData) => prevFormData.filter(item => item.Identificador !== auxFormData));
+  }
 };
 
 const goBack = () => {
@@ -96,6 +102,7 @@ const goBack = () => {
                 </div>
         <div className="w3-center w3-margin">
           <Boton ClaseDeBoton="botonAzul" TipoDeBoton="button" f={AgregarCampo} >Añadir Pregunta</Boton>
+          <Boton ClaseDeBoton="botonAmarilloPeq" TipoDeBoton="button" f={EliminarCampo} >X</Boton>
         </div>
         <div className="w3-row w3-center">             
           <div className="createEventButton w3-col l6">
