@@ -29,9 +29,35 @@ const CreateEventSection = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Campos: ${formData}`
-    );
-};
+
+    // Validación de campos
+    const validationRegex = /^[a-zA-Z0-9\s]+$/; // Expresión regular para permitir letras, números y espacios
+
+    const fieldsToValidate = [
+      "TituloDelEvento",
+      "Descripcion",
+      "Requisitos",
+      "Premios",
+      "Patrocinadores",
+      "Contactos",
+    ];
+
+    let isValid = true;
+
+    fieldsToValidate.forEach((fieldName) => {
+      if (!formData[fieldName].trim()) {
+        alert(`El campo ${fieldName} no puede estar vacío.`);
+        isValid = false;
+      } else if (!validationRegex.test(formData[fieldName])) {
+        alert(`El campo ${fieldName} contiene caracteres especiales no permitidos.`);
+        isValid = false;
+      }
+
+    if (isValid) {
+      // Si pasa la validación, continúa aquí
+      alert("Los datos son válidos. Puedes enviar el formulario.");
+    }
+  };
 
   return (
       <Background>

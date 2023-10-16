@@ -27,12 +27,34 @@ const [formData, setFormData] = useState({Nombres: "",Apellidos: "",
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Nombre: ${formData.Nombres} 
-    \nApellidos: ${formData.Apellidos} 
-    \nFecha de nacimiento: ${formData.FechaDeNacimiento} 
-    \nCorreo electronico: ${formData.CorreoElectronico} 
-    \nNumero de celular: ${formData.NumeroDeCelular}`
-    );
+
+    // Validación de campos
+    const namesValidationRegex = /^[A-Za-z\s]+$/;
+    const numericValidationRegex = /^[0-9]+$/;
+
+    if (!formData.Nombres.trim() || !namesValidationRegex.test(formData.Nombres)) {
+      alert("El campo Nombres no puede estar vacío y solo debe contener letras y espacios.");
+      return;
+    }
+
+    if (!formData.Apellidos.trim() || !namesValidationRegex.test(formData.Apellidos)) {
+      alert("El campo Apellidos no puede estar vacío y solo debe contener letras y espacios.");
+      return;
+    }
+
+    if (
+      !formData.NumeroDeCelular.trim() ||
+      !numericValidationRegex.test(formData.NumeroDeCelular) ||
+      formData.NumeroDeCelular.length !== 8 ||
+      parseInt(formData.NumeroDeCelular, 10) <= 59999999 ||
+      parseInt(formData.NumeroDeCelular, 10) >= 79999999
+    ) {
+      alert("El campo Número de Celular debe contener 8 dígitos y estar en el rango válido (mayor a 59999999 y menor a 79999999).");
+      return;
+    }
+
+    // Si pasa la validación, continúa aquí
+    alert("Los datos son válidos. Puedes enviar el formulario.");
   };
 
   return (
