@@ -35,7 +35,9 @@ const handleSubmit = (event) => {
   return (
     <Background>
       <form onSubmit={handleSubmit}>
-        <Formulario CamposDeEntrada= {CamposDeEntrada} handleSubmit={handleChange}/>
+        <Formulario CamposDeEntrada= {CamposDeEntrada} handleSubmit={handleChange}
+        OpcionesDelDesplegable={[]}
+        Desactivado={true}/>
         <div className="w3-center w3-margin">
           <Boton ClaseDeBoton="botonAzul">Añadir Pregunta</Boton>
         </div>
