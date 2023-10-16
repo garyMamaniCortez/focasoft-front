@@ -15,15 +15,40 @@ const CreateEventSection = () => {
   const navigate = useNavigate()
 
   const CamposDeEntrada = [
-    { Etiqueta: 'TItulo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'TituloDelEvento'},
-    { Etiqueta: 'Fecha del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date', Identificador:'FechaDelEvento'},
-    { Etiqueta: 'Tipo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'select', Identificador:'TipoDelEvento'},
-    { Etiqueta: 'Descripcion', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'description', Identificador:'Descripcion'},
-    { Etiqueta: 'Afiche del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'file', Identificador:'AficheDelEvento'},
-    { Etiqueta: 'Requsitos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Requisitos'},
-    { Etiqueta: 'Premios', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Premios'},
-    { Etiqueta: 'Patrocinadores', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Patrocinadores'},
-    { Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Contactos'},
+    { Etiqueta: 'Titulo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:'TituloDelEvento',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Fecha del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date', 
+    Identificador:'FechaDelEvento',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Tipo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'select',
+    Identificador:'TipoDelEvento', Desactivado: false,
+    OpcionesDelDesplegable: [
+      {Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      {Valor:"Reclutamiento", Etiqueta: "Reclutamiento" },
+      {Valor:"Taller de entrenamiento", Etiqueta: "Taller de entrenamiento" },
+      {Valor:"Competencia de entrenamiento", Etiqueta: "Competencia de entrenamiento" },
+      {Valor:"Clasificatorio interno", Etiqueta: "Clasificatorio interno" },
+      {Valor:"Competencia", Etiqueta: "Competencia" },
+  ]},
+    { Etiqueta: 'Descripcion', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'description', 
+    Identificador:'Descripcion',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Afiche del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'file',
+    Identificador:'AficheDelEvento',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Requisitos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:'Requisitos',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Premios', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:'Premios',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Patrocinadores', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:'Patrocinadores',  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:'Contactos', Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
   ];
 
   const [formData, setFormData] = useState({
@@ -48,29 +73,40 @@ const CreateEventSection = () => {
     event.preventDefault();
 
     // Validación de campos
-    const validationRegex = /^[a-zA-Z0-9\s]+$/; // Expresión regular para permitir letras, números y espacios
+    const namesValidationRegex = /^[A-Za-z0-9\s]+$/;
+    const validationRegex = /^[a-zA-Z0-9\s]+$/;
 
-    const fieldsToValidate = [
-      "TituloDelEvento",
-      "Descripcion",
-      "Requisitos",
-      "Premios",
-      "Patrocinadores",
-      "Contactos",
-    ];
-
-    let isValid = true;
-
-    fieldsToValidate.forEach((fieldName) => {
-      if (!formData[fieldName].trim()) {
-        alert(`El campo ${fieldName} no puede estar vacío.`);
-        isValid = false;
-      } else if (!validationRegex.test(formData[fieldName])) {
-        alert(`El campo ${fieldName} contiene caracteres especiales no permitidos.`);
-        isValid = false;
-      }
-    });
-
+    if(!formData.TituloDelEvento.trim() || !namesValidationRegex.test(formData.TituloDelEvento)){
+      alert("El campo Titulo del evento no puede estar vacío y solo debe contener letras y espacios.");
+      return;
+    } else if(!formData.FechaDelEvento.trim()){
+      alert("El campo Fecha del evento no puede estar vacío.");
+      return;
+    } else if(!formData.TipoDelEvento.trim() || formData.TipoDelEvento === "Sin seleccionar"){
+      alert("Escoja el tipo de evento.");
+      return;
+    } else if(!formData.Descripcion.trim() || !validationRegex.test(formData.Descripcion)){
+      alert("El campo descripción no puede estar vacío.");
+      return;
+    } else if(!formData.AficheDelEvento.trim()){
+      alert("Debe de haber un Afiche del evento.");
+      return;
+    } else if(!formData.Requisitos.trim() || !validationRegex.test(formData.Requisitos)){
+      alert("El campo Requisitos no puede estar vacío.");
+      return;
+    } else if(!formData.Premios.trim() || !validationRegex.test(formData.TipoDelEvento)){
+      alert("El campo Premios no puede estar vacío y debe contener letras y números.");
+      return;
+    } else if(!formData.Patrocinadores.trim() || !validationRegex.test(formData.Patrocinadores)){
+      alert("El campo Patrocinadores no puede estar vacío y debe contener letras y números.");
+      return;
+    } else if(!formData.Contactos.trim() || !validationRegex.test(formData.Contactos)){
+      alert("El campo Contactos no puede estar vacío y debe contener letras y números.");
+      return;
+    } else (
+      console.log(formData)
+    )
+    
     if (isValid) {
       // Si pasa la validación, continúa aquí
       axios.post("http://localhost:8000/api/evento",{
@@ -100,7 +136,7 @@ const CreateEventSection = () => {
   return (
       <Background>
         <form onSubmit={handleSubmit}>
-          <Formulario CamposDeEntrada= {CamposDeEntrada} handleChange = {handleChange}/>
+          <Formulario CamposDeEntrada= {CamposDeEntrada} handleChange = {handleChange} Desactivado={false}/>
           <div className="w3-row w3-center">
             <div className="createEventButton w3-col l6">
             <Link to="/CrearEvento/AgregarFormulario">

@@ -1,6 +1,6 @@
 import'./TextInput.css'
 
-const TextInput = ({TipoDeEntrada, Identificador, ManejarCambio}) => {
+const TextInput = ({TipoDeEntrada, Identificador, ManejarCambio, OpcionesDelDesplegable, Desactivado}) => {
     return (
         <div>
         <input 
@@ -23,23 +23,24 @@ const TextInput = ({TipoDeEntrada, Identificador, ManejarCambio}) => {
 
         onChange={ManejarCambio}
 
-        disabled={TipoDeEntrada === "select" ? true : false}
+        disabled={Desactivado? true : TipoDeEntrada === "select" ? true : false}
         hidden={TipoDeEntrada === "select" ? true : false}/>
 {/* Esto no funciona */}
         <select
         id={TipoDeEntrada === "select" ? Identificador : ""}
         name={TipoDeEntrada === "select" ? Identificador : ""}
         className="EntradaDeTexto"
-        disabled={TipoDeEntrada !== "select" ? true : false}
+        disabled={Desactivado? true : TipoDeEntrada !== "select" ? true : false}
         
         onChange={ManejarCambio}
         
         hidden={TipoDeEntrada !== "select" ? true : false}
         
         >
-            <option value="Tipo">Selecciona un tipo</option>
-            <option value="Competencia">Competencia</option>
-            <option value="Curso">Curso</option>
+            {OpcionesDelDesplegable.map((item) => (
+        
+                <option value={item.Valor}>{item.Etiqueta}</option>
+            ))}
         </select>
 
         </div>
