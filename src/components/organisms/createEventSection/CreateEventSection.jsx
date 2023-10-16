@@ -74,9 +74,6 @@ const CreateEventSection = () => {
     if (isValid) {
       // Si pasa la validación, continúa aquí
       alert("Los datos son válidos. Puedes enviar el formulario.");
-      console.log(
-        formData.TituloDelEvento
-      )
       axios.post("http://localhost:8000/api/evento",{
         titulo: formData.TituloDelEvento,
         fecha_ini: formData.FechaDelEvento,
@@ -90,8 +87,18 @@ const CreateEventSection = () => {
         patrocinadores: formData.Patrocinadores,
         contactos: formData.Contactos
     })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error.response.data.error);
+      alert(error.response.data.error);
+      isValid=false;
+    
+    });
+
     }
-    navigate('/VistaEventos')
+    navigate('/')  
   };
 
   return (

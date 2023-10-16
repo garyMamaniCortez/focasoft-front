@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/CrearEvento" element={<CreateEvent />}/>
         <Route path="/CrearFormulario" element={<CreateRegister/>}/>
-        <Route path="/VistaEventos" element={<VistaEventos/>}/>
+        <Route path="/" element={<VistaEventos/>}/>
         <Route path="/RegistrarParticipante" element={<RegisterParticipant/>}/>
       </Routes>
     </BrowserRouter>
