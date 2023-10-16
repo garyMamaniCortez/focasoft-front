@@ -103,12 +103,8 @@ const CreateEventSection = () => {
     } else if(!formData.Contactos.trim() || !validationRegex.test(formData.Contactos)){
       alert("El campo Contactos no puede estar vacío y debe contener letras y números.");
       return;
-    } else (
+    } else {
       console.log(formData)
-    )
-    
-    if (isValid) {
-      // Si pasa la validación, continúa aquí
       axios.post("http://localhost:8000/api/evento",{
         titulo: formData.TituloDelEvento,
         fecha_ini: formData.FechaDelEvento,
@@ -130,8 +126,11 @@ const CreateEventSection = () => {
       console.log(error.response.data.error);
       alert(error.response.data.error);      
     });
-  } 
-  };
+    }
+      
+      
+    
+      };
 
   return (
       <Background>
