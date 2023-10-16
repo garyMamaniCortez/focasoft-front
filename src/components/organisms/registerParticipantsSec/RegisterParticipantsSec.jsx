@@ -10,11 +10,21 @@ const RegisterParticipantsSec = () => {
   const Evento = "Evento de Programación";
   
   const CamposDeEntrada = [
-    { Etiqueta: 'Nombres', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:"Nombres" },
-    { Etiqueta: 'Apellidos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:"Apellidos"  },
-    { Etiqueta: 'Fecha de nacimiento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date', Identificador:"FechaDeNacimiento"  },
-    { Etiqueta: 'Correo electronico', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'email', Identificador:"CorreoElectronico"  },
-    { Etiqueta: 'Numero de Celular', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:"NumeroDeCelular"  },
+    { Etiqueta: 'Nombres', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:"Nombres",  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Apellidos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"Apellidos",  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Fecha de nacimiento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date', 
+    Identificador:"FechaDeNacimiento", Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Correo electronico', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'email', 
+    Identificador:"CorreoElectronico",  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    { Etiqueta: 'Numero de Celular', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    Identificador:"NumeroDeCelular",  Desactivado: false,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
 ];
 
 const [formData, setFormData] = useState({Nombres: "",Apellidos: "", 
@@ -61,8 +71,7 @@ const [formData, setFormData] = useState({Nombres: "",Apellidos: "",
     <Background>
       <Label TipoDeEtiqueta="FormTitle">{Evento}</Label>
       <form onSubmit={handleSubmit}>
-        <Formulario CamposDeEntrada= {CamposDeEntrada}  handleChange = {handleChange}
-        OpcionesDelDesplegable={[]}/>
+        <Formulario CamposDeEntrada= {CamposDeEntrada}  handleChange = {handleChange}/>
         <div className="w3-row w3-center">
         <Boton TipoDeBoton="submit" ClaseDeBoton="botonRojoGrand">Registrarse</Boton>
         </div>
