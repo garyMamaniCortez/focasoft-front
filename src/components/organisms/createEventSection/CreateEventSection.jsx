@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios"
+
 import Formulario from "../../molecules/formulario/Formulario.jsx";
 import Boton from "../../atoms/boton/Boton.jsx"
 import Background from "../../atoms/background/Background.jsx"; 
 
-const endpoint = 'http:///localhost:8000/api/evento'
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
+
+const endpoint = 'http:///localhost:8000/api/evento'  
 
 const CreateEventSection = () => {
+
+  const navigate = useNavigate()
 
   const CamposDeEntrada = [
     { Etiqueta: 'TItulo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'TituloDelEvento'},
@@ -21,18 +26,18 @@ const CreateEventSection = () => {
     { Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', Identificador:'Contactos'},
   ];
 
-  const [formData, setFormData] = useState(
-    {titulo: "",
-    fecha_ini: null,
-    fecha_fin: null, 
-    tipo: "", 
-    descripcion: "",
-    id_formulario: null,
-    afiche: null,
-    requisitos: "",
-    premios: "", 
-    patrocinadores:"", 
-    contactos:""});
+  const [formData, setFormData] = useState({
+    TituloDelEvento: null,
+    FechaDelEvento: null,
+    FechaFinDelEvento: null, 
+    TipoDelEvento: null, 
+    Descripcion: null,
+    AficheDelEvento: null,
+    Requisitos: null,
+    Premios: null, 
+    Patrocinadores:null, 
+    idFormulario: null,
+    Contactos:null});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,14 +46,53 @@ const CreateEventSection = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Campos: ${formData}`
-    );
-    console.log(
-      formData
-    )
-   axios.post(endpoint,{titulo: formData.titulo, fecha_ini: formData.fecha_ini, fecha_fin: formData.fecha_fin, tipo: formData.tipo, descripcion: formData.descripcion, afiche: formData.afiche, id_formulario: formData.id_formulario
-  })
-};
+
+    // Validación de campos
+    const validationRegex = /^[a-zA-Z0-9\s]+$/; // Expresión regular para permitir letras, números y espacios
+
+    const fieldsToValidate = [
+      "TituloDelEvento",
+      "Descripcion",
+      "Requisitos",
+      "Premios",
+      "Patrocinadores",
+      "Contactos",
+    ];
+
+    let isValid = true;
+
+    fieldsToValidate.forEach((fieldName) => {
+      if (!formData[fieldName].trim()) {
+        alert(`El campo ${fieldName} no puede estar vacío.`);
+        isValid = false;
+      } else if (!validationRegex.test(formData[fieldName])) {
+        alert(`El campo ${fieldName} contiene caracteres especiales no permitidos.`);
+        isValid = false;
+      }
+    });
+
+    if (isValid) {
+      // Si pasa la validación, continúa aquí
+      alert("Los datos son válidos. Puedes enviar el formulario.");
+      console.log(
+        formData.TituloDelEvento
+      )
+      axios.post("http://localhost:8000/api/evento",{
+        titulo: formData.TituloDelEvento,
+        fecha_ini: formData.FechaDelEvento,
+        fecha_fin: formData.FechaFinDelEvento,
+        tipo: formData.TipoDelEvento,
+        descripcion: formData.Descripcion,
+        afiche: formData.AficheDelEvento,
+        id_formulario: formData.idFormulario,
+        requisitos: formData.Requisitos,
+        premios: formData.Premios,
+        patrocinadores: formData.Patrocinadores,
+        contactos: formData.Contactos
+    })
+    }
+    navigate('/VistaEventos')
+  };
 
   return (
       <Background>
