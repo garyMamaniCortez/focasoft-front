@@ -5,8 +5,7 @@ import CreateRegister from "./components/templates/createRegister/CreateRegister
 import RegisterParticipant from "./components/templates/registerParticipant/RegisterParticipant";
 
 import "w3-css"
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 function App() {
 
   return (
@@ -14,12 +13,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/CrearEvento" element={<CreateEvent />}/>
-        <Route path = "/CrearEvento/AgregarFormulario" element = { <CreateRegister/>}
-
-/>
-
-
-       
+        <Route path = "/CrearEvento/AgregarFormulario" element = { <CreateRegister/>}/>
         <Route path="/" element={<VistaEventos/>}/>
         <Route path="/RegistrarParticipante" element={<RegisterParticipant/>}/>
       </Routes>
