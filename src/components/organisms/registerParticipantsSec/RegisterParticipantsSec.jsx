@@ -61,7 +61,8 @@ const [formData, setFormData] = useState({Nombres: "",Apellidos: "",
     <Background>
       <Label TipoDeEtiqueta="FormTitle">{Evento}</Label>
       <form onSubmit={handleSubmit}>
-        <Formulario CamposDeEntrada= {CamposDeEntrada}  handleChange = {handleChange}/>
+        <Formulario CamposDeEntrada= {CamposDeEntrada}  handleChange = {handleChange}
+        OpcionesDelDesplegable={[]}/>
         <div className="w3-row w3-center">
         <Boton TipoDeBoton="submit" ClaseDeBoton="botonRojoGrand">Registrarse</Boton>
         </div>
