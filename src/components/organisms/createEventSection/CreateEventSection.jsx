@@ -4,15 +4,15 @@ import { useState } from "react";
 import Formulario from "../../molecules/formulario/Formulario.jsx";
 import Boton from "../../atoms/boton/Boton.jsx"
 import Background from "../../atoms/background/Background.jsx"; 
-
+import { useAppContext } from '../../../Context';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-
-const endpoint = 'http:///localhost:8000/api/evento'  
 
 const CreateEventSection = () => {
 
   const navigate = useNavigate()
+  const id = useAppContext();
+
 
   const CamposDeEntrada = [
     { Etiqueta: 'Titulo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
@@ -70,7 +70,9 @@ const CreateEventSection = () => {
   };
 
   const handleSubmit = (event) => {
+    
     event.preventDefault();
+    console.log({id})
 
     // Validación de campos
     const namesValidationRegex = /^[A-Za-z0-9\s]+$/;
@@ -112,7 +114,7 @@ const CreateEventSection = () => {
         tipo: formData.TipoDelEvento,
         descripcion: formData.Descripcion,
         afiche: formData.AficheDelEvento,
-        id_formulario: formData.idFormulario,
+        id_formulario: id.datos,
         requisitos: formData.Requisitos,
         premios: formData.Premios,
         patrocinadores: formData.Patrocinadores,

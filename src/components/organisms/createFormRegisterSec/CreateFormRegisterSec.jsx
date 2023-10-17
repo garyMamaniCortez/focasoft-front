@@ -3,14 +3,20 @@ import { useState } from "react";
 import Background from "../../atoms/background/Background";
 import Boton from "../../atoms/boton/Boton";
 import Formulario from "../../molecules/formulario/Formulario";
-
+import { useAppContext } from '../../../Context';
 import TextInput from "../../atoms/textInput/TextInput";
 import Label from "../../atoms/label/Label";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 const CreateFormRegisterSec = () => {
 
 const navigate = useNavigate()
+
+const { setDatos, navigateBack } = useAppContext();
+const [dato, setDato] = useState('');
+
+
 
   const [CamposDeEntrada, setCamposDeEntrada] = useState([
     { Etiqueta: 'Nombres', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
@@ -44,7 +50,24 @@ const handleChange = (event) => {
 
 const handleSubmit = (event) => {
   event.preventDefault();
-  console.log(formData)
+  axios.post("http://localhost:8000/api/formularios/registro",{
+    nombres: 1,
+    apellidos: 1,
+    fecha_nacimiento: 1,
+    correo_electronico: 1,
+    numero_celular: 1,
+    carrera: formData.Carrera,
+    talla_polera: formData.TallaDePolera,
+    carnet_identidad: formData.CarnetDeIdentidad,
+    codigo_sis_o_institucion: formData.CodigoSISOInstitucion,
+    semestre: formData.Semestre
+})
+.then(function (response) {
+  console.log(response.data.id);
+
+  setDatos(response.data.id);
+  navigateBack()
+})
 };
 
 
@@ -106,10 +129,10 @@ const goBack = () => {
         </div>
         <div className="w3-row w3-center">             
           <div className="createEventButton w3-col l6">
-          <Boton ClaseDeBoton="botonAmarilloGrand"  TipoDeBoton="submit">Guardar Informacion</Boton>
+          <Boton ClaseDeBoton="botonAmarilloGrand"  TipoDeBoton="submit">Guardar formulario</Boton>
           </div>
           <div className="w3-col l6">
-            <Boton ClaseDeBoton="botonRojoGrand">Cancelar</Boton>
+            <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="button" f={goBack}>Cancelar</Boton>
           </div>
         </div>
       </form>
