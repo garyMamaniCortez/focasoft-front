@@ -13,30 +13,30 @@ button{
 .botonRojoPeq{
     background-color: #b12a1c;
     width: 160px;
-    height: 57px;
+    height: 50px;
 }
 
 .botonRojoGrand{
     background-color: #b12a1c;
     width: 350px;
-    height: 57px;
+    height: 50px;
 }
 
 .botonAmarilloPeq{
     background-color: #f9a029;
     width: 160px;
-    height: 57px;
+    height: 50px;
 }
 
 .botonAmarilloGrand{
     background-color: #f9a029;
     width: 352px;
-    height: 57px;
+    height: 50px;
 }
 .botonAzul{
     background-color: #192795;
     width: 352px;
-    height: 57px;
+    height: 50px;
 }
 
 button:hover{
