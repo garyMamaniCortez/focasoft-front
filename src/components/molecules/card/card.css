@@ -6,11 +6,11 @@
 }
 .botonRegistro{
     position: absolute;
-    width: 100%;
     text-align: center;
-    margin-bottom: 0;
-    margin-top: auto;
-    bottom: 0;
+    left: 0;
+    right: 0;
+    bottom: 0 !important;
+    margin: auto;
     padding-bottom: 4%;
 }
 .invisible {
