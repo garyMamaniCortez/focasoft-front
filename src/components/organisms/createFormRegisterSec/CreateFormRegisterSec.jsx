@@ -34,6 +34,21 @@ const [dato, setDato] = useState('');
     {divClase:"itemContainer", Etiqueta: 'Numero de Celular', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
     Identificador:"NumeroDeCelular", Desactivado: true,
     OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Talla De Polera', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"TallaDePolera", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Codigo SIS o\nInstitucion', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"CodigoSISOInstitucion", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Carnet De Identidad', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"CarnetDeIdentidad", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Carrera', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"Carrera", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Semestre', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"Semestre", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
 ])
 
 const [formData, setFormData] = useState({Carrera: 0,TallaDePolera: 0, CarnetDeIdentidad: 0
@@ -49,7 +64,7 @@ const handleChange = (event) => {
 };
 
 const handleSubmit = (event) => {
-  event.preventDefault();
+  event.preventDefault(); 
   axios.post("http://localhost:8000/api/formularios/registro",{
     nombres: 1,
     apellidos: 1,
@@ -74,11 +89,18 @@ const handleSubmit = (event) => {
 const AgregarCampo = () => {
   if (auxFormData !== "") {
     setFormData((prevFormData) => ({ ...prevFormData, [auxFormData]: 1 }));
+    setCamposDeEntrada(prevCampos => prevCampos.map(campo => {
+      if (campo.Identificador === auxFormData) {
+        return { ...campo, divClase: "itemContainer" };
+      }
+      return campo;
+    }));
+    
 
     if (auxFormData !== "" && !CamposDeEntrada.some(item => item.Identificador === auxFormData)) {
       setCamposDeEntrada((prevFormData) => ([
         ...prevFormData,
-        {
+        {divClase:"invisible",
           Etiqueta: auxFormData === "TallaDePolera" ? "Talla De Polera" :
             auxFormData === "CodigoSISOInstitucion" ? "Codigo SIS o\nInstitucion" : 
             auxFormData === "CarnetDeIdentidad" ? "Carnet De Identidad" : 
@@ -97,7 +119,12 @@ const AgregarCampo = () => {
 const EliminarCampo = () => {
   if (auxFormData !== "") {
     setFormData((prevFormData) => ({ ...prevFormData, [auxFormData]: 0 }));
-    setCamposDeEntrada((prevFormData) => prevFormData.filter(item => item.Identificador !== auxFormData));
+    setCamposDeEntrada(prevCampos => prevCampos.map(campo => {
+      if (campo.Identificador === auxFormData) {
+        return { ...campo, divClase: "invisible" };
+      }
+      return campo;
+    }));
   }
 };
 

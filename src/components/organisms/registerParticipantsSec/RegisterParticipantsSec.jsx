@@ -88,20 +88,20 @@ const [formData, setFormData] = useState(
   const handleSubmit = (event) => {
     event.preventDefault();
 
-
-
-    // Validación de campos
-    const namesValidationRegex = /^[A-Za-z\s]+$/;
-    const numericValidationRegex = /^[0-9]+$/;
+    const namesValidationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
+    const numericValidationRegex = /^[0-9]+/;
+    let errors = [];
 
     if (!formData.Nombres.trim() || !namesValidationRegex.test(formData.Nombres)) {
-      alert("El campo Nombres no puede estar vacío y solo debe contener letras y espacios.");
-      return;
+      errors.push("- El campo Nombre no puede estar vacío y solo debe contener letras y espacios.");
     }
 
     if (!formData.Apellidos.trim() || !namesValidationRegex.test(formData.Apellidos)) {
-      alert("El campo Apellidos no puede estar vacío y solo debe contener letras y espacios.");
-      return;
+      errors.push("- El campo Apellidos no puede estar vacío y solo debe contener letras y espacios.");
+    }
+
+    if (!formData.CorreoElectronico.trim() || !namesValidationRegex.test(formData.CorreoElectronico)) {
+      errors.push("- El campo Correo Electronico no puede estar vacío y debe ser un correo valido.");
     }
 
     if (
@@ -111,13 +111,17 @@ const [formData, setFormData] = useState(
       parseInt(formData.NumeroDeCelular, 10) <= 59999999 ||
       parseInt(formData.NumeroDeCelular, 10) >= 79999999
     ) {
-      alert("El campo Número de Celular debe contener 8 dígitos y estar en el rango válido (mayor a 59999999 y menor a 79999999).");
-      return;
+      errors.push("El campo Número de Celular debe contener 8 dígitos.");
     }
 
+
     // Si pasa la validación, continúa aquí
-    alert("Los datos son válidos. Puedes enviar el formulario.");
-    console.log(formData)
+    if (errors.length > 0) {
+      alert("Errores:\n\n" + errors.join("\n"));
+      return;
+    } else {
+      alert("Los datos son válidos. Puedes enviar el formulario.");
+    }
     axios.post("http://localhost:8000/api/formularios/participante",{
       nombres: formData.Nombres,
       apellidos: formData.Apellidos,
@@ -144,10 +148,10 @@ const [formData, setFormData] = useState(
   return (
     <Background>
       <Label TipoDeEtiqueta="FormTitle">{evento}</Label>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="FormularioParaRegistrarParticipante">
         <Formulario CamposDeEntrada= {CamposDeEntrada}  handleChange = {handleChange}/>
         <div className="w3-row w3-center">
-        <Boton TipoDeBoton="submit" ClaseDeBoton="botonRojoGrand">Registrarse</Boton>
+        <Boton TipoDeBoton="submit" ClaseDeBoton="botonRojoGrand" form="FormularioParaRegistrarParticipante">Registrarse</Boton>
         </div>
       </form>
     </Background>

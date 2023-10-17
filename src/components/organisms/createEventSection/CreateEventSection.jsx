@@ -52,17 +52,17 @@ const CreateEventSection = () => {
   ];
 
   const [formData, setFormData] = useState({
-    TituloDelEvento: null,
-    FechaDelEvento: null,
-    FechaFinDelEvento: null, 
-    TipoDelEvento: null, 
-    Descripcion: null,
-    AficheDelEvento: null,
-    Requisitos: null,
-    Premios: null, 
-    Patrocinadores:null, 
-    idFormulario: null,
-    Contactos:null});
+    TituloDelEvento: "",
+    FechaDelEvento: "",
+    FechaFinDelEvento: "", 
+    TipoDelEvento: "", 
+    Descripcion: "",
+    AficheDelEvento: "",
+    Requisitos: "",
+    Premios: "", 
+    Patrocinadores:"", 
+    idFormulario: "",
+    Contactos:""});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -72,41 +72,49 @@ const CreateEventSection = () => {
   const handleSubmit = (event) => {
     
     event.preventDefault();
-    console.log({id})
+  
+    const validationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
+    const optionalValidationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]*$/;
+    const errors = [];
+    const hoy = new Date();
+    const fechaDelEvento = new Date(formData.FechaDelEvento);
 
-    // Validación de campos
-    const namesValidationRegex = /^[A-Za-z0-9\s]+$/;
-    const validationRegex = /^[a-zA-Z0-9\s]+$/;
-
-    if(!formData.TituloDelEvento.trim() || !namesValidationRegex.test(formData.TituloDelEvento)){
-      alert("El campo Titulo del evento no puede estar vacío y solo debe contener letras y espacios.");
-      return;
-    } else if(!formData.FechaDelEvento.trim()){
-      alert("El campo Fecha del evento no puede estar vacío.");
-      return;
-    } else if(!formData.TipoDelEvento.trim() || formData.TipoDelEvento === "Sin seleccionar"){
-      alert("Escoja el tipo de evento.");
-      return;
-    } else if(!formData.Descripcion.trim() || !validationRegex.test(formData.Descripcion)){
-      alert("El campo descripción no puede estar vacío.");
-      return;
-    } else if(!formData.AficheDelEvento.trim()){
-      alert("Debe de haber un Afiche del evento.");
-      return;
-    } else if(!formData.Requisitos.trim() || !validationRegex.test(formData.Requisitos)){
-      alert("El campo Requisitos no puede estar vacío.");
-      return;
-    } else if(!formData.Premios.trim() || !validationRegex.test(formData.TipoDelEvento)){
-      alert("El campo Premios no puede estar vacío y debe contener letras y números.");
-      return;
-    } else if(!formData.Patrocinadores.trim() || !validationRegex.test(formData.Patrocinadores)){
-      alert("El campo Patrocinadores no puede estar vacío y debe contener letras y números.");
-      return;
-    } else if(!formData.Contactos.trim() || !validationRegex.test(formData.Contactos)){
-      alert("El campo Contactos no puede estar vacío y debe contener letras y números.");
-      return;
+  
+    if (!formData.TituloDelEvento.trim()) {
+      errors.push("- El campo Titulo del evento no puede estar vacío");
+    }
+    if (!validationRegex.test(formData.TituloDelEvento)) {
+      errors.push("- El Titulo del evento solo debe contener caracteres alfanumericos");
+    }
+    if (!formData.FechaDelEvento.trim()) {
+      errors.push("- El campo Fecha del evento no puede estar vacío.");
+    }
+    if (fechaDelEvento <= hoy) {
+      errors.push("- La Fecha del evento debe ser una fecha posterior a la de hoy.");
+    }
+    if (!formData.TipoDelEvento.trim() || formData.TipoDelEvento === "Sin seleccionar") {
+      errors.push("- Debes escoger un tipo del evento.");
+    }
+    if (!formData.Descripcion.trim() || !validationRegex.test(formData.Descripcion)) {
+      errors.push("- El campo descripción no puede estar vacío.");
+    }
+    if (!optionalValidationRegex.test(formData.Requisitos)) {
+      errors.push("- El campo Requisitos solo debe contener letras y números.");
+    }
+    if (!optionalValidationRegex.test(formData.TipoDelEvento)) {
+      errors.push("- El campo Premios solo debe contener letras y números.");
+    }
+    if (!optionalValidationRegex.test(formData.Patrocinadores)) {
+      errors.push("- El campo Patrocinadores solo debe contener letras y números.");
+    }
+    if (!optionalValidationRegex.test(formData.Contactos)) {
+      errors.push("- El campo Contactos solo debe contener letras y números.");
+    }
+  
+    if (errors.length > 0) {
+        alert("Errores:\n\n" + errors.join("\n"));
     } else {
-      console.log(formData)
+        alert(`El evento ${formData.TituloDelEvento} se creo exitosamente`)
       axios.post("http://localhost:8000/api/evento",{
         titulo: formData.TituloDelEvento,
         fecha_ini: formData.FechaDelEvento,
@@ -129,10 +137,7 @@ const CreateEventSection = () => {
       alert(error.response.data.error);      
     });
     }
-      
-      
-    
-      };
+};
 
   return (
       <Background>
