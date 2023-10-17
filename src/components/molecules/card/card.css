@@ -1,5 +1,19 @@
 .cardContent{
     padding: 5%;
     box-shadow:     5px 10px 18px #888888;
-    height: 650px;
+    height: 700px;
+    position: relative;
 }
+.botonRegistro{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: auto;
+    bottom: 0;
+    padding-bottom: 4%;
+}
+.invisible {
+    display: none;
+    visibility: hidden;
+  }

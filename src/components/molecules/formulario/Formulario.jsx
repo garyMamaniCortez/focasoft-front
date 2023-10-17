@@ -9,7 +9,7 @@ const Formulario = ({CamposDeEntrada, handleChange}) => {
     return (
         <div>
             {CamposDeEntrada.map((item) => (
-                <div className='itemContainer'>
+                <div className={item.divClase}>
                     <Label TipoDeEtiqueta={item.TipoDeEtiqueta}>{item.Etiqueta}</Label>
                     <TextInput TipoDeEntrada={item.TipoDeEntrada} Identificador={item.Identificador}
                     ManejarCambio={h} OpcionesDelDesplegable={item.OpcionesDelDesplegable} Desactivado={item.Desactivado}/>
