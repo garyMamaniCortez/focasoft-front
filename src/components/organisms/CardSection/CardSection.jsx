@@ -23,6 +23,12 @@ function CardSection(){
         setEventos(response.data)
     }
 
+    const getImagen = async (urlImagen) => {
+        const response = await axios.get("http://"+urlImagen)
+        console.log(response)
+        return(response.data)
+    }  
+
     return(
         <div className="cardSectionContent">
             <h2 className="cardSTi">Eventos</h2>
@@ -36,7 +42,7 @@ function CardSection(){
                         title={evento.titulo} 
                         date={evento.fecha_ini}
                         description={evento.descripcion}
-                        src="https://www.umss.edu.bo/wp-content/uploads/2023/03/ICPC-Bolivia-Regionals-2022-afiche.png"
+                        src={"http://"+(evento.afiche)}
                         idFormulario={evento.id_formulario}
                         claseDiv={(evento.id_formulario==null) ? "invisible" : "botonRegistro"}>
                         
