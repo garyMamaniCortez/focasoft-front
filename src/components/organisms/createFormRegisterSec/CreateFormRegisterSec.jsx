@@ -102,7 +102,7 @@ const EliminarCampo = () => {
 };
 
 const goBack = () => {
-  navigate(-1)
+  navigate("/CrearEvento")
 };
 
   return (
