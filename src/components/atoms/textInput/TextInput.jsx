@@ -21,6 +21,7 @@ const TextInput = ({TipoDeEntrada, Identificador, ManejarCambio, OpcionesDelDesp
         TipoDeEntrada === "file" ? "file" : 
         TipoDeEntrada === "email" ? "email" : ""}`}
 
+        accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}
         onChange={ManejarCambio}
 
         disabled={Desactivado? true : TipoDeEntrada === "select" ? true : false}
