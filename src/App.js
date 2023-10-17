@@ -15,7 +15,7 @@ function App() {
         <Route path="/CrearEvento" element={<CreateEvent />}/>
         <Route path = "/CrearEvento/AgregarFormulario" element = { <CreateRegister/>}/>
         <Route path="/" element={<VistaEventos/>}/>
-        <Route path="/RegistrarParticipante" element={<RegisterParticipant/>}/>
+        <Route path="/RegistrarParticipante/:id/:evento" element={<RegisterParticipant/>}/>
       </Routes>
     </div>
   );

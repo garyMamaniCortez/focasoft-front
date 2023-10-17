@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { async } from "q";
 import { useState } from "react";
+import Boton from "../../atoms/boton/Boton"
 
 
 const endpoint = 'http:///localhost:8000/api'
@@ -35,12 +36,16 @@ function CardSection(){
                         title={evento.titulo} 
                         date={evento.fecha_ini}
                         description={evento.descripcion}
-                        src="https://www.umss.edu.bo/wp-content/uploads/2023/03/ICPC-Bolivia-Regionals-2022-afiche.png">
-    
+                        src="https://www.umss.edu.bo/wp-content/uploads/2023/03/ICPC-Bolivia-Regionals-2022-afiche.png"
+                        idFormulario={evento.id_formulario}
+                        claseDiv={(evento.id_formulario==null) ? "invisible" : "botonRegistro"}>
+                        
                     </Card>
+                    
                     </div>
 
-                ))
+                )
+                )
                 }
                 
             </div>

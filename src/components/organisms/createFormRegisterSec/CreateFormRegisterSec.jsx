@@ -3,30 +3,51 @@ import { useState } from "react";
 import Background from "../../atoms/background/Background";
 import Boton from "../../atoms/boton/Boton";
 import Formulario from "../../molecules/formulario/Formulario";
-
+import { useAppContext } from '../../../Context';
 import TextInput from "../../atoms/textInput/TextInput";
 import Label from "../../atoms/label/Label";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 const CreateFormRegisterSec = () => {
 
 const navigate = useNavigate()
 
+const { setDatos, navigateBack } = useAppContext();
+const [dato, setDato] = useState('');
+
+
+
   const [CamposDeEntrada, setCamposDeEntrada] = useState([
-    { Etiqueta: 'Nombres', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    {divClase:"itemContainer", Etiqueta: 'Nombres', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
     Identificador:"Nombres", Desactivado: true,
     OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    { Etiqueta: 'Apellidos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    {divClase:"itemContainer", Etiqueta: 'Apellidos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
     Identificador:"Apellidos", Desactivado: true,
     OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    { Etiqueta: 'Fecha de nacimiento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date',
+    {divClase:"itemContainer", Etiqueta: 'Fecha de nacimiento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date',
     Identificador:"FechaDenacimiento", Desactivado: true,
     OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    { Etiqueta: 'Correo electronico', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
+    {divClase:"itemContainer", Etiqueta: 'Correo electronico', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
     Identificador:"CorreoElectronico", Desactivado: true,
     OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    { Etiqueta: 'Numero de Celular', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    {divClase:"itemContainer", Etiqueta: 'Numero de Celular', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
     Identificador:"NumeroDeCelular", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Talla De Polera', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"TallaDePolera", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Codigo SIS o\nInstitucion', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"CodigoSISOInstitucion", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Carnet De Identidad', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"CarnetDeIdentidad", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Carrera', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"Carrera", Desactivado: true,
+    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
+    {divClase:"invisible", Etiqueta: 'Semestre', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
+    Identificador:"Semestre", Desactivado: true,
     OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
 ])
 
@@ -43,19 +64,43 @@ const handleChange = (event) => {
 };
 
 const handleSubmit = (event) => {
-  event.preventDefault();
-  console.log(formData)
+  event.preventDefault(); 
+  axios.post("http://localhost:8000/api/formularios/registro",{
+    nombres: 1,
+    apellidos: 1,
+    fecha_nacimiento: 1,
+    correo_electronico: 1,
+    numero_celular: 1,
+    carrera: formData.Carrera,
+    talla_polera: formData.TallaDePolera,
+    carnet_identidad: formData.CarnetDeIdentidad,
+    codigo_sis_o_institucion: formData.CodigoSISOInstitucion,
+    semestre: formData.Semestre
+})
+.then(function (response) {
+  console.log(response.data.id);
+
+  setDatos(response.data.id);
+  navigateBack()
+})
 };
 
 
 const AgregarCampo = () => {
   if (auxFormData !== "") {
     setFormData((prevFormData) => ({ ...prevFormData, [auxFormData]: 1 }));
+    setCamposDeEntrada(prevCampos => prevCampos.map(campo => {
+      if (campo.Identificador === auxFormData) {
+        return { ...campo, divClase: "itemContainer" };
+      }
+      return campo;
+    }));
+    
 
     if (auxFormData !== "" && !CamposDeEntrada.some(item => item.Identificador === auxFormData)) {
       setCamposDeEntrada((prevFormData) => ([
         ...prevFormData,
-        {
+        {divClase:"invisible",
           Etiqueta: auxFormData === "TallaDePolera" ? "Talla De Polera" :
             auxFormData === "CodigoSISOInstitucion" ? "Codigo SIS o\nInstitucion" : 
             auxFormData === "CarnetDeIdentidad" ? "Carnet De Identidad" : 
@@ -74,12 +119,17 @@ const AgregarCampo = () => {
 const EliminarCampo = () => {
   if (auxFormData !== "") {
     setFormData((prevFormData) => ({ ...prevFormData, [auxFormData]: 0 }));
-    setCamposDeEntrada((prevFormData) => prevFormData.filter(item => item.Identificador !== auxFormData));
+    setCamposDeEntrada(prevCampos => prevCampos.map(campo => {
+      if (campo.Identificador === auxFormData) {
+        return { ...campo, divClase: "invisible" };
+      }
+      return campo;
+    }));
   }
 };
 
 const goBack = () => {
-  navigate(-1)
+  navigate("/CrearEvento")
 };
 
   return (
@@ -106,10 +156,10 @@ const goBack = () => {
         </div>
         <div className="w3-row w3-center">             
           <div className="createEventButton w3-col l6">
-          <Boton ClaseDeBoton="botonAmarilloGrand"  TipoDeBoton="submit">Guardar Informacion</Boton>
+          <Boton ClaseDeBoton="botonAmarilloGrand"  TipoDeBoton="submit">Guardar formulario</Boton>
           </div>
           <div className="w3-col l6">
-            <Boton ClaseDeBoton="botonRojoGrand">Cancelar</Boton>
+            <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="button" f={goBack}>Cancelar</Boton>
           </div>
         </div>
       </form>
