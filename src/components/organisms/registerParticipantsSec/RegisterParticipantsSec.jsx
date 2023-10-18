@@ -88,7 +88,7 @@ const [formData, setFormData] = useState(
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const namesValidationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
+    const namesValidationRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚ]+$/;
     const numericValidationRegex = /^[0-9]+/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let errors = [];
