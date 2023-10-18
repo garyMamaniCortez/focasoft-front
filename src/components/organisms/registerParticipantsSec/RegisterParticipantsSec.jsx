@@ -90,6 +90,7 @@ const [formData, setFormData] = useState(
 
     const namesValidationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
     const numericValidationRegex = /^[0-9]+/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let errors = [];
 
     if (!formData.Nombres.trim() || !namesValidationRegex.test(formData.Nombres)) {
@@ -100,7 +101,7 @@ const [formData, setFormData] = useState(
       errors.push("- El campo Apellidos no puede estar vacío y solo debe contener letras y espacios.");
     }
 
-    if (!formData.CorreoElectronico.trim() || !namesValidationRegex.test(formData.CorreoElectronico)) {
+    if (!formData.CorreoElectronico.trim() || !emailRegex.test(formData.CorreoElectronico)) {
       errors.push("- El campo Correo Electronico no puede estar vacío y debe ser un correo valido.");
     }
 
