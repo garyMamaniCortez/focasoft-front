@@ -16,3 +16,27 @@
 .Descripcion {
     height: 60px;
 }
+
+.Contrasena, .User{
+    width: 480px;
+    height: 40px;
+    border-radius: 15px;
+    border: none;
+    margin-bottom: 10px;
+    text-indent: 10px;
+    outline: none;
+    -webkit-transition: box-shadow 1s;
+    -moz-transition: box-shadow 1s;
+    -o-transition: box-shadow 1s;
+    transition: box-shadow 1s;
+    position: relative;
+    background-color: #6d86a4;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    margin-right: 146px;
+}
+.Contrasena:focus, .User:focus {
+    box-shadow: 0px 0px 3px 1px rgb(12, 6, 41)
+}

@@ -12,14 +12,21 @@ const TextInput = ({TipoDeEntrada, Identificador, ManejarCambio, OpcionesDelDesp
         TipoDeEntrada === "description" ? "EntradaDeTexto" :
         TipoDeEntrada === "file" ? "EntradaDeTexto" :
         TipoDeEntrada === "select" ? "EntradaDeTexto" :
-        TipoDeEntrada === "email" ? "EntradaDeTexto" : ""}
+        TipoDeEntrada === "email" ? "EntradaDeTexto" :
+        TipoDeEntrada === "password" ? "Contrasena" : 
+        TipoDeEntrada === "User" ? "User" : ""}
         `}
 
         type={`${TipoDeEntrada === "text" ? "text" : 
         TipoDeEntrada === "description" ? "text" : 
         TipoDeEntrada === "date" ? "date" : 
         TipoDeEntrada === "file" ? "file" : 
-        TipoDeEntrada === "email" ? "email" : ""}`}
+        TipoDeEntrada === "email" ? "email" : 
+        TipoDeEntrada === "password" ? "password" :
+        TipoDeEntrada === "User" ? "text" : ""}`}
+
+        placeholder={`${TipoDeEntrada === "password" ? "contraseña" : 
+        TipoDeEntrada === "User" ? "usuario" : ""}`}
 
         accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}
         onChange={ManejarCambio}

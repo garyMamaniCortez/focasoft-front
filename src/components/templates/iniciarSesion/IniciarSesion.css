@@ -1,0 +1,9 @@
+.H1Sesion {
+    font-size: 40px;
+    padding-left: 16px;
+}
+
+.SeccionDatosSesion {
+    justify-content: center;
+    display: flex;
+}
