@@ -67,7 +67,7 @@ const IniciarSesionSection = () => {
 
     return(
         <div>
-        <Background>
+        <Background tamback="backgroundpeq">
             <img className="Imgsesion" src={usuario} alt="Imagen de inicio de sesion"/>  
             <Label TipoDeEtiqueta="FormTitle">{sesion}</Label>
                 <form onSubmit={handleSubmit} id="FormularioParaInicioDeSesion">

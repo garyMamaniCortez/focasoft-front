@@ -1,9 +1,12 @@
 import './Background.css'
 
-const Background = ({children}) => {
-
+const Background = ({children, tamback}) => {
+    
     return(
-        <div className="background">
+        <div className={tamback = `${
+            tamback === "backgroundpeq" ? "backgroundpeq" :"background"
+            }
+        }`}>
             {children}
         </div>
     );
