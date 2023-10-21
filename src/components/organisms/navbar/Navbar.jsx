@@ -13,7 +13,7 @@ function Navbar(){
             <nav className="navbar">
             <ul>
                 <li className="option">
-                    <Boton ClaseDeBoton="botonAmarilloPeq">Iniciar sesión</Boton>
+                    <Link to="/IniciarSesion"><Boton ClaseDeBoton="botonAmarilloPeq">Iniciar sesión</Boton></Link>
                 </li>
                 <li className="option">
                 <Link to="/">Inicio</Link>
