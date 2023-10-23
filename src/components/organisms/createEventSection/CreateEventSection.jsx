@@ -7,32 +7,33 @@ import Background from "../../atoms/background/Background.jsx";
 import { useAppContext } from "../../../Context";
 import axios from "axios";
 
-const CreateEventSection = ({ Campos } , props) => {
+const CreateEventSection = (props) => {
   const navigate = useNavigate();
   const id = useAppContext();
   const [imagen, setImagen]= useState(null);
-  console.log(props.accion)
+  console.log(props.Accion)
+  console.log(props.Evento)
+  console.log(props.idEvento)
 
   //Los valores de los atributos son valores por defecto
   
-  const Valores = Campos.reduce((resultado, campo) => {
+  const Valores = props.Campos.reduce((resultado, campo) => {
     resultado[campo.Identificador] = campo.Valor;
     return resultado;
   }, {});
 
-  const [formData, setFormData] = useState({
-    TituloDelEvento: "",
-    FechaDelEvento: "",
-    FechaFinDelEvento: "",
-    TipoDelEvento: "",
-    Descripcion: "",
-    AficheDelEvento: "",
-    Requisitos: [""],
-    Premios: [""],
-    Patrocinadores: [""],
-    idFormulario: "",
-    Contactos: ""
-  });
+  const [formData, setFormData] = useState(
+    {
+      TituloDelEvento: props.Evento.titulo,
+      FechaDelEvento: props.Evento.fecha_ini,
+      TipoDelEvento: props.Evento.tipo,
+      Descripcion: props.Evento.descripcion,
+      Requisitos: props.Evento.requisitos,
+      Premios: props.Evento.premios,
+      Patrocinadores: props.Evento.patrocinadores,
+      Contactos: props.Evento.contactos
+    });
+  console.log(formData)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -145,15 +146,14 @@ const CreateEventSection = ({ Campos } , props) => {
     if (errors.length > 0) {
       alert("Errores:\n\n" + errors.join("\n"));
     } else {
-      alert(`El evento ${formData.TituloDelEvento} se creo exitosamente`);
-      axios
-        .post("http://localhost:8000/api/evento", {
+      if(props.Accion=="crear"){
+        axios.post("http://localhost:8000/api/evento", {
           titulo: formData.TituloDelEvento,
           fecha_ini: formData.FechaDelEvento,
-          fecha_fin: formData.FechaFinDelEvento,
+          fecha_fin: null,
           tipo: formData.TipoDelEvento,
           descripcion: formData.Descripcion,
-          afiche: formData.AficheDelEvento,
+          afiche: imagen,
           id_formulario: id.datos,
           requisitos: formData.Requisitos,
           premios: formData.Premios,
@@ -168,6 +168,30 @@ const CreateEventSection = ({ Campos } , props) => {
           console.log(error.response.data.error);
           alert(error.response.data.error);
         });
+      }else{
+          axios.put(`http://localhost:8000/api/evento/${props.idEvento}`, {
+          titulo: formData.TituloDelEvento,
+          fecha_ini: formData.FechaDelEvento,
+          fecha_fin: null,
+          tipo: formData.TipoDelEvento,
+          descripcion: formData.Descripcion,
+          afiche: imagen,
+          id_formulario: id.datos,
+          requisitos: formData.Requisitos,
+          premios: formData.Premios,
+          patrocinadores: formData.Patrocinadores,
+          contactos: formData.Contactos,
+          })
+          .then(function (response) {
+            console.log(response);
+            navigate("/");
+          })
+          .catch(function (error) {
+            console.log(error.response.data.error);
+            alert(error.response.data.error);
+          });
+
+      }
     }
   };
 
@@ -175,22 +199,22 @@ const CreateEventSection = ({ Campos } , props) => {
     <Background>
       <form onSubmit={handleSubmit}>
         <Formulario
-          CamposDeEntrada={Campos}
+          CamposDeEntrada={props.Campos}
           handleChange={handleChange}
           Desactivado={false}
           FormData={formData}
         />
         <div className="w3-row w3-center">
           <div className="createEventButton w3-col l6">
-            <Link to="/CrearEvento/AgregarFormulario">
+            {/*<Link to="/CrearEvento/AgregarFormulario">
               <Boton ClaseDeBoton="botonAmarilloGrand">
                 Formulario de registro
               </Boton>
-            </Link>
+  </Link>*/}
           </div>
           <div className="w3-col l6">
             <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">
-              Crear evento
+              {props.Accion=="crear" ?  "Crear evento" : "Editar evento"}
             </Boton>
           </div>
         </div>

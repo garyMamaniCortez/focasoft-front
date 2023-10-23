@@ -5,38 +5,33 @@ import axios from "axios"
 import { useEffect } from "react";
 import { useState } from "react";
 
-
 const EditEvent = () => {
-    const { id } = useParams();
-    const hola="joa"
+  const { id } = useParams();
+  const [evento, setEvento] = useState({});
+  const [eventoCargado, setEventoCargado] = useState(false);
 
-    const [evento, setEvento] = useState(null);
-
-    const obtenerDatosEvento = async (eventoId) => {
+  useEffect(() => {
+    const getEvent = async () => {
       try {
-        const respuesta = await axios.get(`http://localhost:8000/api/evento/${eventoId}`);
-        return respuesta.data;
+        const response = await axios.get(`http://localhost:8000/api/evento/${id}`);
+        setEvento(response.data);
+        setEventoCargado(true); // Marcar el evento como cargado
       } catch (error) {
-        console.error('Error al obtener los datos del evento:', error);
-        return null;
+        console.error('Error al obtener el evento:', error);
       }
-    };
-    useEffect(() => {
-      const cargarDatosEvento = async () => {
-        const eventoId = id;
-        const datosEvento = await obtenerDatosEvento(eventoId);
-        setEvento(datosEvento)
-        console.log(evento)
-      };
-      cargarDatosEvento();
-    
+    }
 
-    },[])
-    
-      
+    getEvent();
+  }, [id]);
+
+  if (!eventoCargado) {
+    // Si el evento no se ha cargado todavía, puedes mostrar un spinner o un mensaje de carga
+    return <div>Cargando evento...</div>;
+  }
+
   const Campos = [
     {
-      Valor: "hola",
+      Valor: evento.titulo,
       divClase: "itemContainer",
       Etiqueta: "Titulo del evento",
       TipoDeEtiqueta: "FormLabel",
@@ -46,9 +41,8 @@ const EditEvent = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ]
-    },
+      },
     {
-      Valor: "hola",
       divClase: "itemContainer",
       Etiqueta: "Fecha del evento",
       TipoDeEtiqueta: "FormLabel",
@@ -58,10 +52,8 @@ const EditEvent = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ]
-    },
+      },
     {
-      Valor: "hola",
-
       divClase: "itemContainer",
       Etiqueta: "Tipo del evento",
       TipoDeEtiqueta: "FormLabel",
@@ -84,8 +76,6 @@ const EditEvent = () => {
       ]
     },
     {
-      Valor: "hola",
-
       divClase: "itemContainer",
       Etiqueta: "Descripcion",
       TipoDeEtiqueta: "FormLabel",
@@ -97,8 +87,6 @@ const EditEvent = () => {
       ]
     },
     {
-      Valor: "hola",
-
       divClase: "itemContainer",
       Etiqueta: "Afiche del evento",
       TipoDeEtiqueta: "FormLabel",
@@ -110,8 +98,6 @@ const EditEvent = () => {
       ]
     },
     {
-      Valor: "hola",
-
       divClase: "itemContainer",
       Etiqueta: "Requisitos",
       TipoDeEtiqueta: "FormLabel",
@@ -123,8 +109,6 @@ const EditEvent = () => {
       ]
     },
     {
-      Valor: "hola",
-
       divClase: "itemContainer",
       Etiqueta: "Premios",
       TipoDeEtiqueta: "FormLabel",
@@ -136,8 +120,6 @@ const EditEvent = () => {
       ]
     },
     {
-      Valor: "hola",
-
       divClase: "itemContainer",
       Etiqueta: "Patrocinadores",
       TipoDeEtiqueta: "FormLabel",
@@ -146,11 +128,9 @@ const EditEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-    },
+      ]
+      },
     {
-      Valor: "hola",
-
       divClase: "itemContainer",
       Etiqueta: "Contactos",
       TipoDeEtiqueta: "FormLabel",
@@ -160,17 +140,21 @@ const EditEvent = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ]
-    },
+      },
   ];
 
   return (
     <div className="CreateEventContent vistaContent w3-right">
       <h1 className="H1CreateEvent">Crear Evento</h1>
       <div className="CreateEventSection">
-        <CreateEventSection Campos={Campos} accion="editar" evento={evento}/>
+        <CreateEventSection Campos={Campos} Accion="editar" Evento={evento} idEvento={id}/>
       </div>
     </div>
   );
-  }
-  
-  export default EditEvent;
+}
+
+export default EditEvent;
+
+    
+      
+
