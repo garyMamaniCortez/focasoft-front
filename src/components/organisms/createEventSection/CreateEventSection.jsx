@@ -7,7 +7,7 @@ import Background from "../../atoms/background/Background.jsx";
 import { useAppContext } from "../../../Context";
 import axios from "axios";
 
-const CreateEventSection = ({Campos}) => {
+const CreateEventSection = ({ Campos }) => {
   const navigate = useNavigate();
   const id = useAppContext();
 
@@ -20,15 +20,15 @@ const CreateEventSection = ({Campos}) => {
     TipoDelEvento: "",
     Descripcion: "",
     AficheDelEvento: "",
-    Requisitos: "",
-    Premios: "",
-    Patrocinadores: "",
+    Requisitos: [""],
+    Premios: [""],
+    Patrocinadores: [""],
     idFormulario: "",
     Contactos: "",
   };
 
   const [formData, setFormData] = useState(Valores);
-  
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -37,55 +37,101 @@ const CreateEventSection = ({Campos}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const validationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
-    const optionalValidationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]*$/;
     const errors = [];
-    const hoy = new Date();
     const fechaDelEvento = new Date(formData.FechaDelEvento);
+    const hoy = new Date();
+    const optionalValidationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,]*$/;
+    const validationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
+    const ValidacionContacto = /^(5999999[1-9]|6\d{7}|7\d{7}|7999999[1-9])$/;
 
+    //Validacion del Titulo del evento
     if (!formData.TituloDelEvento.trim()) {
       errors.push("- El campo Titulo del evento no puede estar vacío");
-    }
-    if (!validationRegex.test(formData.TituloDelEvento)) {
+    } else if (!validationRegex.test(formData.TituloDelEvento)) {
       errors.push(
         "- El Titulo del evento solo debe contener caracteres alfanumericos"
       );
     }
+
+    //Variacion para Fecha del evento
     if (!formData.FechaDelEvento.trim()) {
       errors.push("- El campo Fecha del evento no puede estar vacío.");
-    }
-    if (fechaDelEvento <= hoy) {
+    } else if (fechaDelEvento <= hoy) {
       errors.push(
         "- La Fecha del evento debe ser una fecha posterior a la de hoy."
       );
     }
+    //Validacion para tipos de evento
     if (
       !formData.TipoDelEvento.trim() ||
       formData.TipoDelEvento === "Sin seleccionar"
     ) {
       errors.push("- Debes escoger un tipo del evento.");
     }
+
+    //Validacion para Descripcion
     if (
       !formData.Descripcion.trim() ||
       !validationRegex.test(formData.Descripcion)
     ) {
       errors.push("- El campo descripción no puede estar vacío.");
     }
+
+    //Validacion para Requisitos
+    var Requisitos;
     if (!optionalValidationRegex.test(formData.Requisitos)) {
       errors.push("- El campo Requisitos solo debe contener letras y números.");
+    } else if (formData.Requisitos.includes(",")) {
+      Requisitos = formData.Requisitos.split(",").map(function (item) {
+        return item.trim();
+      });
+    } else {
+      Requisitos = [formData.Requisitos];
     }
-    if (!optionalValidationRegex.test(formData.TipoDelEvento)) {
+
+    //Validacion para Premios
+    var Premios;
+    if (!optionalValidationRegex.test(formData.Premios)) {
       errors.push("- El campo Premios solo debe contener letras y números.");
+    } else if (formData.Premios.includes(",")) {
+      Premios = formData.Premios.split(",").map(function (item) {
+        return item.trim();
+      });
+    } else {
+      Premios = [formData.Premios];
     }
+
+    // Validacion para Patrocinadores
+    var Patrocinadores;
     if (!optionalValidationRegex.test(formData.Patrocinadores)) {
       errors.push(
         "- El campo Patrocinadores solo debe contener letras y números."
       );
-    }
-    if (!optionalValidationRegex.test(formData.Contactos)) {
-      errors.push("- El campo Contactos solo debe contener letras y números.");
+    } else if (formData.Patrocinadores.includes(",")) {
+      Patrocinadores = formData.Patrocinadores.split(",").map(function (item) {
+        return item.trim();
+      });
+    } else {
+      Patrocinadores = [formData.Patrocinadores];
     }
 
+    // Validacion para contactos
+    var Contactos = formData.Contactos;
+    if (Contactos.trim() === "") {
+      Contactos = [];
+    } else {
+      Contactos = Contactos.split(",").map(function (item) {
+        return item.trim();
+      });
+    }
+    for (var i = 0; i < Contactos.length; i++) {
+      if (!ValidacionContacto.test(Contactos[i])) {
+        errors.push("- No todos los Contactos son válidos.");
+        break;
+      }
+    }
+
+    //Resultado de validacion
     if (errors.length > 0) {
       alert("Errores:\n\n" + errors.join("\n"));
     } else {
@@ -99,10 +145,10 @@ const CreateEventSection = ({Campos}) => {
           descripcion: formData.Descripcion,
           afiche: formData.AficheDelEvento,
           id_formulario: id.datos,
-          requisitos: formData.Requisitos,
-          premios: formData.Premios,
-          patrocinadores: formData.Patrocinadores,
-          contactos: formData.Contactos,
+          requisitos: Requisitos,
+          premios: Premios,
+          patrocinadores: Patrocinadores,
+          contactos: Contactos,
         })
         .then(function (response) {
           console.log(response);
