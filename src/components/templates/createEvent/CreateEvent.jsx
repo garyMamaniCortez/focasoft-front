@@ -1,6 +1,19 @@
 import CreateEventSection from "../../organisms/createEventSection/CreateEventSection";
 import "./CreateEvent.css";
 const CreateEvent = () => {
+
+  const evento=
+    {
+      TituloDelEvento: "",
+      FechaDelEvento: "",
+      TipoDelEvento: "",
+      Descripcion: "",
+      Requisitos: [""],
+      Premios: [""],
+      Patrocinadores: [""],
+      Contactos: [""]
+    };
+
   const Campos = [
     {
       divClase: "itemContainer",
@@ -118,7 +131,7 @@ const CreateEvent = () => {
     <div className="CreateEventContent vistaContent w3-right">
       <h1 className="H1CreateEvent">Crear Evento</h1>
       <div className="CreateEventSection">
-        <CreateEventSection Campos={Campos} Accion={"crear"} />
+        <CreateEventSection Campos={Campos} Accion={"crear"} Evento={evento}/>
       </div>
     </div>
   );

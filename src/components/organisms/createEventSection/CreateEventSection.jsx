@@ -33,6 +33,7 @@ const CreateEventSection = (props) => {
       Patrocinadores: props.Evento.patrocinadores,
       Contactos: props.Evento.contactos
     });
+    
   console.log(formData)
 
   const handleChange = (event) => {
