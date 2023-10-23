@@ -6,7 +6,7 @@ const TextInput = ({
   ManejarCambio,
   OpcionesDelDesplegable,
   Desactivado,
-  Valor
+  Valor,
 }) => {
   return (
     <div>
@@ -48,7 +48,13 @@ const TextInput = ({
           Desactivado ? true : TipoDeEntrada === "select" ? true : false
         }
         hidden={TipoDeEntrada === "select" ? true : false}
-        value={TipoDeEntrada === "select" ? "" : Valor}
+        value={
+          TipoDeEntrada === "file"
+            ? ""
+            : TipoDeEntrada === "Select"
+            ? ""
+            : Valor
+        }
       />
       <select
         id={TipoDeEntrada === "select" ? Identificador : ""}

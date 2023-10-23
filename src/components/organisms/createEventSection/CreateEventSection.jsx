@@ -14,20 +14,11 @@ const CreateEventSection = ({ Campos } , props) => {
   console.log(props.accion)
 
   //Los valores de los atributos son valores por defecto
-
-  const Valores = {
-    TituloDelEvento: "",
-    FechaDelEvento: "",
-    FechaFinDelEvento: "",
-    TipoDelEvento: "",
-    Descripcion: "",
-    AficheDelEvento: "",
-    Requisitos: [""],
-    Premios: [""],
-    Patrocinadores: [""],
-    idFormulario: "",
-    Contactos: "",
-  };
+  
+  const Valores = Campos.reduce((resultado, campo) => {
+    resultado[campo.Identificador] = campo.Valor;
+    return resultado;
+  }, {});
 
   const [formData, setFormData] = useState({
     TituloDelEvento: "",
@@ -154,34 +145,29 @@ const CreateEventSection = ({ Campos } , props) => {
     if (errors.length > 0) {
       alert("Errores:\n\n" + errors.join("\n"));
     } else {
-      if(props.accion=="crear"){
-            alert(`El evento ${formData.TituloDelEvento} se creo exitosamente`);
-          axios
-            .post("http://localhost:8000/api/evento", {
-              titulo: formData.TituloDelEvento,
-              fecha_ini: formData.FechaDelEvento,
-              fecha_fin: formData.FechaFinDelEvento,
-              tipo: formData.TipoDelEvento,
-              descripcion: formData.Descripcion,
-              afiche: formData.AficheDelEvento,
-              id_formulario: id.datos,
-              requisitos: formData.Requisitos,
-              premios: formData.Premios,
-              patrocinadores: formData.Patrocinadores,
-              contactos: formData.Contactos,
-            })
-            .then(function (response) {
-              console.log(response);
-              navigate("/");
-            })
-            .catch(function (error) {
-              console.log(error.response.data.error);
-              alert(error.response.data.error);
-            });
-      }else{
-        
-      }
-      
+      alert(`El evento ${formData.TituloDelEvento} se creo exitosamente`);
+      axios
+        .post("http://localhost:8000/api/evento", {
+          titulo: formData.TituloDelEvento,
+          fecha_ini: formData.FechaDelEvento,
+          fecha_fin: formData.FechaFinDelEvento,
+          tipo: formData.TipoDelEvento,
+          descripcion: formData.Descripcion,
+          afiche: formData.AficheDelEvento,
+          id_formulario: id.datos,
+          requisitos: formData.Requisitos,
+          premios: formData.Premios,
+          patrocinadores: formData.Patrocinadores,
+          contactos: formData.Contactos,
+        })
+        .then(function (response) {
+          console.log(response);
+          navigate("/");
+        })
+        .catch(function (error) {
+          console.log(error.response.data.error);
+          alert(error.response.data.error);
+        });
     }
   };
 
