@@ -1,109 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import Formulario from "../../molecules/formulario/Formulario.jsx";
-import Boton from "../../atoms/boton/Boton.jsx"
-import Background from "../../atoms/background/Background.jsx"; 
-import { useAppContext } from '../../../Context';
-import axios from "axios"
-import { useNavigate } from "react-router-dom";
+import Boton from "../../atoms/boton/Boton.jsx";
+import Background from "../../atoms/background/Background.jsx";
+import { useAppContext } from "../../../Context";
+import axios from "axios";
 
-const CreateEventSection = (props) => {
-  const evento = props.evento
-  console.log(evento)
+const CreateEventSection = ({ Campos } , props) => {
+  const navigate = useNavigate();
+  const id = useAppContext();
+  const [imagen, setImagen]= useState(null);
+  console.log(props.accion)
 
-  const navigate = useNavigate()
-  const idFormulario = useAppContext();
+  //Los valores de los atributos son valores por defecto
 
-  const CamposDeEntradaEditar = [
-    {valor: "hoa", divClase:"itemContainer", Etiqueta: 'Titulo del evento',TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
-    Identificador:'TituloDelEvento',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Fecha del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date', 
-    Identificador:'FechaDelEvento',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Tipo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'select',
-    Identificador:'TipoDelEvento', Desactivado: false,
-    OpcionesDelDesplegable: [
-      {Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      {Valor:"Reclutamiento", Etiqueta: "Reclutamiento" },
-      {Valor:"Taller de entrenamiento", Etiqueta: "Taller de entrenamiento" },
-      {Valor:"Competencia de entrenamiento", Etiqueta: "Competencia de entrenamiento" },
-      {Valor:"Clasificatorio interno", Etiqueta: "Clasificatorio interno" },
-      {Valor:"Competencia", Etiqueta: "Competencia" },
-  ]},
-    {divClase:"itemContainer", Etiqueta: 'Descripcion', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'description', 
-    Identificador:'Descripcion',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Afiche del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'file',
-    Identificador:'AficheDelEvento',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Requisitos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
-    Identificador:'Requisitos',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Premios', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
-    Identificador:'Premios',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Patrocinadores', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
-    Identificador:'Patrocinadores',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
-    Identificador:'Contactos', Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-  ];
+  const Valores = {
+    TituloDelEvento: "",
+    FechaDelEvento: "",
+    FechaFinDelEvento: "",
+    TipoDelEvento: "",
+    Descripcion: "",
+    AficheDelEvento: "",
+    Requisitos: [""],
+    Premios: [""],
+    Patrocinadores: [""],
+    idFormulario: "",
+    Contactos: "",
+  };
 
-
-
-  const CamposDeEntrada = [
-    {value: "hosdfsda",divClase:"itemContainer", Etiqueta: 'Titulo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
-    Identificador:'TituloDelEvento',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Fecha del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'date', 
-    Identificador:'FechaDelEvento',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Tipo del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'select',
-    Identificador:'TipoDelEvento', Desactivado: false,
-    OpcionesDelDesplegable: [
-      {Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      {Valor:"Reclutamiento", Etiqueta: "Reclutamiento" },
-      {Valor:"Taller de entrenamiento", Etiqueta: "Taller de entrenamiento" },
-      {Valor:"Competencia de entrenamiento", Etiqueta: "Competencia de entrenamiento" },
-      {Valor:"Clasificatorio interno", Etiqueta: "Clasificatorio interno" },
-      {Valor:"Competencia", Etiqueta: "Competencia" },
-  ]},
-    {divClase:"itemContainer", Etiqueta: 'Descripcion', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'description', 
-    Identificador:'Descripcion',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Afiche del evento', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'file',
-    Identificador:'AficheDelEvento',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Requisitos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
-    Identificador:'Requisitos',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Premios', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text', 
-    Identificador:'Premios',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Patrocinadores', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
-    Identificador:'Patrocinadores',  Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-    {divClase:"itemContainer", Etiqueta: 'Contactos', TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'text',
-    Identificador:'Contactos', Desactivado: false,
-    OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]},
-  ];
-
-  const [imagen, setImagen]=useState(null);
   const [formData, setFormData] = useState({
-    TituloDelEvento: null,
-    FechaDelEvento: null,
-    FechaFinDelEvento: null, 
-    TipoDelEvento: null, 
-    Descripcion: null,
-    AficheDelEvento: null,
-    Requisitos: null,
-    Premios: null, 
-    Patrocinadores: null, 
-    idFormulario: null,
-    Contactos:null});
+    TituloDelEvento: "",
+    FechaDelEvento: "",
+    FechaFinDelEvento: "",
+    TipoDelEvento: "",
+    Descripcion: "",
+    AficheDelEvento: "",
+    Requisitos: [""],
+    Premios: [""],
+    Patrocinadores: [""],
+    idFormulario: "",
+    Contactos: ""
+  });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -116,95 +54,163 @@ const CreateEventSection = (props) => {
   };
 
   const handleSubmit = (event) => {
-    
     event.preventDefault();
-  
-    const validationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
-    const optionalValidationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]*$/;
-    const errors = [];
-    const hoy = new Date();
-    const fechaDelEvento = new Date(formData.FechaDelEvento);
 
-  
+    const errors = [];
+    const fechaDelEvento = new Date(formData.FechaDelEvento);
+    const hoy = new Date();
+    const optionalValidationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,]*$/;
+    const validationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
+    const ValidacionContacto = /^(5999999[1-9]|6\d{7}|7\d{7}|7999999[1-9])$/;
+
+    //Validacion del Titulo del evento
     if (!formData.TituloDelEvento.trim()) {
       errors.push("- El campo Titulo del evento no puede estar vacío");
+    } else if (!validationRegex.test(formData.TituloDelEvento)) {
+      errors.push(
+        "- El Titulo del evento solo debe contener caracteres alfanumericos"
+      );
     }
-    if (!validationRegex.test(formData.TituloDelEvento)) {
-      errors.push("- El Titulo del evento solo debe contener caracteres alfanumericos");
-    }
+
+    //Variacion para Fecha del evento
     if (!formData.FechaDelEvento.trim()) {
       errors.push("- El campo Fecha del evento no puede estar vacío.");
+    } else if (fechaDelEvento <= hoy) {
+      errors.push(
+        "- La Fecha del evento debe ser una fecha posterior a la de hoy."
+      );
     }
-    if (fechaDelEvento <= hoy) {
-      errors.push("- La Fecha del evento debe ser una fecha posterior a la de hoy.");
-    }
-    if (!formData.TipoDelEvento.trim() || formData.TipoDelEvento === "Sin seleccionar") {
+    //Validacion para tipos de evento
+    if (
+      !formData.TipoDelEvento.trim() ||
+      formData.TipoDelEvento === "Sin seleccionar"
+    ) {
       errors.push("- Debes escoger un tipo del evento.");
     }
-    if (!formData.Descripcion.trim() || !validationRegex.test(formData.Descripcion)) {
+
+    //Validacion para Descripcion
+    if (
+      !formData.Descripcion.trim() ||
+      !validationRegex.test(formData.Descripcion)
+    ) {
       errors.push("- El campo descripción no puede estar vacío.");
     }
+
+    //Validacion para Requisitos
+    var Requisitos;
     if (!optionalValidationRegex.test(formData.Requisitos)) {
       errors.push("- El campo Requisitos solo debe contener letras y números.");
-    }
-    if (!optionalValidationRegex.test(formData.TipoDelEvento)) {
-      errors.push("- El campo Premios solo debe contener letras y números.");
-    }
-    if (!optionalValidationRegex.test(formData.Patrocinadores)) {
-      errors.push("- El campo Patrocinadores solo debe contener letras y números.");
-    }
-    if (!optionalValidationRegex.test(formData.Contactos)) {
-      errors.push("- El campo Contactos solo debe contener letras y números.");
-    }
-  
-    if (errors.length > 0) {
-        alert("Errores:\n\n" + errors.join("\n"));
+    } else if (formData.Requisitos.includes(",")) {
+      Requisitos = formData.Requisitos.split(",").map(function (item) {
+        return item.trim();
+      });
     } else {
-        if( props.accion == "crear" ){
-            axios.post("http://localhost:8000/api/evento",{
-            titulo: formData.TituloDelEvento,
-            fecha_ini: formData.FechaDelEvento,
-            fecha_fin: formData.FechaFinDelEvento,
-            tipo: formData.TipoDelEvento,
-            descripcion: formData.Descripcion,
-            afiche: imagen,
-            id_formulario: idFormulario.datos,
-            requisitos: formData.Requisitos,
-            premios: formData.Premios,
-            patrocinadores: formData.Patrocinadores,
-            contactos: formData.Contactos
+      Requisitos = [formData.Requisitos];
+    }
+
+    //Validacion para Premios
+    var Premios;
+    if (!optionalValidationRegex.test(formData.Premios)) {
+      errors.push("- El campo Premios solo debe contener letras y números.");
+    } else if (formData.Premios.includes(",")) {
+      Premios = formData.Premios.split(",").map(function (item) {
+        return item.trim();
+      });
+    } else {
+      Premios = [formData.Premios];
+    }
+
+    // Validacion para Patrocinadores
+    var Patrocinadores;
+    if (!optionalValidationRegex.test(formData.Patrocinadores)) {
+      errors.push(
+        "- El campo Patrocinadores solo debe contener letras y números."
+      );
+    } else if (formData.Patrocinadores.includes(",")) {
+      Patrocinadores = formData.Patrocinadores.split(",").map(function (item) {
+        return item.trim();
+      });
+    } else {
+      Patrocinadores = [formData.Patrocinadores];
+    }
+
+    // Validacion para contactos
+    var Contactos = formData.Contactos;
+    if (Contactos.trim() === "") {
+      Contactos = [];
+    } else {
+      Contactos = Contactos.split(",").map(function (item) {
+        return item.trim();
+      });
+    }
+    for (var i = 0; i < Contactos.length; i++) {
+      if (!ValidacionContacto.test(Contactos[i])) {
+        errors.push("- No todos los Contactos son válidos.");
+        break;
+      }
+    }
+
+    //Resultado de validacion
+    if (errors.length > 0) {
+      alert("Errores:\n\n" + errors.join("\n"));
+    } else {
+      if(props.accion=="crear"){
+            alert(`El evento ${formData.TituloDelEvento} se creo exitosamente`);
+          axios
+            .post("http://localhost:8000/api/evento", {
+              titulo: formData.TituloDelEvento,
+              fecha_ini: formData.FechaDelEvento,
+              fecha_fin: formData.FechaFinDelEvento,
+              tipo: formData.TipoDelEvento,
+              descripcion: formData.Descripcion,
+              afiche: formData.AficheDelEvento,
+              id_formulario: id.datos,
+              requisitos: formData.Requisitos,
+              premios: formData.Premios,
+              patrocinadores: formData.Patrocinadores,
+              contactos: formData.Contactos,
             })
             .then(function (response) {
               console.log(response);
-              navigate('/')
+              navigate("/");
             })
             .catch(function (error) {
               console.log(error.response.data.error);
-              alert(error.response.data.error);      
+              alert(error.response.data.error);
             });
-        }else{
-
-        }
+      }else{
+        
+      }
+      
     }
-};
+  };
 
   return (
-      <Background>
-        <form onSubmit={handleSubmit}>
-          <Formulario CamposDeEntrada= {CamposDeEntrada} handleChange = {handleChange} Desactivado={false}/>
-          <div className="w3-row w3-center">
-            <div className="createEventButton w3-col l6">
+    <Background>
+      <form onSubmit={handleSubmit}>
+        <Formulario
+          CamposDeEntrada={Campos}
+          handleChange={handleChange}
+          Desactivado={false}
+          FormData={formData}
+        />
+        <div className="w3-row w3-center">
+          <div className="createEventButton w3-col l6">
             <Link to="/CrearEvento/AgregarFormulario">
-              <Boton ClaseDeBoton="botonAmarilloGrand">Formulario de registro</Boton></Link>
-            </div>
-            <div className="w3-col l6">
-            <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">Crear evento</Boton>
-            </div>
+              <Boton ClaseDeBoton="botonAmarilloGrand">
+                Formulario de registro
+              </Boton>
+            </Link>
           </div>
-        </form>
-
-      </Background>
+          <div className="w3-col l6">
+            <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">
+              Crear evento
+            </Boton>
+          </div>
+        </div>
+      </form>
+    </Background>
   );
-}
+};
 
 export default CreateEventSection;
