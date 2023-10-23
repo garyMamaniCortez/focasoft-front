@@ -1,0 +1,10 @@
+.H1CreateEvent {
+    font-size: 40px;
+    padding-left: 16px;
+}
+
+
+.CreateEventSection {
+    justify-content: center;
+    display: flex;
+}

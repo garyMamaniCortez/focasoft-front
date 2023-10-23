@@ -6,7 +6,7 @@ const CreateEvent = () => {
       <div className="CreateEventContent vistaContent w3-right">
         <h1 className="H1CreateEvent">Crear Evento</h1>
         <div className="CreateEventSection">
-          <CreateEventSection/>
+          <CreateEventSection accion={"crear"}/>
         </div>
       </div>
     );
