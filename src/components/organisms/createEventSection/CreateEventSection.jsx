@@ -12,20 +12,11 @@ const CreateEventSection = ({ Campos }) => {
   const id = useAppContext();
 
   //Los valores de los atributos son valores por defecto
-
-  const Valores = {
-    TituloDelEvento: "",
-    FechaDelEvento: "",
-    FechaFinDelEvento: "",
-    TipoDelEvento: "",
-    Descripcion: "",
-    AficheDelEvento: "",
-    Requisitos: [""],
-    Premios: [""],
-    Patrocinadores: [""],
-    idFormulario: "",
-    Contactos: "",
-  };
+  
+  const Valores = Campos.reduce((resultado, campo) => {
+    resultado[campo.Identificador] = campo.Valor;
+    return resultado;
+  }, {});
 
   const [formData, setFormData] = useState(Valores);
 
@@ -36,7 +27,7 @@ const CreateEventSection = ({ Campos }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+/*
     const errors = [];
     const fechaDelEvento = new Date(formData.FechaDelEvento);
     const hoy = new Date();
@@ -158,7 +149,7 @@ const CreateEventSection = ({ Campos }) => {
           console.log(error.response.data.error);
           alert(error.response.data.error);
         });
-    }
+    }*/
   };
 
   return (

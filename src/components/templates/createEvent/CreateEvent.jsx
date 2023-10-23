@@ -11,7 +11,8 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Valor:"Titulo del evento"
     },
     {
       divClase: "itemContainer",
@@ -22,7 +23,8 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Valor:"2024-12-12"
     },
     {
       divClase: "itemContainer",
@@ -44,7 +46,8 @@ const CreateEvent = () => {
         },
         { Valor: "Clasificatorio interno", Etiqueta: "Clasificatorio interno" },
         { Valor: "Competencia", Etiqueta: "Competencia" },
-      ]
+      ],
+      Valor:"Taller de entrenamiento"
     },
     {
       divClase: "itemContainer",
@@ -55,7 +58,8 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Valor:"Descripcion"
     },
     {
       divClase: "itemContainer",
@@ -66,7 +70,9 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Valor:""
+
     },
     {
       divClase: "itemContainer",
@@ -77,7 +83,9 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Valor:["Requisito 1", "requisito 2"]
+
     },
     {
       divClase: "itemContainer",
@@ -88,7 +96,9 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Valor:["Premio 1","Premio 2"]
+
     },
     {
       divClase: "itemContainer",
@@ -100,6 +110,7 @@ const CreateEvent = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Valor:["Patrocinadores 1","Patrocinadores 2"]
     },
     {
       divClase: "itemContainer",
@@ -110,7 +121,8 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Valor:["Contacto 1","Contacto 2"]
     },
   ];
 
