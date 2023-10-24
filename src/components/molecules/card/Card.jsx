@@ -13,9 +13,12 @@ function Card(props){
             date={props.date} 
             description={props.description}
             ></Texto>
+            <div className={props.aficheDiv}>
             <Afiche
             src={props.src}
             ></Afiche>
+            </div>
+            
             <div className={props.claseDiv} >
                 <Link to={idFormulario}>
                     <Boton ClaseDeBoton={"botonRojoGrand"} TipoDeBoton={"button"}>Registrarse</Boton>

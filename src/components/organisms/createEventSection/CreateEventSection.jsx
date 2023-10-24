@@ -28,6 +28,7 @@ const CreateEventSection = (props) => {
       FechaDelEvento: props.Evento.fecha_ini,
       TipoDelEvento: props.Evento.tipo,
       Descripcion: props.Evento.descripcion,
+      AficheDelEvento: null,
       Requisitos: props.Evento.requisitos,
       Premios: props.Evento.premios,
       Patrocinadores: props.Evento.patrocinadores,
@@ -40,10 +41,17 @@ const CreateEventSection = (props) => {
     const { name, value } = event.target;
     if(name!="AficheDelEvento"){
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    }else{
-      setImagen(event.target.files[0])
+    }else {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = function() {
+        const base64String = reader.result.split(',')[1];
+        setFormData((prevFormData) => ({ ...prevFormData, [name]: base64String }));
+      }
+  
+      reader.readAsDataURL(file);
     }
-    
   };
 
   const handleSubmit = (event) => {
@@ -154,7 +162,7 @@ const CreateEventSection = (props) => {
           fecha_fin: null,
           tipo: formData.TipoDelEvento,
           descripcion: formData.Descripcion,
-          afiche: imagen,
+          afiche: formData.AficheDelEvento,
           id_formulario: id.datos,
           requisitos: formData.Requisitos,
           premios: formData.Premios,
@@ -176,7 +184,7 @@ const CreateEventSection = (props) => {
           fecha_fin: null,
           tipo: formData.TipoDelEvento,
           descripcion: formData.Descripcion,
-          afiche: imagen,
+          afiche: formData.AficheDelEvento,
           id_formulario: id.datos,
           requisitos: formData.Requisitos,
           premios: formData.Premios,

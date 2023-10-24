@@ -44,6 +44,7 @@ function CardSection(){
                         description={evento.descripcion}
                         src={"http://"+(evento.afiche)}
                         idFormulario={evento.id_formulario}
+                        aficheDiv={evento.afiche==null ? "invisible" : ""}
                         claseDiv={(evento.id_formulario==null) ? "invisible" : "botonRegistro"}>
                         
                     </Card>
