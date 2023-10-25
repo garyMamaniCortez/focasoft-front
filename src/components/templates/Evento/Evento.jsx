@@ -17,7 +17,7 @@ const Evento = () => {
   return (
     <div className="vistaContent w3-right">
       <h1 className="H1CreateEvent">Crear Formulario de Registro</h1>
-      <div className="CentrarSeccion">
+      <div className="CentrarSeccion InformacionEvento">
         <Informacion Datos={Datos}/>
       </div>
     </div>

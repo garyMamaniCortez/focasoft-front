@@ -4,11 +4,15 @@ const Background = ({ children, Tipo }) => {
   return (
     <div
       className={`${
-        Tipo === "FondoAtributo"
-          ? "FondoAtributo"
-          : Tipo === "FondoEvento"
+        Tipo === "FondoEvento"
           ? "FondoEvento"
+          : Tipo === "FondoAtributo1"
+          ? "FondoAtributo1"
+          : Tipo === "FondoAtributo2"
+          ? "FondoAtributo2"
           : "Predeterminado"
+          
+          
       }
         `}
     >
