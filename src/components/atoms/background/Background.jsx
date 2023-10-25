@@ -1,13 +1,20 @@
-import './Background.css'
+import "./Background.css";
 
-const Background = ({children}) => {
+const Background = ({ children, Tipo }) => {
+  return (
+    <div
+      className={`${
+        Tipo === "FondoAtributo"
+          ? "FondoAtributo"
+          : Tipo === "FondoEvento"
+          ? "FondoEvento"
+          : "Predeterminado"
+      }
+        `}
+    >
+      {children}
+    </div>
+  );
+};
 
-    return(
-        <div className="background">
-            {children}
-        </div>
-    );
-}
-
-export default Background
-
+export default Background;

@@ -22,3 +22,18 @@
 .ListBody{
     font-size: 15px;
 }
+
+.AtributoEvento1{
+    font-size: 24px;
+    color: white;
+/*    width: 100%; */
+    display: inline-block;
+    text-align: center;
+}
+
+.AtributoEvento2{
+    font-size: 12px;
+    color: black;
+    display: inline-block;
+    text-align: center;
+}
