@@ -145,7 +145,7 @@ const EditEvent = () => {
 
   return (
     <div className="CreateEventContent vistaContent w3-right">
-      <h1 className="H1CreateEvent">Crear Evento</h1>
+      <h1 className="H1CreateEvent">Editar evento</h1>
       <div className="CreateEventSection">
         <CreateEventSection Campos={Campos} Accion="editar" Evento={evento} idEvento={id}/>
       </div>
