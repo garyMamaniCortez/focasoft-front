@@ -10,9 +10,7 @@ function VistaEventos(){
                     <h1>Inicio</h1>
                 </div>
                 
-                <div className="buscarSide w3-col l3 w3-right">
-                    <InputBuscar text="Buscar evento"></InputBuscar>
-                </div>
+                
             </div>
             <CardSection></CardSection>
             

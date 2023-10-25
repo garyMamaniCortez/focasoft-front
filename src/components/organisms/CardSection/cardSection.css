@@ -10,3 +10,10 @@
 .card{
     padding: 3%;
 }
+.tituloSeccion{
+    width: 100% !important;
+}
+.buscarSide{
+    margin: 0;
+    width: 20%;
+}

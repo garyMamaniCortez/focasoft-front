@@ -5,6 +5,7 @@ import "./card.css"
 import { Link } from "react-router-dom";
 function Card(props){
     let idFormulario= "/RegistrarParticipante/"+props.idFormulario+"/"+props.title;
+    let idEvento="/EditarEvento/"+props.idEvento
     return(
         <div className="cardContent">
             <Texto 
@@ -20,6 +21,9 @@ function Card(props){
             </div>
             
             <div className={props.claseDiv} >
+                <Link to={idEvento}>
+                    <Boton ClaseDeBoton={"botonRojoPeq"} TipoDeBoton={"button"}>Modificar evento</Boton>
+                </Link>
                 <Link to={idFormulario}>
                     <Boton ClaseDeBoton={"botonRojoGrand"} TipoDeBoton={"button"}>Registrarse</Boton>
                 </Link>
