@@ -19,11 +19,11 @@ function Card(props){
             src={props.src}
             ></Afiche>
             </div>
-            
-            <div className={props.claseDiv} >
-                <Link to={idEvento}>
+            <Link to={idEvento}>
                     <Boton ClaseDeBoton={"botonRojoPeq"} TipoDeBoton={"button"}>Modificar evento</Boton>
                 </Link>
+            <div className={props.claseDiv} >
+                
                 <Link to={idFormulario}>
                     <Boton ClaseDeBoton={"botonRojoGrand"} TipoDeBoton={"button"}>Registrarse</Boton>
                 </Link>

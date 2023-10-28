@@ -1,0 +1,8 @@
+.CentrarSeccion {
+    display: flex;
+    justify-content: center;
+}
+
+.InformacionEvento {
+    padding: 24px;
+}

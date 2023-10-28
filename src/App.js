@@ -4,9 +4,14 @@ import VistaEventos from "./components/templates/VistaEventos/VistaEventos"
 import CreateRegister from "./components/templates/createRegister/CreateRegister"
 import RegisterParticipant from "./components/templates/registerParticipant/RegisterParticipant";
 import EditEvent from "./components/templates/editEvent/EditEvent";
+import Evento from "./components/templates/Evento/Evento";
 
 import "w3-css"
 import { Routes, Route } from "react-router-dom";
+
+// Estilos
+import "./vistaContent.css"
+
 function App() {
 
   return (
@@ -18,6 +23,7 @@ function App() {
         <Route path="/" element={<VistaEventos/>}/>
         <Route path="/RegistrarParticipante/:id/:evento" element={<RegisterParticipant/>}/>
         <Route path="/EditarEvento/:id" element={<EditEvent/>}/>
+        <Route path="/Evento/:id" element={<Evento/>}/>
       </Routes>
     </div>
   );

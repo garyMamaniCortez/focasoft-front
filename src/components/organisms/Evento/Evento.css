@@ -1,0 +1,9 @@
+.ContenedoresAtributo{
+    margin: auto;
+}
+
+.ContenderBoton09{
+    display: grid;
+    place-content: end;
+    height: 160px;
+}

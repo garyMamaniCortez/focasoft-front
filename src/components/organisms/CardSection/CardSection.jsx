@@ -54,6 +54,8 @@ function CardSection(){
       }
 
 
+
+
     return(
         <div className="cardSectionContent">
             <div className="buscarSide w3-col l3 w3-right">
@@ -68,8 +70,9 @@ function CardSection(){
             <div className="w3-row cards">
                 {
                 eventos.map( ( evento ) => (
-
-                    <div className="w3-col l6 m6 card" key={evento.id}>
+                    
+                    <div className="w3-col l6 m6 card" key={evento.id} >
+                    <Link to={"/Evento/" + evento.id} style={{textDecoration: 'none'}}>
                     <Card 
                         idEvento={evento.id}
                         category={evento.tipo}
@@ -82,7 +85,7 @@ function CardSection(){
                         claseDiv={(evento.id_formulario==null) ? "invisible" : "botonRegistro"}>
                         
                     </Card>
-                    
+                    </Link>
                     </div>
 
                 )
