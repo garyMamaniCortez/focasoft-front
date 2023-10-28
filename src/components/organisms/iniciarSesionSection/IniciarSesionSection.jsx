@@ -1,32 +1,19 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Route, useNavigate, useParams } from "react-router-dom";
 import Background from "../../atoms/background/Background";
 import Label from "../../atoms/label/Label";
 import Boton from "../../atoms/boton/Boton.jsx";
 import Formulario from "../../molecules/formulario/Formulario.jsx";
-// import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import axios from "axios"
-// import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import usuario from "./../../icons/usuario.png";
 import "./IniciarSesionSection.css";
 
 const IniciarSesionSection = () => {
     const navigate = useNavigate()
     
-    const{ id, sesion}= useParams();
+    const{sesion}= useParams();
     console.log(sesion)
-
-    const [formulario, setFormulario] = useState([{}]);
-    
-    useEffect(()=>{
-        getAllForms()
-    },[])
-
-    const getAllForms = async () => {
-        const response = await axios.get("http://localhost:8000/api/formularios/registro/"+id)
-        setFormulario(response.data)
-    }  
-    
+ 
     const CamposDeEntrada =[
         {divClase:"itemContainer", TipoDeEtiqueta: 'FormLabel', TipoDeEntrada: 'User',
     Identificador:"Usuario",  Desactivado: false,
@@ -36,33 +23,45 @@ const IniciarSesionSection = () => {
     OpcionesDelDesplegable: [{Valor:"Sin Seleccionar", Etiqueta: "Seleccionar un tipo" }]}
     ];
 
+    const [deviceType, setDeviceType] = useState('');
+
+    useEffect(() => {
+        const userAgent = window.navigator.userAgent;
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
+            setDeviceType('movil');
+        } else if (/iPad|tablet|playbook|silk/i.test(userAgent)) {
+            setDeviceType('tableta');
+        } else {
+            setDeviceType('computadora');
+        }
+    }, []);
+
     const [formData, setFormData] = useState(
         {
-            Usuario: null,
-            Contraseña:null
+            email: null,
+            password: null
         }
     )
 
     const handleChange = (sesion) => {
-        const { name, value} = sesion.target;
+        const {name, value} = sesion.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    };
+    };        
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        
-
-        axios.post("" ,{
-            usuario: formData.usuario,
-            contrasena: formData.contrasena
+    const handleSubmit = (sesion) => {
+        sesion.preventDefault();
+        axios.post("http://localhost:8000/api/login", {
+            email: formData.usuario,
+            password: formData.contrasena,
+            device_name: deviceType
         }).then(function (response) {
-            console.log(response);
+            console.log(response)
+            localStorage.setItem('token', response.data.token)
             navigate('/')
+        }).catch(function(error) {
+                console.log(error.response.data.error);
+                alert(error.response.data.error);  
         })
-            .catch(function (error) {
-            console.log(error.response.data.error);
-            alert(error.response.data.error);      
-        });
     };
 
     return(
