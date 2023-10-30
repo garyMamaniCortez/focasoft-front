@@ -8,12 +8,15 @@ import { useEffect } from "react";
 import { async } from "q";
 import { useState } from "react";
 import Boton from "../../atoms/boton/Boton"
+import InputBuscar from "../../atoms/inputBuscar/InputBuscar";
 
 
 const endpoint = 'http:///localhost:8000/api'
 
 function CardSection(){
     const [eventos, setEventos] = useState( [] );
+    const [nombreEvento, setNombre] = useState("");
+
     useEffect(()=>{
         getAllEvents()
     },[])
@@ -29,25 +32,60 @@ function CardSection(){
         return(response.data)
     }  
 
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+          setNombre(value)
+          console.log(nombreEvento)
+
+      };
+      const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            const response = axios.post("http://localhost:8000/api/evento/buscar" ,{
+                busqueda: nombreEvento
+            }).then(function (response) {
+                console.log(response);
+                setEventos(response.data)
+              })
+              .catch(function (error) {
+                console.log(error.response.data.error);
+                alert(error.response.data.error);
+              });            
+        }
+      }
+
+
+
+
     return(
         <div className="cardSectionContent">
+            <div className="buscarSide w3-col l3 w3-right">
+                    <InputBuscar text="Buscar evento" Modificar={handleChange} TeclaPresionada={handleKeyPress}></InputBuscar>
+            </div>
+            
+            <div className="tituloSeccion w3-col l12">
             <h2 className="cardSTi">Eventos</h2>
+            </div>
+            
+            
             <div className="w3-row cards">
                 {
                 eventos.map( ( evento ) => (
-
-                    <div className="w3-col l6 m6 card" key={evento.id}>
+                    
+                    <div className="w3-col l6 m6 card" key={evento.id} >
+                    <Link to={"/Evento/" + evento.id} style={{textDecoration: 'none'}}>
                     <Card 
+                        idEvento={evento.id}
                         category={evento.tipo}
                         title={evento.titulo} 
                         date={evento.fecha_ini}
                         description={evento.descripcion}
                         src={"http://"+(evento.afiche)}
                         idFormulario={evento.id_formulario}
+                        aficheDiv={evento.afiche==null ? "invisible" : ""}
                         claseDiv={(evento.id_formulario==null) ? "invisible" : "botonRegistro"}>
                         
                     </Card>
-                    
+                    </Link>
                     </div>
 
                 )

@@ -1,0 +1,15 @@
+.ContenedoresAtributo > * {
+    margin-bottom: 16px;
+  }
+  
+
+.ContenderBoton09{
+    display: grid;
+    place-content: end;
+    height: 160px;
+}
+
+.ContenderTituloEvento09{
+    width: 500px;
+    margin: auto;
+}
