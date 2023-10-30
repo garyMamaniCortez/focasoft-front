@@ -26,6 +26,10 @@ const TextInput = ({
             ? "EntradaDeTexto"
             : TipoDeEntrada === "email"
             ? "EntradaDeTexto"
+            : TipoDeEntrada === "password"
+            ? "Contrasena"
+            : TipoDeEntrada === "User"
+            ? "User"
             : ""
         }
         `}
@@ -40,8 +44,16 @@ const TextInput = ({
             ? "file"
             : TipoDeEntrada === "email"
             ? "email"
+            : TipoDeEntrada === "password"
+            ? "password"
+            : TipoDeEntrada === "User"
+            ? "text"
             : ""
         }`}
+
+        placeholder={`${TipoDeEntrada === "password" ? "contraseña" : 
+                        TipoDeEntrada === "User" ? "usuario" : ""}`}
+
         accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}
         onChange={ManejarCambio}
         disabled={

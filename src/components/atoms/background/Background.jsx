@@ -10,6 +10,8 @@ const Background = ({ children, Tipo }) => {
           ? "FondoAtributo1"
           : Tipo === "FondoAtributo2"
           ? "FondoAtributo2"
+          : Tipo === "FondoSesion"
+          ? "FondoSesion"
           : "Predeterminado"
           
           
