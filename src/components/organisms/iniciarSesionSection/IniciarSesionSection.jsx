@@ -5,7 +5,7 @@ import Boton from "../../atoms/boton/Boton.jsx";
 import Formulario from "../../molecules/formulario/Formulario.jsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import usuario from "./../../icons/usuario.png";
+import Usuario from "./../../icons/usuario.png";
 import "./IniciarSesionSection.css";
 
 const IniciarSesionSection = () => {
@@ -65,7 +65,7 @@ const IniciarSesionSection = () => {
         ).then(function (response) {
             console.log(response)
             localStorage.setItem('token', response.data.token)
-            navigate('/admin')
+            navigate('/')
         }).catch(function(error) {
                 console.log(error);
                 alert(error.response.data.error);  
@@ -74,11 +74,11 @@ const IniciarSesionSection = () => {
 
     return(
         <div>
-        <Background tamback="backgroundpeq">
-            <img className="Imgsesion" src={usuario} alt="Imagen de inicio de sesion"/>  
+        <Background Tipo="FondoSesion">
+            <img className="Imgsesion" src={Usuario} alt="Imagen de inicio de sesion"/>  
             <Label TipoDeEtiqueta="FormTitle">{sesion}</Label>
                 <form onSubmit={handleSubmit} id="FormularioParaInicioDeSesion">
-                    <Formulario CamposDeEntrada= {CamposDeEntrada}  handleChange = {handleChange}/>
+                    <Formulario CamposDeEntrada= {CamposDeEntrada}  handleChange = {handleChange} Desactivado={false} FormData={formData}/>
                     <div className="w3-row w3-center">
                     <Boton TipoDeBoton="submit" ClaseDeBoton="botonRojoGrand" form="FormularioParaInicioDeSesion">Iniciar sesion</Boton>
                     </div>

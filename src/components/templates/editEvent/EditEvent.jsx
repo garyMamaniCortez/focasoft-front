@@ -1,21 +1,37 @@
 import CreateEventSection from "../../organisms/createEventSection/CreateEventSection";
-import "./CreateEvent.css";
-const CreateEvent = () => {
+import './CreateEvent.css'
+import { useParams } from 'react-router-dom';
+import axios from "axios"
+import { useEffect } from "react";
+import { useState } from "react";
 
-  const evento=
-    {
-      TituloDelEvento: "",
-      FechaDelEvento: "",
-      TipoDelEvento: "",
-      Descripcion: "",
-      Requisitos: [""],
-      Premios: [""],
-      Patrocinadores: [""],
-      Contactos: [""]
-    };
+const EditEvent = () => {
+  const { id } = useParams();
+  const [evento, setEvento] = useState({});
+  const [eventoCargado, setEventoCargado] = useState(false);
+
+  useEffect(() => {
+    const getEvent = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/evento/${id}`);
+        setEvento(response.data);
+        setEventoCargado(true); // Marcar el evento como cargado
+      } catch (error) {
+        console.error('Error al obtener el evento:', error);
+      }
+    }
+
+    getEvent();
+  }, [id]);
+
+  if (!eventoCargado) {
+    // Si el evento no se ha cargado todavía, puedes mostrar un spinner o un mensaje de carga
+    return <div>Cargando evento...</div>;
+  }
 
   const Campos = [
     {
+      Valor: evento.titulo,
       divClase: "itemContainer",
       Etiqueta: "Titulo del evento",
       TipoDeEtiqueta: "FormLabel",
@@ -129,12 +145,16 @@ const CreateEvent = () => {
 
   return (
     <div className="CreateEventContent vistaContent w3-right">
-      <h1 className="TituloDeSeccion">Crear Evento</h1>
+      <h1 className="TituloDeSeccion">Editar evento</h1>
       <div className="CreateEventSection">
-        <CreateEventSection Campos={Campos} Accion={"crear"} Evento={evento}/>
+        <CreateEventSection Campos={Campos} Accion="editar" Evento={evento} idEvento={id}/>
       </div>
     </div>
   );
-};
+}
 
-export default CreateEvent;
+export default EditEvent;
+
+    
+      
+

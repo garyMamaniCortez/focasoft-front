@@ -4,7 +4,7 @@ import "./inputBuscar.css"
 function InputBuscar(props){
     return(
         <div className="inputBuscarContent">
-            <input className="inputB" name="hola" type="search"  placeholder={props.text}/>
+            <input className="inputB" name="hola" type="search"  placeholder={props.text} onChange={props.Modificar} onKeyPress={props.TeclaPresionada}/>
             
             <img src={lupa} />
         </div>
