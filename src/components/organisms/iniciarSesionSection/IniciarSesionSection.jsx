@@ -10,7 +10,7 @@ import "./IniciarSesionSection.css";
 
 const IniciarSesionSection = () => {
     const navigate = useNavigate()
-    
+
     const{sesion}= useParams();
     console.log(sesion)
  
@@ -46,20 +46,28 @@ const IniciarSesionSection = () => {
     const handleChange = (sesion) => {
         const {name, value} = sesion.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+        
     };        
 
     const handleSubmit = (sesion) => {
         sesion.preventDefault();
+        console.log(formData);
         axios.post("http://localhost:8000/api/login", {
-            email: formData.usuario,
-            password: formData.contrasena,
+            email: formData.Usuario,
+            password: formData.Contrasena,
             device_name: deviceType
-        }).then(function (response) {
+        },
+        {
+            headers: {
+                'Accept': 'application/json'
+            }
+        }
+        ).then(function (response) {
             console.log(response)
             localStorage.setItem('token', response.data.token)
-            navigate('/')
+            navigate('/admin')
         }).catch(function(error) {
-                console.log(error.response.data.error);
+                console.log(error);
                 alert(error.response.data.error);  
         })
     };
