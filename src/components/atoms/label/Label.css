@@ -4,14 +4,14 @@
 
 .FormLabel {
     color: black;
-    font-size: 18px;
+    font-size: 14px;
     width: 192px;
     display: inline-block;
     text-align: left;
 }
 
 .FormTitle{
-    font-size: 40px;
+    font-size: 32px;
     color: white;
     width: 100%;
     display: inline-block;
@@ -20,19 +20,18 @@
 }
 
 .ListBody{
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .AtributoEvento1{
-    font-size: 24px;
+    font-size: 16px;
     color: white;
-/*    width: 100%; */
     display: inline-block;
     text-align: center;
 }
 
 .AtributoEvento2{
-    font-size: 12px;
+    font-size: 16px;
     color: black;
     display: inline-block;
     text-align: center;

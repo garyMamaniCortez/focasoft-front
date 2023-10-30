@@ -6,7 +6,7 @@ const RegisterParticipant = () => {
 
     return (
         <div className="vistaContent w3-right">
-            <h1 className="H1Register">Formulario de Registro</h1>
+            <h1 className="TituloDeSeccion">Formulario de Registro</h1>
             <div className="SeccionRegistrarParticipante">
             <CreateFormRegisterSec/>
             </div>
