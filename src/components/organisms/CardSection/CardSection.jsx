@@ -13,7 +13,7 @@ import InputBuscar from "../../atoms/inputBuscar/InputBuscar";
 
 const endpoint = 'http:///localhost:8000/api'
 
-function CardSection(){
+function CardSection(props){
     const [eventos, setEventos] = useState( [] );
     const [nombreEvento, setNombre] = useState("");
 
@@ -61,10 +61,7 @@ function CardSection(){
             <div className="buscarSide w3-col l3 w3-right">
                     <InputBuscar text="Buscar evento" Modificar={handleChange} TeclaPresionada={handleKeyPress}></InputBuscar>
             </div>
-            
-            <div className="tituloSeccion w3-col l12">
-            <h2 className="cardSTi">Eventos</h2>
-            </div>
+
             
             
             <div className="w3-row cards">
@@ -82,7 +79,9 @@ function CardSection(){
                         src={"http://"+(evento.afiche)}
                         idFormulario={evento.id_formulario}
                         aficheDiv={evento.afiche==null ? "invisible" : ""}
-                        claseDiv={(evento.id_formulario==null) ? "invisible" : "botonRegistro"}>
+                        botonEditar={(props.visible=="invisible") ? "invisible" : "botonRegistro"}
+                        claseDiv={(evento.id_formulario==null || props.invisible=="invisible") ? "invisible" :"botonRegistro"}
+                        >
                         
                     </Card>
                     </Link>
