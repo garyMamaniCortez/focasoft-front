@@ -17,3 +17,7 @@
     display: none;
     visibility: hidden;
   }
+
+.botones .arriba{
+    margin-bottom: 2%;
+}

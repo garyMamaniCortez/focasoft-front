@@ -32,7 +32,8 @@ const Evento = () => {
       Premios: evento.premios,
       Requisitos: evento.requisitos,
       Afiche: "http://"+evento.afiche,
-      Contactos: evento.contactos
+      Contactos: evento.contactos,
+      Formulario: evento.id_formulario
     }
   
 

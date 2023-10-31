@@ -61,10 +61,7 @@ function CardSection(props){
             <div className="buscarSide w3-col l3 w3-right">
                     <InputBuscar text="Buscar evento" Modificar={handleChange} TeclaPresionada={handleKeyPress}></InputBuscar>
             </div>
-            
-            <div className="tituloSeccion w3-col l12">
-            <h2 className="cardSTi">Eventos</h2>
-            </div>
+
             
             
             <div className="w3-row cards">

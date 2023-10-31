@@ -13,3 +13,8 @@
     width: 500px;
     margin: auto;
 }
+
+.invisible {
+    display: none;
+    visibility: hidden;
+  }

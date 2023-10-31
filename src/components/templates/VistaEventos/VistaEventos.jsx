@@ -1,6 +1,7 @@
 import React from "react";
 import CardSection from "../../organisms/CardSection/CardSection";
 import InputBuscar from "../../atoms/inputBuscar/InputBuscar"
+import Boton from "../../atoms/boton/Boton";
 import "./vistaEventos.css"
 function VistaEventos(){
     return(
@@ -10,9 +11,15 @@ function VistaEventos(){
                     <h1 className="TituloDeSeccion">Inicio</h1>
                 </div>
                 
-                
+            
             </div>
-            <CardSection visible="invisible"></CardSection>
+                        
+            <div className="tituloSeccion w3-col l12">
+            <h2 className="cardSTi">Eventos</h2>
+            </div>
+            <CardSection visible="invisible">
+                
+            </CardSection>
             
         </div>
     )

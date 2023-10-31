@@ -2,11 +2,13 @@ import Fondo from "../../atoms/background/Background";
 import Etiqueta from "../../atoms/label/Label";
 import Afiche from "../../atoms/afiche/Afiche";
 import Boton from "../../atoms/boton/Boton";
+import { Link } from "react-router-dom";
 
 import "./Evento.css";
 
 const Evento = (props) => {
   console.log(props.Datos.Afiche);
+  let idFormulario= "/RegistrarParticipante/"+props.Datos.Formulario+"/"+props.Datos.TituloDelEvento;
   return (
     <Fondo Tipo="FondoEvento">
       <div className="w3-row">
@@ -61,10 +63,12 @@ const Evento = (props) => {
               {props.Datos.Contactos}
             </Etiqueta>
           </Fondo>
-          <div className="ContenderBoton09">
-            <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="Button">
-              Registrarse
-            </Boton>
+          <div className={(props.Datos.Formulario==null) ? "invisible":"ContenderBoton09"}>
+            <Link to={idFormulario}>
+                <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="Button">
+                Registrarse
+                </Boton>
+            </Link>
           </div>
         </div>
       </div>
