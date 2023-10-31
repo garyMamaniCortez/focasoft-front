@@ -9,6 +9,7 @@ const Formulario = ({ CamposDeEntrada, handleChange, FormData }) => {
       {CamposDeEntrada.map((item) => (
         <div className={item.divClase}>
           <Label TipoDeEtiqueta={item.TipoDeEtiqueta}>{item.Etiqueta}</Label>
+          <div className="ContenedorCampo">
           <TextInput
             TipoDeEntrada={item.TipoDeEntrada}
             Identificador={item.Identificador}
@@ -17,6 +18,8 @@ const Formulario = ({ CamposDeEntrada, handleChange, FormData }) => {
             Desactivado={item.Desactivado}
             Valor={FormData[item.Identificador]}
           />
+           <Label TipoDeEtiqueta="FormularioRequisitos">{item.Requisitos}</Label> 
+          </div>
         </div>
       ))}
     </div>

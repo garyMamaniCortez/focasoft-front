@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import swal from "sweetalert";
+
 import Formulario from "../../molecules/formulario/Formulario.jsx";
 import Boton from "../../atoms/boton/Boton.jsx";
 import Background from "../../atoms/background/Background.jsx";
@@ -10,46 +12,28 @@ import axios from "axios";
 const CreateEventSection = (props) => {
   const navigate = useNavigate();
   const id = useAppContext();
-  const [imagen, setImagen]= useState(null);
-  console.log(props.Accion)
-  console.log(props.Evento)
-  console.log(props.idEvento)
+  const [imagen, setImagen] = useState(null);
 
-  //Los valores de los atributos son valores por defecto
-  
-  const Valores = props.Campos.reduce((resultado, campo) => {
-    resultado[campo.Identificador] = campo.Valor;
-    return resultado;
-  }, {});
+  const [formData, setFormData] = useState(props.Evento);
 
-  const [formData, setFormData] = useState(
-    {
-      TituloDelEvento: props.Evento.titulo,
-      FechaDelEvento: props.Evento.fecha_ini,
-      TipoDelEvento: props.Evento.tipo,
-      Descripcion: props.Evento.descripcion,
-      AficheDelEvento: props.Evento.afiche,
-      Requisitos: props.Evento.requisitos,
-      Premios: props.Evento.premios,
-      Patrocinadores: props.Evento.patrocinadores,
-      Contactos: props.Evento.contactos
-    });
-    
-  console.log(formData)
+  console.log(formData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if(name!="AficheDelEvento"){
+    if (name != "AficheDelEvento") {
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    }else {
+    } else {
       const file = event.target.files[0];
       const reader = new FileReader();
-  
-      reader.onload = function() {
-        const base64String = reader.result.split(',')[1];
-        setFormData((prevFormData) => ({ ...prevFormData, [name]: base64String }));
-      }
-  
+
+      reader.onload = function () {
+        const base64String = reader.result.split(",")[1];
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: base64String,
+        }));
+      };
+
       reader.readAsDataURL(file);
     }
   };
@@ -65,7 +49,10 @@ const CreateEventSection = (props) => {
     const ValidacionContacto = /^(5999999[1-9]|6\d{7}|7\d{7}|7999999[1-9])$/;
 
     //Validacion del Titulo del evento
-    if (!formData.TituloDelEvento.trim()) {
+    if (
+      !formData.TituloDelEvento.trim() ||
+      typeof formData.TituloDelEvento === "undefined"
+    ) {
       errors.push("- El campo Titulo del evento no puede estar vacío");
     } else if (!validationRegex.test(formData.TituloDelEvento)) {
       errors.push(
@@ -74,7 +61,10 @@ const CreateEventSection = (props) => {
     }
 
     //Variacion para Fecha del evento
-    if (!formData.FechaDelEvento.trim()) {
+    if (
+      !formData.FechaDelEvento.trim() ||
+      typeof formData.FechaDelEvento === "undefined"
+    ) {
       errors.push("- El campo Fecha del evento no puede estar vacío.");
     } else if (fechaDelEvento <= hoy) {
       errors.push(
@@ -92,14 +82,17 @@ const CreateEventSection = (props) => {
     //Validacion para Descripcion
     if (
       !formData.Descripcion.trim() ||
-      !validationRegex.test(formData.Descripcion)
+      typeof formData.Descripcion === "undefined"
     ) {
       errors.push("- El campo descripción no puede estar vacío.");
     }
 
     //Validacion para Requisitos
     var Requisitos;
-    if (!optionalValidationRegex.test(formData.Requisitos)) {
+    if (
+      !optionalValidationRegex.test(formData.Requisitos) ||
+      typeof formData.Requisitos === "undefined"
+    ) {
       errors.push("- El campo Requisitos solo debe contener letras y números.");
     } else if (formData.Requisitos.includes(",")) {
       Requisitos = formData.Requisitos.split(",").map(function (item) {
@@ -111,7 +104,10 @@ const CreateEventSection = (props) => {
 
     //Validacion para Premios
     var Premios;
-    if (!optionalValidationRegex.test(formData.Premios)) {
+    if (
+      !optionalValidationRegex.test(formData.Premios) ||
+      typeof formData.Premios === "undefined"
+    ) {
       errors.push("- El campo Premios solo debe contener letras y números.");
     } else if (formData.Premios.includes(",")) {
       Premios = formData.Premios.split(",").map(function (item) {
@@ -123,7 +119,10 @@ const CreateEventSection = (props) => {
 
     // Validacion para Patrocinadores
     var Patrocinadores;
-    if (!optionalValidationRegex.test(formData.Patrocinadores)) {
+    if (
+      !optionalValidationRegex.test(formData.Patrocinadores) ||
+      typeof formData.Patrocinadores === "undefined"
+    ) {
       errors.push(
         "- El campo Patrocinadores solo debe contener letras y números."
       );
@@ -137,59 +136,73 @@ const CreateEventSection = (props) => {
 
     // Validacion para contactos
     var Contactos = formData.Contactos;
-    if (Contactos.trim() === "") {
+    if (typeof Contactos === "undefined" || Contactos === null) {
       Contactos = [];
-    } else {
-      Contactos = Contactos.split(",").map(function (item) {
-        return item.trim();
-      });
-    }
-    for (var i = 0; i < Contactos.length; i++) {
-      if (!ValidacionContacto.test(Contactos[i])) {
-        errors.push("- No todos los Contactos son válidos.");
-        break;
-      }
+    } else if (typeof Contactos === "string") {
+      Contactos = Contactos.trim()
+        .split(",")
+        .map(function (item) {
+          return item.trim();
+        });
     }
 
+    if (Contactos.length != 0) {
+    } else {
+      // Validar cada elemento en el arreglo
+      for (var i = 0; i < Contactos.length; i++) {
+        var elemento = Contactos[i];
+        if (
+          !/^\d{8}$/.test(elemento) ||
+          !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(elemento)
+        ) {
+          // Si el elemento no es un número de 8 dígitos ni una dirección de correo electrónico válida, puedes manejar el error o tomar una acción específica aquí.
+          errors.push("- No todos los contactos son validos");
+        }
+      }
+    }
     //Resultado de validacion
     if (errors.length > 0) {
-      alert("Errores:\n\n" + errors.join("\n"));
+      swal({ icon: "error", text: "Errores:\n\n" + errors.join("\n") });
     } else {
-      if(props.Accion=="crear"){
-        axios.post("http://localhost:8000/api/evento", {
-          titulo: formData.TituloDelEvento,
-          fecha_ini: formData.FechaDelEvento,
-          fecha_fin: null,
-          tipo: formData.TipoDelEvento,
-          descripcion: formData.Descripcion,
-          afiche: formData.AficheDelEvento,
-          id_formulario: props.Evento.id_formulario,
-          requisitos: formData.Requisitos,
-          premios: formData.Premios,
-          patrocinadores: formData.Patrocinadores,
-          contactos: formData.Contactos,
-        })
-        .then(function (response) {
-          console.log(response);
-          navigate("/");
-        })
-        .catch(function (error) {
-          console.log(error.response.data.error);
-          alert(error.response.data.error);
-        });
-      }else{
-          axios.put(`http://localhost:8000/api/evento/${props.idEvento}`, {
-          titulo: formData.TituloDelEvento,
-          fecha_ini: formData.FechaDelEvento,
-          fecha_fin: null,
-          tipo: formData.TipoDelEvento,
-          descripcion: formData.Descripcion,
-          afiche: formData.AficheDelEvento,
-          id_formulario: props.Evento.id_formulario,
-          requisitos: formData.Requisitos,
-          premios: formData.Premios,
-          patrocinadores: formData.Patrocinadores,
-          contactos: formData.Contactos,
+      if (props.Accion == "crear") {
+        axios
+          .post("http://localhost:8000/api/evento", {
+            titulo: formData.TituloDelEvento,
+            fecha_ini: formData.FechaDelEvento,
+            fecha_fin: null,
+            tipo: formData.TipoDelEvento,
+            descripcion: formData.Descripcion,
+            afiche: formData.AficheDelEvento,
+            id_formulario: props.Evento.id_formulario,
+            requisitos: formData.Requisitos,
+            premios: formData.Premios,
+            patrocinadores: formData.Patrocinadores,
+            contactos: formData.Contactos,
+          
+          })
+          .then(function (response) {
+            console.log(response);
+            swal({ icon: "success", text: "Evento Creado"});
+            navigate("/");
+          })
+          .catch(function (error) {
+            console.log(error.response.data.error);
+            alert(error.response.data.error);
+          });
+      } else {
+        axios
+          .put(`http://localhost:8000/api/evento/${props.idEvento}`, {
+            titulo: formData.TituloDelEvento,
+            fecha_ini: formData.FechaDelEvento,
+            fecha_fin: null,
+            tipo: formData.TipoDelEvento,
+            descripcion: formData.Descripcion,
+            afiche: formData.AficheDelEvento,
+            id_formulario: props.Evento.id_formulario,
+            requisitos: formData.Requisitos,
+            premios: formData.Premios,
+            patrocinadores: formData.Patrocinadores,
+            contactos: formData.Contactos,
           })
           .then(function (response) {
             console.log(response);
@@ -199,7 +212,6 @@ const CreateEventSection = (props) => {
             console.log(error.response.data.error);
             alert(error.response.data.error);
           });
-
       }
     }
   };
@@ -221,11 +233,9 @@ const CreateEventSection = (props) => {
               </Boton>
   </Link>*/}
           </div>
-          <div className="w3-col l6">
-            <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">
-              {props.Accion=="crear" ?  "Crear evento" : "Editar evento"}
-            </Boton>
-          </div>
+          <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">
+            {props.Accion == "crear" ? "Crear evento" : "Editar evento"}
+          </Boton>
         </div>
       </form>
     </Background>
