@@ -8,7 +8,7 @@ const RegisterParticipant = () => {
         <div className="vistaContent w3-right">
             <h1 className="TituloDeSeccion">Formulario de Registro</h1>
             <div className="SeccionRegistrarParticipante">
-            <CreateFormRegisterSec/>
+            <CreateFormRegisterSec Campos=""/>
             </div>
             
         </div>

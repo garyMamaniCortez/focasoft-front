@@ -1,11 +1,14 @@
 .itemContainer, .invisible {
-    padding-bottom: 22px;
+    padding-bottom: 8px;
     display: flex;
-    align-items: center;
     justify-content: center;
   };
 
   .invisible{
     display: none !important;
     visibility: hidden !important;
+  }
+
+  .ContenedorCampo{
+    width: 480px;
   }
