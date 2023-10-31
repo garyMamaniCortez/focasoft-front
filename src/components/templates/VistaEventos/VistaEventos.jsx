@@ -12,7 +12,7 @@ function VistaEventos(){
                 
                 
             </div>
-            <CardSection></CardSection>
+            <CardSection visible="invisible"></CardSection>
             
         </div>
     )
