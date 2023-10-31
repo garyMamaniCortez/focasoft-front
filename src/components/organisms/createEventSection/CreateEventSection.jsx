@@ -15,7 +15,6 @@ const CreateEventSection = (props) => {
   const [imagen, setImagen] = useState(null);
 
   const [formData, setFormData] = useState(props.Evento);
-
   console.log(formData);
 
   const handleChange = (event) => {
@@ -181,8 +180,8 @@ const CreateEventSection = (props) => {
           
           })
           .then(function (response) {
-            console.log(response);
             swal({ icon: "success", text: "Evento Creado"});
+            console.log(response);
             navigate("/");
           })
           .catch(function (error) {
