@@ -204,6 +204,7 @@ const RegisterParticipantsSec = (props) => {
 
     if (
       !formData.Nombres.trim() ||
+      formData.Nombres === null||
       !namesValidationRegex.test(formData.Nombres)
     ) {
       errors.push(
