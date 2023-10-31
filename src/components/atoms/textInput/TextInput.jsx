@@ -8,6 +8,7 @@ const TextInput = ({
   Desactivado,
   Valor,
 }) => {
+  {console.log(Valor)}
   return (
     <div>
       <input
@@ -65,7 +66,7 @@ const TextInput = ({
             ? ""
             : TipoDeEntrada === "Select"
             ? ""
-            : Valor
+            : Valor 
         }
       />
       <select

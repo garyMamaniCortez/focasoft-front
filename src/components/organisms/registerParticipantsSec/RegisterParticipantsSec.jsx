@@ -9,7 +9,11 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const RegisterParticipantsSec = (props) => {
+
+import swal from "sweetalert";
+
+
+const RegisterParticipantsSec = () => {
   const navigate = useNavigate();
 
   const { id, evento } = useParams();
@@ -177,16 +181,16 @@ const RegisterParticipantsSec = (props) => {
   ];
 
   const [formData, setFormData] = useState({
-    Nombres: null,
-    Apellidos: null,
-    FechaDeNacimiento: null,
-    CorreoElectronico: null,
-    NumeroDeCelular: null,
-    Carrera: null,
-    TallaDePolera: null,
-    CarnetDeIdentidad: null,
-    CodigoSisInst: null,
-    Semestre: null,
+    Nombres: " ",
+    Apellidos: " ",
+    FechaDeNacimiento: " ",
+    CorreoElectronico: " ",
+    NumeroDeCelular: " ",
+    Carrera: " ",
+    TallaDePolera: " ",
+    CarnetDeIdentidad: " ",
+    CodigoSisInst: " ",
+    Semestre: " ",
   });
 
   const handleChange = (event) => {
@@ -204,7 +208,6 @@ const RegisterParticipantsSec = (props) => {
 
     if (
       !formData.Nombres.trim() ||
-      formData.Nombres === null||
       !namesValidationRegex.test(formData.Nombres)
     ) {
       errors.push(
@@ -242,26 +245,25 @@ const RegisterParticipantsSec = (props) => {
 
     // Si pasa la validación, continúa aquí
     if (errors.length > 0) {
-      alert("Errores:\n\n" + errors.join("\n"));
+      swal({ icon: "error", text: "Errores:\n\n" + errors.join("\n") });
       return;
     } else {
-      alert("Los datos son válidos. Puedes enviar el formulario.");
-    }
     axios
       .post("http://localhost:8000/api/formularios/participante", {
-        nombres: formData.Nombres,
-        apellidos: formData.Apellidos,
-        fecha_nacimiento: formData.FechaDeNacimiento,
-        correo_electronico: formData.CorreoElectronico,
-        numero_celular: formData.NumeroDeCelular,
-        carrera: formData.Carrera,
-        talla_polera: formData.TallaDePolera,
-        carnet_identidad: formData.CarnetDeIdentidad,
-        codigo_sis_o_institucion: formData.CodigoSisInst,
-        semestre: formData.Semestre,
+        nombres: formData.Nombres === " " ? null : formData.Nombres,
+        apellidos: formData.Apellidos === " " ? null : formData.Apellidos,
+        fecha_nacimiento: formData.FechaDeNacimiento === " " ? null : formData.FechaDeNacimiento,
+        correo_electronico: formData.CorreoElectronico  === " " ? null : formData.CorreoElectronico,
+        numero_celular: formData.NumeroDeCelular === " " ? null : formData.NumeroDeCelular,
+        carrera: formData.Carrera === " " ? null : formData.Carrera,
+        talla_polera: formData.TallaDePolera === " " ? null : formData.TallaDePolera,
+        carnet_identidad: formData.CarnetDeIdentidad === " " ? null : formData.CarnetDeIdentidad,
+        codigo_sis_o_institucion: formData.CodigoSisInst === " " ? null : formData.CodigoSisInst,
+        semestre: formData.Semestre === " " ? null : formData.Semestre,
         id_formulario: id,
       })
       .then(function (response) {
+        swal({ icon: "success", text: "Te registraste exitosamente"});
         console.log(response);
         navigate("/");
       })
@@ -269,6 +271,7 @@ const RegisterParticipantsSec = (props) => {
         console.log(error.response.data.error);
         alert(error.response.data.error);
       });
+    }
   };
 
   return (
