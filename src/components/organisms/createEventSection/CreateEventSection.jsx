@@ -205,7 +205,7 @@ const CreateEventSection = (props) => {
           })
           .then(function (response) {
             console.log(response);
-            navigate("/");
+            navigate("/admin");
           })
           .catch(function (error) {
             console.log(error.response.data.error);
