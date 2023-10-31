@@ -135,7 +135,7 @@ const goBack = () => {
   return (
     <Background>
       <form onSubmit={handleSubmit}>
-        <Formulario CamposDeEntrada= {CamposDeEntrada} handleSubmit={handleChange}
+        <Formulario CamposDeEntrada= {CamposDeEntrada} handleSubmit={handleChange} FormData={formData}
         Desactivado={true}/>
         <div className='itemContainer'>
                     <Label TipoDeEtiqueta="FormLabel">Añadir Campo</Label>
