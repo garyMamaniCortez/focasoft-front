@@ -15,13 +15,6 @@ const CreateEventSection = (props) => {
   console.log(props.Evento)
   console.log(props.idEvento)
 
-  //Los valores de los atributos son valores por defecto
-  
-  const Valores = props.Campos.reduce((resultado, campo) => {
-    resultado[campo.Identificador] = campo.Valor;
-    return resultado;
-  }, {});
-
   const [formData, setFormData] = useState(
     {
       TituloDelEvento: props.Evento.titulo,
@@ -221,11 +214,9 @@ const CreateEventSection = (props) => {
               </Boton>
   </Link>*/}
           </div>
-          <div className="w3-col l6">
             <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">
               {props.Accion=="crear" ?  "Crear evento" : "Editar evento"}
             </Boton>
-          </div>
         </div>
       </form>
     </Background>
