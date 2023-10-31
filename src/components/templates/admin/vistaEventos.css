@@ -1,0 +1,24 @@
+
+.vistaContent{
+    width: 83%;
+}
+.titulo-buscador{
+    padding-top: 2%;
+    padding-right: 1%;
+    padding-left: 4%;
+}
+h1{
+    font-size: 40px;
+}
+.botones{
+    text-align: center;
+    margin: auto;
+    padding-bottom: 3%;
+}
+
+.botonesContent{
+    height: 20px;
+    width: 85%;
+    margin: auto !important;
+
+}
