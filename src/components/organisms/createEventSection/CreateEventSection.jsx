@@ -65,10 +65,18 @@ const CreateEventSection = (props) => {
       typeof formData.FechaDelEvento === "undefined"
     ) {
       errors.push("- El campo Fecha del evento no puede estar vacío.");
-    } else if (fechaDelEvento <= hoy) {
-      errors.push(
-        "- La Fecha del evento debe ser una fecha posterior a la de hoy."
-      );
+    } else if (props.Accion == "crear") {
+      if (fechaDelEvento <= hoy) {
+        errors.push(
+          "- La Fecha del evento debe ser una fecha posterior a la de hoy."
+        );
+      }
+    } else {
+      if (fechaDelEvento < hoy) {
+        errors.push(
+          "- La Fecha del evento debe ser una fecha posterior a la de hoy."
+        );
+      }
     }
     //Validacion para tipos de evento
     if (
@@ -85,16 +93,25 @@ const CreateEventSection = (props) => {
     ) {
       errors.push("- El campo descripción no puede estar vacío.");
     } else if (!validarAlfanumericos.test(formData.Requisitos)) {
-      errors.push("- El campo descripción solo debe contener caracteres alfanumericos");
-
+      errors.push(
+        "- El campo descripción solo debe contener caracteres alfanumericos"
+      );
     }
 
     //Validacion para Requisitos
+    formData.Requisitos =
+      formData.Requisitos === null
+        ? [" "]
+        : formData.Requisitos === ""
+        ? [" "]
+        : formData.Requisitos;
     if (
       !validarListas.test(formData.Requisitos) ||
       typeof formData.Requisitos === "undefined"
     ) {
-      errors.push("- El campo Requisitos solo debe contener carcteres alfanumericos.");
+      errors.push(
+        "- El campo Requisitos solo debe contener carcteres alfanumericos."
+      );
     } else if (formData.Requisitos.includes(",")) {
       formData.Requisitos.split(",").map(function (item) {
         return item.trim();
@@ -102,19 +119,28 @@ const CreateEventSection = (props) => {
     }
 
     //Validacion para Premios
-    
+    formData.Premios =
+      formData.Premios === null
+        ? [" "]
+        : formData.Premios === ""
+        ? [" "]
+        : formData.Premios;
     if (
       !validarListas.test(formData.Premios) ||
       typeof formData.Premios === "undefined"
     ) {
-      errors.push("- El campo Premios solo debe contener carcteres alfanumericos.");
+      errors.push(
+        "- El campo Premios solo debe contener carcteres alfanumericos."
+      );
     } else if (formData.Premios.includes(",")) {
       formData.Premios.split(",").map(function (item) {
         return item.trim();
       });
-    } 
+    }
 
     // Validacion para Patrocinadores
+    formData.Patrocinadores =
+      formData.Patrocinadores === null ? [" "] : formData.Patrocinadores;
     if (
       !validarListas.test(formData.Patrocinadores) ||
       typeof formData.Patrocinadores === "undefined"
@@ -127,7 +153,6 @@ const CreateEventSection = (props) => {
         return item.trim();
       });
     }
-    console.log(formData.Patrocinadores)
 
     // Validacion para contactos
     var Contactos = formData.Contactos;
@@ -145,7 +170,8 @@ const CreateEventSection = (props) => {
       for (var i = 0; i < Contactos.length; i++) {
         var elemento = Contactos[i];
         if (
-          !ValidacionContacto.test(elemento) && !ValidacionCorreo.test(elemento)
+          !ValidacionContacto.test(elemento) &&
+          !ValidacionCorreo.test(elemento)
         ) {
           errors.push("- No todos los contactos son validos");
         }
@@ -168,12 +194,11 @@ const CreateEventSection = (props) => {
             premios: formData.Premios,
             patrocinadores: formData.Patrocinadores,
             contactos: formData.Contactos,
-          
           })
           .then(function (response) {
-            swal({ icon: "success", text: "Evento Creado"});
+            swal({ icon: "success", text: "Evento Creado" });
             console.log(response);
-            navigate("/");
+            navigate("/admin");
           })
           .catch(function (error) {
             console.log(error.response.data.error);
@@ -196,7 +221,7 @@ const CreateEventSection = (props) => {
           })
           .then(function (response) {
             console.log(response);
-            navigate("/");
+            navigate("/admin");
           })
           .catch(function (error) {
             console.log(error.response.data.error);

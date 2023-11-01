@@ -6,13 +6,15 @@ import Formulario from "../../molecules/formulario/Formulario";
 import { useAppContext } from "../../../Context";
 import TextInput from "../../atoms/textInput/TextInput";
 import Label from "../../atoms/label/Label";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const CreateFormRegisterSec = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const { setDatos, navigateBack } = useAppContext();
+  const [idFormulario, setId]=useState(null)
 
   const [CamposDeEntrada, setCamposDeEntrada] = useState([
     {
@@ -159,15 +161,23 @@ const CreateFormRegisterSec = () => {
       })
       .then(function (response) {
         console.log(response.data.id);
-
-        setDatos(response.data.id);
-        navigateBack();
+        setId(response.data.id);
+        axios.post("http://localhost:8000/api/evento/agregarFormulario",{
+          id_evento: id,
+          id_formulario: response.data.id
+        })
+        .then(function (response) {
+          console.log(response);
+        });
+        navigate("/admin")
       });
+
+      
   };
 
   const AgregarCampo = () => {
     if (auxFormData !== "") {
-      setFormData((prevFormData) => ({ ...prevFormData, [auxFormData]: 1 }));
+      setFormData((prevFormData) => ({ ...prevFormData, [auxFormData]: "" }));
       setCamposDeEntrada((prevCampos) =>
         prevCampos.map((campo) => {
           if (campo.Identificador === auxFormData) {
@@ -200,6 +210,7 @@ const CreateFormRegisterSec = () => {
             OpcionesDelDesplegable: [
               { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
             ],
+            Requisitos: "Soy un requisito"
           },
         ]);
       }
@@ -271,13 +282,14 @@ const CreateFormRegisterSec = () => {
             </Boton>
           </div>
           <div className="w3-col l6">
-            <Boton
-              ClaseDeBoton="botonRojoGrand"
-              TipoDeBoton="button"
-              f={goBack}
-            >
-              Cancelar
-            </Boton>
+            <Link to ="/admin">
+                <Boton
+                  ClaseDeBoton="botonRojoGrand"
+                  TipoDeBoton="button"
+                >
+                  Cancelar
+                </Boton>
+            </Link>
           </div>
         </div>
       </form>

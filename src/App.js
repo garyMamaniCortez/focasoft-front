@@ -7,6 +7,7 @@ import IniciarSesion from "./components/templates/iniciarSesion/IniciarSesion";
 import EditEvent from "./components/templates/editEvent/EditEvent";
 import Evento from "./components/templates/Evento/Evento";
 import VistaEventosAdmin from "./components/templates/admin/VistaEventosAdmin";
+import { useAppContext } from './Context';
 
 import "w3-css"
 import { Routes, Route } from "react-router-dom";
@@ -16,10 +17,11 @@ import "./vistaContent.css"
 
 
 function App() {
+  const { datos } = useAppContext();
 
   return (
     <div className="w3-row">
-      <Navbar></Navbar>
+      <Navbar Boton={(datos.activado) ? 'Cerrar sesión' : 'Iniciar sesión'}></Navbar>
       <Routes>
         <Route path="/CrearEvento" element={<CreateEvent />}/>
         <Route path = "/AgregarFormulario/:id" element = { <CreateRegister/>}/>
