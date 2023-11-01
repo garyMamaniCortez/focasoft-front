@@ -7,8 +7,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Usuario from "./../../icons/usuario.png";
 import "./IniciarSesionSection.css";
+import { useAppContext } from '../../../Context';
+
 
 const IniciarSesionSection = () => {
+    const { setDatos } = useAppContext();
     const navigate = useNavigate()
 
     const{sesion}= useParams();
@@ -66,10 +69,15 @@ const IniciarSesionSection = () => {
             console.log(response)
             localStorage.setItem('token', response.data.token)
             navigate('/admin')
+            setDatos(prevState => ({
+                ...prevState,
+                activado: true
+              }));
         }).catch(function(error) {
                 console.log(error);
                 alert(error.response.data.error);  
         })
+
     };
 
     return(
