@@ -65,7 +65,7 @@ const TextInput = ({
             ? ""
             : TipoDeEntrada === "Select"
             ? ""
-            : Valor
+            : Valor 
         }
       />
       <select
