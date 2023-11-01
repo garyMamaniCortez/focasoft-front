@@ -8,7 +8,6 @@ const TextInput = ({
   Desactivado,
   Valor,
 }) => {
-  {console.log(Valor)}
   return (
     <div>
       <input

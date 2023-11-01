@@ -96,7 +96,7 @@ const CreateEvent = () => {
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos:
-        "Un requisito solo debe contener caracteres alfanumericos\n Los requisitos deben separarse con una coma",
+        "Un requisito solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
     {
       divClase: "itemContainer",
@@ -108,7 +108,7 @@ const CreateEvent = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Un premio solo debe contener caracteres alfanumericos\n Los premios deben separarse con una coma",
+      Requisitos: "Un premio solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
     {
       divClase: "itemContainer",
