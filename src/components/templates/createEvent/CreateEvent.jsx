@@ -1,18 +1,16 @@
 import CreateEventSection from "../../organisms/createEventSection/CreateEventSection";
 import "./CreateEvent.css";
 const CreateEvent = () => {
-
-  const evento=
-    {
-      TituloDelEvento: "",
-      FechaDelEvento: "",
-      TipoDelEvento: "",
-      Descripcion: "",
-      Requisitos: [""],
-      Premios: [""],
-      Patrocinadores: [""],
-      Contactos: [""]
-    };
+  const evento = {
+    TituloDelEvento: " ",
+    FechaDelEvento: " ",
+    TipoDelEvento: " ",
+    Descripcion: " ",
+    Requisitos: [" "],
+    Premios: [" "],
+    Patrocinadores: [" "],
+    Contactos: [" "],
+  };
 
   const Campos = [
     {
@@ -24,8 +22,10 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
-      },
+      ],
+      Requisitos:
+        "El Titulo del evento solo debe contener caracteres alfanumericos",
+    },
     {
       divClase: "itemContainer",
       Etiqueta: "Fecha del evento",
@@ -35,8 +35,9 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
-      },
+      ],
+      Requisitos: "La fecha posterior a la de hoy",
+    },
     {
       divClase: "itemContainer",
       Etiqueta: "Tipo del evento",
@@ -57,7 +58,8 @@ const CreateEvent = () => {
         },
         { Valor: "Clasificatorio interno", Etiqueta: "Clasificatorio interno" },
         { Valor: "Competencia", Etiqueta: "Competencia" },
-      ]
+      ],
+      Requisitos: "Se debe selecionar una talla de polera",
     },
     {
       divClase: "itemContainer",
@@ -68,7 +70,8 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Requisitos: "Descripcion es un campo obligatorio",
     },
     {
       divClase: "itemContainer",
@@ -79,7 +82,8 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Requisitos: "El Afiche debe ser un archivo en fomato jpeg",
     },
     {
       divClase: "itemContainer",
@@ -90,7 +94,9 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Requisitos:
+        "Un requisito solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
     {
       divClase: "itemContainer",
@@ -101,7 +107,8 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
+      ],
+      Requisitos: "Un premio solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
     {
       divClase: "itemContainer",
@@ -112,8 +119,9 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
-      },
+      ],
+      Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
+    },
     {
       divClase: "itemContainer",
       Etiqueta: "Contactos",
@@ -123,15 +131,16 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ]
-      },
+      ],
+      Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
+    },
   ];
 
   return (
     <div className="CreateEventContent vistaContent w3-right">
       <h1 className="TituloDeSeccion">Crear Evento</h1>
       <div className="CreateEventSection">
-        <CreateEventSection Campos={Campos} Accion={"crear"} Evento={evento}/>
+        <CreateEventSection Campos={Campos} Accion={"crear"} Evento={evento} />
       </div>
     </div>
   );
