@@ -43,6 +43,7 @@ const CreateEventSection = (props) => {
     const fechaDelEvento = new Date(formData.FechaDelEvento);
     const hoy = new Date();
     const validarAlfanumericos = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]+$/;
+    const validarDescripcion = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ,]+$/;
     const validarListas = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ,]+$/;
     const ValidacionContacto = /^(59999999|7\d{7}|[8-9]\d{7})$/;
     const ValidacionCorreo = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
@@ -65,7 +66,7 @@ const CreateEventSection = (props) => {
       typeof formData.FechaDelEvento === "undefined"
     ) {
       errors.push("- El campo Fecha del evento no puede estar vacío.");
-    } else if (props.Accion == "crear") {
+    } else if (props.Accion === "crear") {
       if (fechaDelEvento <= hoy) {
         errors.push(
           "- La Fecha del evento debe ser una fecha posterior a la de hoy."
@@ -74,7 +75,7 @@ const CreateEventSection = (props) => {
     } else {
       if (fechaDelEvento < hoy) {
         errors.push(
-          "- La Fecha del evento debe ser una fecha posterior a la de hoy."
+          "- La Fecha del evento no puede ser una fecha anterior a la de hoy."
         );
       }
     }
@@ -92,7 +93,7 @@ const CreateEventSection = (props) => {
       typeof formData.Descripcion === "undefined"
     ) {
       errors.push("- El campo descripción no puede estar vacío.");
-    } else if (!validarAlfanumericos.test(formData.Requisitos)) {
+    } else if (!validarDescripcion.test(formData.Descripcion)) {
       errors.push(
         "- El campo descripción solo debe contener caracteres alfanumericos"
       );
