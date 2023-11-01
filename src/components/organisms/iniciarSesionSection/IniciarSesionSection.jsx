@@ -65,7 +65,7 @@ const IniciarSesionSection = () => {
         ).then(function (response) {
             console.log(response)
             localStorage.setItem('token', response.data.token)
-            navigate('/')
+            navigate('/admin')
         }).catch(function(error) {
                 console.log(error);
                 alert(error.response.data.error);  
