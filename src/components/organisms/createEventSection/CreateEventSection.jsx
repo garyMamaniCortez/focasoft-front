@@ -173,7 +173,7 @@ const CreateEventSection = (props) => {
           .then(function (response) {
             swal({ icon: "success", text: "Evento Creado"});
             console.log(response);
-            navigate("/");
+            navigate("/admin");
           })
           .catch(function (error) {
             console.log(error.response.data.error);
@@ -196,7 +196,7 @@ const CreateEventSection = (props) => {
           })
           .then(function (response) {
             console.log(response);
-            navigate("/");
+            navigate("/admin");
           })
           .catch(function (error) {
             console.log(error.response.data.error);

@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [datos, setDatos] = useState(null);
+  const [datos, setDatos] =  useState({ activado: false });
 
   const navigateBack = () => {
     // Realiza cualquier acción que necesites antes de la navegación
