@@ -15,7 +15,6 @@ const CreateEventSection = (props) => {
   const [imagen, setImagen] = useState(null);
 
   const [formData, setFormData] = useState(props.Evento);
-  console.log(formData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,9 +42,10 @@ const CreateEventSection = (props) => {
     const errors = [];
     const fechaDelEvento = new Date(formData.FechaDelEvento);
     const hoy = new Date();
-    const optionalValidationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ,]*$/;
-    const validationRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚ]+$/;
-    const ValidacionContacto = /^(5999999[1-9]|6\d{7}|7\d{7}|7999999[1-9])$/;
+    const validarAlfanumericos = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]+$/;
+    const validarListas = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ,]+$/;
+    const ValidacionContacto = /^(59999999|7\d{7}|[8-9]\d{7})$/;
+    const ValidacionCorreo = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
     //Validacion del Titulo del evento
     if (
@@ -53,7 +53,7 @@ const CreateEventSection = (props) => {
       typeof formData.TituloDelEvento === "undefined"
     ) {
       errors.push("- El campo Titulo del evento no puede estar vacío");
-    } else if (!validationRegex.test(formData.TituloDelEvento)) {
+    } else if (!validarAlfanumericos.test(formData.TituloDelEvento)) {
       errors.push(
         "- El Titulo del evento solo debe contener caracteres alfanumericos"
       );
@@ -65,10 +65,18 @@ const CreateEventSection = (props) => {
       typeof formData.FechaDelEvento === "undefined"
     ) {
       errors.push("- El campo Fecha del evento no puede estar vacío.");
-    } else if (fechaDelEvento <= hoy) {
-      errors.push(
-        "- La Fecha del evento debe ser una fecha posterior a la de hoy."
-      );
+    } else if (props.Accion == "crear") {
+      if (fechaDelEvento <= hoy) {
+        errors.push(
+          "- La Fecha del evento debe ser una fecha posterior a la de hoy."
+        );
+      }
+    } else {
+      if (fechaDelEvento < hoy) {
+        errors.push(
+          "- La Fecha del evento debe ser una fecha posterior a la de hoy."
+        );
+      }
     }
     //Validacion para tipos de evento
     if (
@@ -84,53 +92,66 @@ const CreateEventSection = (props) => {
       typeof formData.Descripcion === "undefined"
     ) {
       errors.push("- El campo descripción no puede estar vacío.");
+    } else if (!validarAlfanumericos.test(formData.Requisitos)) {
+      errors.push(
+        "- El campo descripción solo debe contener caracteres alfanumericos"
+      );
     }
 
     //Validacion para Requisitos
-    var Requisitos;
+    formData.Requisitos =
+      formData.Requisitos === null
+        ? [" "]
+        : formData.Requisitos === ""
+        ? [" "]
+        : formData.Requisitos;
     if (
-      !optionalValidationRegex.test(formData.Requisitos) ||
+      !validarListas.test(formData.Requisitos) ||
       typeof formData.Requisitos === "undefined"
     ) {
-      errors.push("- El campo Requisitos solo debe contener letras y números.");
+      errors.push(
+        "- El campo Requisitos solo debe contener carcteres alfanumericos."
+      );
     } else if (formData.Requisitos.includes(",")) {
-      Requisitos = formData.Requisitos.split(",").map(function (item) {
+      formData.Requisitos.split(",").map(function (item) {
         return item.trim();
       });
-    } else {
-      Requisitos = [formData.Requisitos];
     }
 
     //Validacion para Premios
-    var Premios;
+    formData.Premios =
+      formData.Premios === null
+        ? [" "]
+        : formData.Premios === ""
+        ? [" "]
+        : formData.Premios;
     if (
-      !optionalValidationRegex.test(formData.Premios) ||
+      !validarListas.test(formData.Premios) ||
       typeof formData.Premios === "undefined"
     ) {
-      errors.push("- El campo Premios solo debe contener letras y números.");
+      errors.push(
+        "- El campo Premios solo debe contener carcteres alfanumericos."
+      );
     } else if (formData.Premios.includes(",")) {
-      Premios = formData.Premios.split(",").map(function (item) {
+      formData.Premios.split(",").map(function (item) {
         return item.trim();
       });
-    } else {
-      Premios = [formData.Premios];
     }
 
     // Validacion para Patrocinadores
-    var Patrocinadores;
+    formData.Patrocinadores =
+      formData.Patrocinadores === null ? [" "] : formData.Patrocinadores;
     if (
-      !optionalValidationRegex.test(formData.Patrocinadores) ||
+      !validarListas.test(formData.Patrocinadores) ||
       typeof formData.Patrocinadores === "undefined"
     ) {
       errors.push(
-        "- El campo Patrocinadores solo debe contener letras y números."
+        "- El campo Patrocinadores solo debe contener carcteres alfanumericos."
       );
     } else if (formData.Patrocinadores.includes(",")) {
-      Patrocinadores = formData.Patrocinadores.split(",").map(function (item) {
+      formData.Patrocinadores.split(",").map(function (item) {
         return item.trim();
       });
-    } else {
-      Patrocinadores = [formData.Patrocinadores];
     }
 
     // Validacion para contactos
@@ -144,22 +165,18 @@ const CreateEventSection = (props) => {
           return item.trim();
         });
     }
-
-    if (Contactos.length != 0) {
+    if (Contactos.length != " ") {
     } else {
-      // Validar cada elemento en el arreglo
       for (var i = 0; i < Contactos.length; i++) {
         var elemento = Contactos[i];
         if (
-          !/^\d{8}$/.test(elemento) ||
-          !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(elemento)
+          !ValidacionContacto.test(elemento) &&
+          !ValidacionCorreo.test(elemento)
         ) {
-          // Si el elemento no es un número de 8 dígitos ni una dirección de correo electrónico válida, puedes manejar el error o tomar una acción específica aquí.
           errors.push("- No todos los contactos son validos");
         }
       }
     }
-    //Resultado de validacion
     if (errors.length > 0) {
       swal({ icon: "error", text: "Errores:\n\n" + errors.join("\n") });
     } else {
@@ -177,16 +194,15 @@ const CreateEventSection = (props) => {
             premios: formData.Premios,
             patrocinadores: formData.Patrocinadores,
             contactos: formData.Contactos,
-          
           })
           .then(function (response) {
-            swal({ icon: "success", text: "Evento Creado"});
+            swal({ icon: "success", text: "Evento Creado" });
             console.log(response);
             navigate("/");
           })
           .catch(function (error) {
             console.log(error.response.data.error);
-            alert(error.response.data.error);
+            swal({ icon: "error", text: error.response.data.error });
           });
       } else {
         axios
@@ -209,7 +225,7 @@ const CreateEventSection = (props) => {
           })
           .catch(function (error) {
             console.log(error.response.data.error);
-            alert(error.response.data.error);
+            swal({ icon: "error", text: error.response.data.error });
           });
       }
     }
@@ -225,13 +241,6 @@ const CreateEventSection = (props) => {
           FormData={formData}
         />
         <div className="w3-row w3-center">
-          <div className="createEventButton w3-col l6">
-            {/*<Link to="/CrearEvento/AgregarFormulario">
-              <Boton ClaseDeBoton="botonAmarilloGrand">
-                Formulario de registro
-              </Boton>
-  </Link>*/}
-          </div>
           <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">
             {props.Accion == "crear" ? "Crear evento" : "Editar evento"}
           </Boton>

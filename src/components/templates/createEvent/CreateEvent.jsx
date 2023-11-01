@@ -15,7 +15,7 @@ const CreateEvent = () => {
   const Campos = [
     {
       divClase: "itemContainer",
-      Etiqueta: "Titulo del evento",
+      Etiqueta: "* Titulo del evento",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
       Identificador: "TituloDelEvento",
@@ -28,7 +28,7 @@ const CreateEvent = () => {
     },
     {
       divClase: "itemContainer",
-      Etiqueta: "Fecha del evento",
+      Etiqueta: "* Fecha del evento",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "date",
       Identificador: "FechaDelEvento",
@@ -40,7 +40,7 @@ const CreateEvent = () => {
     },
     {
       divClase: "itemContainer",
-      Etiqueta: "Tipo del evento",
+      Etiqueta: "* Tipo del evento",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "select",
       Identificador: "TipoDelEvento",
@@ -63,7 +63,7 @@ const CreateEvent = () => {
     },
     {
       divClase: "itemContainer",
-      Etiqueta: "Descripcion",
+      Etiqueta: "* Descripcion",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "description",
       Identificador: "Descripcion",
@@ -96,7 +96,7 @@ const CreateEvent = () => {
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos:
-        "Un requisito solo debe contener caracteres alfanumericos\n Los requisitos deben separarse con una coma",
+        "Un requisito solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
     {
       divClase: "itemContainer",
@@ -108,7 +108,7 @@ const CreateEvent = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Un premio solo debe contener caracteres alfanumericos\n Los premios deben separarse con una coma",
+      Requisitos: "Un premio solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
     {
       divClase: "itemContainer",
