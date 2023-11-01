@@ -207,7 +207,7 @@ const RegisterParticipantsSec = () => {
     const namesValidationRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚ]+$/;
     const numericValidationRegex = /^[0-9]+/;
     const ValidarCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const ValidacionContacto = /^(59999999|7\d{7}|[8-9]\d{7})$/;
+    const ValidacionContacto = /^(59999999|6\d{7}|7\d{7}|[8-9]\d{7})$/;
     let errors = [];
 
     if (
