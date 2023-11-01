@@ -53,7 +53,7 @@ const RegisterParticipantsSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Debes selecionar una talla de polera"
+      Requisitos: "El nombre solo deve contenet caracteres alfanumericos"
     },
     {
       divClase: "itemContainer",
@@ -65,7 +65,7 @@ const RegisterParticipantsSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Debes selecionar una talla de polera"
+      Requisitos: "Debe se un formato valido: dd-mm-aa"
     },
     {
       divClase: "itemContainer",
@@ -77,7 +77,7 @@ const RegisterParticipantsSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Debes selecionar una talla de polera"
+      Requisitos: "Debe ser un corre electronico valido"
     },
     {
       divClase: "itemContainer",
@@ -89,20 +89,23 @@ const RegisterParticipantsSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Debes selecionar una talla de polera"
+      Requisitos: "Debes ser un numero de 8 digitos valido"
     },
 
     {
       divClase: formulario.carrera === 0 ? "invisible" : "itemContainer",
       Etiqueta: "Carrera",
       TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
+      TipoDeEntrada: "select",
       Identificador: "Carrera",
       Desactivado: false,
       OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar una Carrera" },
+        { Valor: "IngDeSistemas", Etiqueta: "Ing. de Sistemas" },
+        { Valor: "IngDeSistemas", Etiqueta: "informatica" },
+        { Valor: "IngDeSistemas", Etiqueta: "Matematicas" },
       ],
-      Requisitos: "Debes selecionar una talla de polera"
+      Requisitos: "Debes selecionar la carrera en la que estas inscrito"
     },
 
     {
@@ -135,7 +138,7 @@ const RegisterParticipantsSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Debes selecionar una talla de polera"
+      Requisitos: "Solo se debe incresar el numero de carnet de identidad"
     },
 
     {
@@ -151,7 +154,7 @@ const RegisterParticipantsSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Debes selecionar una talla de polera"
+      Requisitos: "Debes ingresar un codigo sis valido"
     },
 
     {
@@ -176,7 +179,7 @@ const RegisterParticipantsSec = () => {
         { Valor: "11", Etiqueta: "11" },
         { Valor: "12", Etiqueta: "12" },
       ],
-      Requisitos: "Debes selecionar una talla de polera"
+      Requisitos: "Debes selecionar el semestre que estas cursando"
     },
   ];
 
@@ -203,7 +206,8 @@ const RegisterParticipantsSec = () => {
 
     const namesValidationRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚ]+$/;
     const numericValidationRegex = /^[0-9]+/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const ValidarCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const ValidacionContacto = /^(59999999|7\d{7}|[8-9]\d{7})$/;
     let errors = [];
 
     if (
@@ -226,7 +230,7 @@ const RegisterParticipantsSec = () => {
 
     if (
       !formData.CorreoElectronico.trim() ||
-      !emailRegex.test(formData.CorreoElectronico)
+      !ValidarCorreo.test(formData.CorreoElectronico)
     ) {
       errors.push(
         "- El campo Correo Electronico no puede estar vacío y debe ser un correo valido."
@@ -235,15 +239,11 @@ const RegisterParticipantsSec = () => {
 
     if (
       !formData.NumeroDeCelular.trim() ||
-      !numericValidationRegex.test(formData.NumeroDeCelular) ||
-      formData.NumeroDeCelular.length !== 8 ||
-      parseInt(formData.NumeroDeCelular, 10) <= 59999999 ||
-      parseInt(formData.NumeroDeCelular, 10) >= 79999999
+      !ValidacionContacto.test(formData.NumeroDeCelular) 
     ) {
-      errors.push("El campo Número de Celular debe contener 8 dígitos.");
+      errors.push("El Número de Celular debe ser de 8 dígitos.");
     }
-
-    // Si pasa la validación, continúa aquí
+    
     if (errors.length > 0) {
       swal({ icon: "error", text: "Errores:\n\n" + errors.join("\n") });
       return;

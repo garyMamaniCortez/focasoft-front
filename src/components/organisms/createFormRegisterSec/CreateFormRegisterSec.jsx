@@ -167,7 +167,7 @@ const CreateFormRegisterSec = () => {
 
   const AgregarCampo = () => {
     if (auxFormData !== "") {
-      setFormData((prevFormData) => ({ ...prevFormData, [auxFormData]: 1 }));
+      setFormData((prevFormData) => ({ ...prevFormData, [auxFormData]: "" }));
       setCamposDeEntrada((prevCampos) =>
         prevCampos.map((campo) => {
           if (campo.Identificador === auxFormData) {
@@ -200,6 +200,7 @@ const CreateFormRegisterSec = () => {
             OpcionesDelDesplegable: [
               { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
             ],
+            Requisitos: "Soy un requisito"
           },
         ]);
       }
