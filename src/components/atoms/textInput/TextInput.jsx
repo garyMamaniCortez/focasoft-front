@@ -1,4 +1,5 @@
 import "./TextInput.css";
+import TextInputDinamic from "../TextInputDinamic/TextInputDinamic";
 
 const TextInput = ({
   TipoDeEntrada,
@@ -83,6 +84,9 @@ const TextInput = ({
           <option value={item.Valor}>{item.Etiqueta}</option>
         ))}
       </select>
+      
+      <TextInputDinamic />
+
     </div>
   );
 };
