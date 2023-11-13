@@ -5,7 +5,7 @@ const CreateRegister = () => {
 
     return (
         <div className="vistaContent w3-right">
-            <h1 className="H1CreateEvent">Crear Formulario de Registro</h1>
+            <h1 className="TituloDeSeccion">Crear Formulario de Registro</h1>
             <div className="SeccionCrearFormularioDeRegistro">
                 <CreateFormRegisterSec />
             </div>

@@ -9,7 +9,7 @@ const TextInput = ({
   Valor,
 }) => {
   return (
-    <div>
+    <>
       <input
         id={TipoDeEntrada !== "select" ? Identificador : ""}
         name={TipoDeEntrada !== "select" ? Identificador : ""}
@@ -83,7 +83,7 @@ const TextInput = ({
           <option value={item.Valor}>{item.Etiqueta}</option>
         ))}
       </select>
-    </div>
+    </>
   );
 };
 

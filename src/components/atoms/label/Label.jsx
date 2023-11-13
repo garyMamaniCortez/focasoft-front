@@ -17,6 +17,10 @@ const Label = ({ TipoDeEtiqueta, children }) => {
           ? "ListBody"
           : TipoDeEtiqueta === "FormularioRequisitos"
           ? "FormularioRequisitos"
+          : TipoDeEtiqueta === "EtiquetaFormulario2"
+          ? "EtiquetaFormulario2"
+          : TipoDeEtiqueta === "DescripcionCampo"
+          ? "DescripcionCampo"
           : ""
       }
       `}
