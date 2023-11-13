@@ -1,20 +1,22 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Background from "../../atoms/background/Background";
 import Boton from "../../atoms/boton/Boton";
 import Formulario from "../../molecules/formulario/Formulario";
-import { useAppContext } from "../../../Context";
 import TextInput from "../../atoms/textInput/TextInput";
 import Label from "../../atoms/label/Label";
-import { Link, useNavigate } from "react-router-dom";
+
 import axios from "axios";
-import { useParams } from "react-router-dom";
+
+import "../Formulario/Formulario.css";
 
 const CreateFormRegisterSec = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [idFormulario, setId]=useState(null)
+  const [idFormulario, setId] = useState(null);
 
   const [CamposDeEntrada, setCamposDeEntrada] = useState([
     {
@@ -27,6 +29,7 @@ const CreateFormRegisterSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos: "Recibe un una cadena de caracteres alfanumerico",
     },
     {
       divClase: "itemContainer",
@@ -38,6 +41,7 @@ const CreateFormRegisterSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos: "Recibe un una cadena de caracteres alfanumerico",
     },
     {
       divClase: "itemContainer",
@@ -49,6 +53,7 @@ const CreateFormRegisterSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos: "Recibe un una facha en el formato dd/mm/aa",
     },
     {
       divClase: "itemContainer",
@@ -60,6 +65,8 @@ const CreateFormRegisterSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos:
+        "Recibe un una cadena que siga un formato de correo electronico",
     },
     {
       divClase: "itemContainer",
@@ -71,6 +78,8 @@ const CreateFormRegisterSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos:
+        "Recibe un una cadena de caracteres numericos de un telefono celular valido",
     },
     {
       divClase: "invisible",
@@ -82,17 +91,21 @@ const CreateFormRegisterSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos:
+        "Es uns desplegable",
     },
     {
       divClase: "invisible",
-      Etiqueta: "Codigo SIS o\nInstitucion",
+      Etiqueta: "Codigo SIS",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
-      Identificador: "CodigoSISOInstitucion",
+      Identificador: "CodigoSIS",
       Desactivado: true,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos:
+        "Recibe un codigo SIS valido",
     },
     {
       divClase: "invisible",
@@ -104,6 +117,8 @@ const CreateFormRegisterSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos:
+        "Recibe un cadena como numero CI",
     },
     {
       divClase: "invisible",
@@ -115,6 +130,8 @@ const CreateFormRegisterSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos:
+        "Es un desplegable don las opciones son un conjunto de carreras",
     },
     {
       divClase: "invisible",
@@ -126,6 +143,8 @@ const CreateFormRegisterSec = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
+      Requisitos:
+        "Es un desplegable donde las opciones son numeros desde el 0 hasta el 12",
     },
   ]);
 
@@ -162,17 +181,16 @@ const CreateFormRegisterSec = () => {
       .then(function (response) {
         console.log(response.data.id);
         setId(response.data.id);
-        axios.post("http://localhost:8000/api/evento/agregarFormulario",{
-          id_evento: id,
-          id_formulario: response.data.id
-        })
-        .then(function (response) {
-          console.log(response);
-        });
-        navigate("/admin")
+        axios
+          .post("http://localhost:8000/api/evento/agregarFormulario", {
+            id_evento: id,
+            id_formulario: response.data.id,
+          })
+          .then(function (response) {
+            console.log(response);
+          });
+        navigate("/admin");
       });
-
-      
   };
 
   const AgregarCampo = () => {
@@ -210,7 +228,7 @@ const CreateFormRegisterSec = () => {
             OpcionesDelDesplegable: [
               { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
             ],
-            Requisitos: "Soy un requisito"
+            Requisitos: "Soy un requisito",
           },
         ]);
       }
@@ -231,9 +249,6 @@ const CreateFormRegisterSec = () => {
     }
   };
 
-  const goBack = () => {
-    navigate("/CrearEvento");
-  };
   return (
     <Background>
       <form onSubmit={handleSubmit}>
@@ -243,37 +258,51 @@ const CreateFormRegisterSec = () => {
           FormData={formData}
           Desactivado={true}
         />
-        <div className="itemContainer">
-          <Label TipoDeEtiqueta="FormLabel">Añadir Campo</Label>
-          <TextInput
-            TipoDeEntrada="select"
-            Identificador="AñadirCampo"
-            ManejarCambio={handleChange}
-            Desactivado={false}
-            OpcionesDelDesplegable={[
-              { Valor: "", Etiqueta: "Selecciona un campo" },
-              { Valor: "Carrera", Etiqueta: "Carrera" },
-              { Valor: "TallaDePolera", Etiqueta: "Talla De Polera" },
-              { Valor: "CarnetDeIdentidad", Etiqueta: "Carnet De Identidad" },
-              {
-                Valor: "CodigoSISOInstitucion",
-                Etiqueta: "Codigo SIS o Institucion",
-              },
-              { Valor: "Semestre", Etiqueta: "Semestre" },
-            ]}
-          />
-        </div>
-        <div className="w3-center w3-margin">
-          <Boton ClaseDeBoton="botonAzul" TipoDeBoton="button" f={AgregarCampo}>
-            Añadir Pregunta
-          </Boton>
-          <Boton
-            ClaseDeBoton="botonAmarilloPeq"
-            TipoDeBoton="button"
-            f={EliminarCampo}
-          >
-            X
-          </Boton>
+
+        <div className="ContenedorSeleccionarCampo">
+          <Label TipoDeEtiqueta="EtiquetaFormulario2">
+            Selecciona un campo
+          </Label>
+          <div className="Select">
+            <TextInput
+              TipoDeEntrada="select"
+              Identificador="AñadirCampo"
+              ManejarCambio={handleChange}
+              Desactivado={false}
+              OpcionesDelDesplegable={[
+                { Valor: "", Etiqueta: "..." },
+                { Valor: "Carrera", Etiqueta: "Carrera" },
+                { Valor: "TallaDePolera", Etiqueta: "Talla De Polera" },
+                { Valor: "CarnetDeIdentidad", Etiqueta: "Carnet De Identidad" },
+                {
+                  Valor: "CodigoSISOInstitucion",
+                  Etiqueta: "Codigo SIS o Institucion",
+                },
+                { Valor: "Semestre", Etiqueta: "Semestre" },
+              ]}
+            />
+          </div>
+          <Label TipoDeEtiqueta="DescripcionCampo">
+            {" "}
+            Se debe seleccionar el campo el cual se desea agregar o retirar,
+            ningun campo podra agregarse mas de una vez{" "}
+          </Label>
+          <div className="Botones">
+            <Boton
+              ClaseDeBoton="AzulPequeño"
+              TipoDeBoton="button"
+              f={AgregarCampo}
+            >
+              Agregar
+            </Boton>
+            <Boton
+              ClaseDeBoton="botonAmarilloPeq"
+              TipoDeBoton="button"
+              f={EliminarCampo}
+            >
+              Eliminar
+            </Boton>
+          </div>
         </div>
         <div className="w3-row w3-center">
           <div className="createEventButton w3-col l6">
@@ -282,13 +311,10 @@ const CreateFormRegisterSec = () => {
             </Boton>
           </div>
           <div className="w3-col l6">
-            <Link to ="/admin">
-                <Boton
-                  ClaseDeBoton="botonRojoGrand"
-                  TipoDeBoton="button"
-                >
-                  Cancelar
-                </Boton>
+            <Link to="/admin">
+              <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="button">
+                Cancelar
+              </Boton>
             </Link>
           </div>
         </div>
