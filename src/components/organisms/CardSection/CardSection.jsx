@@ -78,6 +78,7 @@ function CardSection(props){
                         title={evento.titulo} 
                         date={evento.fecha_ini}
                         description={evento.descripcion}
+                        Class={evento.afiche==null ? "esIcono" : null}
                         src={evento.afiche==null ?  ((evento.tipo == "Reclutamiento" ? ReclutamientoIm : (evento.tipo == "Taller de entrenamiento" ? EntrenamientoIm : CompetenciaIm) )): "http://"+(evento.afiche)}
                         idFormulario={evento.id_formulario}
                         /*</Link>aficheDiv={evento.afiche==null ? "invisible" : ""}*/

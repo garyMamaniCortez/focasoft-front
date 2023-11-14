@@ -9,7 +9,8 @@ function Card(props){
     return(
         <div className="cardContent">
             <div className={props.aficheDiv}>
-            <Afiche
+            <Afiche 
+            Class={props.Class}
             src={props.src}
             ></Afiche>
             </div>
