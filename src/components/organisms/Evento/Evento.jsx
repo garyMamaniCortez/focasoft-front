@@ -15,12 +15,12 @@ const Evento = (props) => {
         <div className="w3-col l7 ContenedoresAtributo">
           <div className="ContenderTituloEvento09">
             <Etiqueta TipoDeEtiqueta="FormTitle">
-              Competencia de clasificaion umss
+              {props.Datos.TituloDelEvento}
             </Etiqueta>
           </div>
           <Fondo Tipo="FondoAtributo1">
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">
-              Tipo de evento: {props.Datos.TituloDelEvento}{" "}
+              Tipo de evento: {props.Datos.Tipo}{" "}
             </Etiqueta>
           </Fondo>
           <Fondo Tipo="FondoAtributo1">
@@ -40,6 +40,7 @@ const Evento = (props) => {
           </Fondo>
           <Fondo Tipo="FondoAtributo1">
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">Premios:</Etiqueta>
+            <br/>
 
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
               {props.Datos.Premios}
@@ -47,6 +48,7 @@ const Evento = (props) => {
           </Fondo>
           <Fondo Tipo="FondoAtributo1">
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">Requisitos:</Etiqueta>
+            <br/>
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
               {props.Datos.Requisitos}
             </Etiqueta>
@@ -54,11 +56,12 @@ const Evento = (props) => {
         </div>
         <div className="w3-col l5">
           <Fondo Tipo="FondoAtributo2">
-            <Afiche src={props.Datos.Afiche}></Afiche>
+            <Afiche src={props.Datos.Afiche} Class="normal"></Afiche>
           </Fondo>
           <br />
           <Fondo Tipo="FondoAtributo2">
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">Contacto:</Etiqueta>
+            <br/>
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
               {props.Datos.Contactos}
             </Etiqueta>

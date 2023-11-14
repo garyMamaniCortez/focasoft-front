@@ -9,6 +9,9 @@ import { async } from "q";
 import { useState } from "react";
 import Boton from "../../atoms/boton/Boton"
 import InputBuscar from "../../atoms/inputBuscar/InputBuscar";
+import CompetenciaIm from "../../icons/competencia.png"
+import ReclutamientoIm from "../../icons/reclutamiento.png"
+import EntrenamientoIm from "../../icons/entrenamiento.png"
 
 
 const endpoint = 'http:///localhost:8000/api'
@@ -76,9 +79,9 @@ function CardSection(props){
                         title={evento.titulo} 
                         date={evento.fecha_ini}
                         description={evento.descripcion}
-                        src={"http://"+(evento.afiche)}
+                        src={evento.afiche==null ?  ((evento.tipo == "Reclutamiento" ? ReclutamientoIm : (evento.tipo == "Taller de entrenamiento" ? EntrenamientoIm : CompetenciaIm) )): "http://"+(evento.afiche)}
                         idFormulario={evento.id_formulario}
-                        aficheDiv={evento.afiche==null ? "invisible" : ""}
+                        /*</Link>aficheDiv={evento.afiche==null ? "invisible" : ""}*/
                         botonEditar={(props.visible=="invisible") ? "invisible" : "botonRegistro"}
                         claseDiv={(evento.id_formulario==null || props.invisible=="invisible") ? "invisible" :"botonRegistro"}
                         >

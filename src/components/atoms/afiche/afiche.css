@@ -1,4 +1,8 @@
 .imagenAfiche{
     width: 100%;
-    height: 350px;
+    height: 160px;
+}
+.normal{
+    width: 100%;
+    height: 100%;
 }
