@@ -6,3 +6,8 @@
     font-size: 32px;
     padding-left: 16px;
 }
+
+.CentrarContenido {
+    display: grid;
+    place-content: center;
+}
