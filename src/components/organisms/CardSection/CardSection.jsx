@@ -66,13 +66,12 @@ function CardSection(props){
             </div>
 
             
-            
             <div className="w3-row cards">
                 {
                 eventos.map( ( evento ) => (
                     
                     <div className="w3-col l6 m6 card" key={evento.id} >
-                    <Link to={"/Evento/" + evento.id} style={{textDecoration: 'none'}}>
+                    <Link to={props.visible=="invisible" ? ("/Evento/" + evento.id) : "/admin/Evento/"+evento.id} style={{textDecoration: 'none'}}>
                     <Card 
                         idEvento={evento.id}
                         category={evento.tipo}

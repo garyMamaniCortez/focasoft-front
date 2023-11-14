@@ -8,6 +8,7 @@ import EditEvent from "./components/templates/editEvent/EditEvent";
 import Evento from "./components/templates/Evento/Evento";
 import VistaEventosAdmin from "./components/templates/admin/VistaEventosAdmin";
 import { useAppContext } from './Context';
+import AdminEvento from "./components/templates/Admin Evento/AdminEvento";
 
 import "w3-css"
 import { Routes, Route } from "react-router-dom";
@@ -31,6 +32,7 @@ function App() {
         <Route path="/EditarEvento/:id" element={<EditEvent/>}/>
         <Route path="/Evento/:id" element={<Evento/>}/>
         <Route path="/admin" element={<VistaEventosAdmin/>}/>
+        <Route path="/admin/Evento/:id" element={<AdminEvento/>}/>
       </Routes>
     </div>
   );

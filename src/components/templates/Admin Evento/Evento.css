@@ -1,0 +1,25 @@
+.CentrarSeccion {
+    display: flex;
+    justify-content: center;
+}
+
+.optionsAdmin{
+    width: 1000px ;
+    margin: auto;
+    background-color: #153A65;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+ul{
+    margin: auto;
+}
+
+.barra{
+    width: fit-content;
+    margin: auto;
+}
