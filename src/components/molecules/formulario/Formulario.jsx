@@ -3,26 +3,26 @@ import TextInput from "../../atoms/textInput/TextInput";
 
 import "./Formulario.css";
 
-const Formulario = ({ CamposDeEntrada, handleChange, FormData }) => {
+const Formulario = ({ CamposDeEntrada, handleChange, FormData, Desactivado }) => {
   return (
-    <div>
+    <>
       {CamposDeEntrada.map((item) => (
-        <div className={item.divClase}>
+        <div hidden={item.Desactivado} className="ContenedorCampo">
           <Label TipoDeEtiqueta={item.TipoDeEtiqueta}>{item.Etiqueta}</Label>
-          <div className="ContenedorCampo">
+          <div className="ContenedorEntrada">
           <TextInput
             TipoDeEntrada={item.TipoDeEntrada}
             Identificador={item.Identificador}
             ManejarCambio={handleChange}
             OpcionesDelDesplegable={item.OpcionesDelDesplegable}
-            Desactivado={item.Desactivado}
+            Desactivado={Desactivado}
             Valor={FormData[item.Identificador]}
           />
            <Label TipoDeEtiqueta="FormularioRequisitos">{item.Requisitos}</Label> 
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

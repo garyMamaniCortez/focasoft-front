@@ -6,7 +6,7 @@ const IniciarSesion = () => {
 
     return(
         <div className="vistaContent w3-right">
-            <h1 className="H1Sesion"> Iniciar sesión de administrador </h1>
+            <h1 className="TituloDeSeccion"> Iniciar sesión de administrador </h1>
             <div className="SeccionDatosSesion">  
                 <IniciarSesionSection/>
             </div>
