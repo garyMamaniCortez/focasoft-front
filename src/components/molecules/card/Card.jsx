@@ -8,18 +8,20 @@ function Card(props){
     let idEvento="/EditarEvento/"+props.idEvento
     return(
         <div className="cardContent">
+            <div className={props.aficheDiv}>
+            <Afiche 
+            Class={props.Class}
+            src={props.src}
+            ></Afiche>
+            </div>
             <Texto 
             category={props.category} 
             title={props.title} 
             date={props.date} 
             description={props.description}
             ></Texto>
-            <div className={props.aficheDiv}>
-            <Afiche
-            src={props.src}
-            ></Afiche>
-            </div>
-            <div className={props.botonEditar}>
+            
+           {/* <div className={props.botonEditar}>
                 <div className="botones w3-row">
                     <div className="w3-col l6 arriba">
                         <Link to={idEvento}>
@@ -43,14 +45,14 @@ function Card(props){
                     </div>
                     
                 </div>
-            </div>
+    </div>*/}
             
-            <div className={props.claseDiv} >
+            {/*<div className={props.claseDiv} >
                 
                 <Link to={idFormulario}>
                     <Boton ClaseDeBoton={"botonRojoGrand"} TipoDeBoton={"button"}>Registrarse</Boton>
                 </Link>
-            </div>
+    </div>*/}
 
         </div>
     )

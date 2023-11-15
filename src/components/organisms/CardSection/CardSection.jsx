@@ -9,6 +9,9 @@ import { async } from "q";
 import { useState } from "react";
 import Boton from "../../atoms/boton/Boton"
 import InputBuscar from "../../atoms/inputBuscar/InputBuscar";
+import CompetenciaIm from "../../icons/competencia.png"
+import ReclutamientoIm from "../../icons/reclutamiento.png"
+import EntrenamientoIm from "../../icons/entrenamiento.png"
 
 
 const endpoint = 'http:///localhost:8000/api'
@@ -63,22 +66,22 @@ function CardSection(props){
             </div>
 
             
-            
             <div className="w3-row cards">
                 {
                 eventos.map( ( evento ) => (
                     
                     <div className="w3-col l6 m6 card" key={evento.id} >
-                    <Link to={"/Evento/" + evento.id} style={{textDecoration: 'none'}}>
+                    <Link to={props.visible=="invisible" ? ("/Evento/" + evento.id) : "/admin/Evento/"+evento.id} style={{textDecoration: 'none'}}>
                     <Card 
                         idEvento={evento.id}
                         category={evento.tipo}
                         title={evento.titulo} 
                         date={evento.fecha_ini}
                         description={evento.descripcion}
-                        src={"http://"+(evento.afiche)}
+                        Class={evento.afiche==null ? "esIcono" : null}
+                        src={evento.afiche==null ?  ((evento.tipo == "Reclutamiento" ? ReclutamientoIm : (evento.tipo == "Taller de entrenamiento" ? EntrenamientoIm : CompetenciaIm) )): "http://"+(evento.afiche)}
                         idFormulario={evento.id_formulario}
-                        aficheDiv={evento.afiche==null ? "invisible" : ""}
+                        /*</Link>aficheDiv={evento.afiche==null ? "invisible" : ""}*/
                         botonEditar={(props.visible=="invisible") ? "invisible" : "botonRegistro"}
                         claseDiv={(evento.id_formulario==null || props.invisible=="invisible") ? "invisible" :"botonRegistro"}
                         >

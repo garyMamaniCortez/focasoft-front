@@ -1,4 +1,15 @@
 .imagenAfiche{
     width: 100%;
-    height: 350px;
+    height: 160px;
+    object-fit: cover;
+}
+.normal{
+    width: 100%;
+    height: 100%;
+}
+
+.esIcono{
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
 }
