@@ -44,7 +44,7 @@ const Evento = () => {
 
   return (
     <div className="vistaContent w3-right">
-      <h1 className="TituloDeSeccion">Información del evento</h1>
+      <h1 className="TituloDeSeccion">informacion de evento</h1>
       <div className="CentrarSeccion">
         <Informacion Datos={Datos}/>
       </div>

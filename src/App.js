@@ -25,7 +25,7 @@ function App() {
       <Navbar Boton={(datos.activado) ? 'Cerrar sesión' : 'Iniciar sesión'}></Navbar>
       <Routes>
         <Route path="/CrearEvento" element={<CreateEvent />}/>
-        <Route path = "/AgregarFormulario/:id" element = { <CreateRegister/>}/>
+        <Route path = "/AgregarFormulario/:id" element = { <CreateRegister Tipo="Competencia"/>}/>
         <Route path="/" element={<VistaEventos/>}/>
         <Route path="/RegistrarParticipante/:id/:evento" element={<RegisterParticipant/>}/>
         <Route path="/IniciarSesion" element={<IniciarSesion/>}/>

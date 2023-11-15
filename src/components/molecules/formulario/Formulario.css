@@ -1,4 +1,4 @@
-.itemContainer, .invisible {
+.ContenedorCampo {
     padding-bottom: 8px;
     display: flex;
     justify-content: center;
@@ -9,6 +9,6 @@
     visibility: hidden !important;
   }
 
-  .ContenedorCampo{
+  .ContenedorEntrada{
     width: 480px;
   }
