@@ -10,7 +10,7 @@ const TextInput = ({
   Valor,
 }) => {
   return (
-    <div>
+    <div className="TextInputMap">
       <input
         id={TipoDeEntrada !== "select" ? Identificador : ""}
         name={TipoDeEntrada !== "select" ? Identificador : ""}
@@ -31,6 +31,8 @@ const TextInput = ({
             ? "Contrasena"
             : TipoDeEntrada === "User"
             ? "User"
+            : TipoDeEntrada === "TextInputDinamic"
+            ? "EntradaDeTexto"
             : ""
         }
         `}
@@ -48,7 +50,7 @@ const TextInput = ({
             : TipoDeEntrada === "password"
             ? "password"
             : TipoDeEntrada === "User"
-            ? "text"
+            ? "text"            
             : ""
         }`}
 
@@ -58,13 +60,18 @@ const TextInput = ({
         accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}
         onChange={ManejarCambio}
         disabled={
-          Desactivado ? true : TipoDeEntrada === "select" ? true : false
+          Desactivado ? true : TipoDeEntrada === "select" ? true                               
+                              : false
         }
-        hidden={TipoDeEntrada === "select" ? true : false}
+        hidden={TipoDeEntrada === "select" ? true 
+                : TipoDeEntrada === "TextInputDinamic" ? true
+                : false}
         value={
           TipoDeEntrada === "file"
             ? ""
             : TipoDeEntrada === "Select"
+            ? ""
+            : TipoDeEntrada === "TextInputDinamic"
             ? ""
             : Valor 
         }
@@ -74,10 +81,14 @@ const TextInput = ({
         name={TipoDeEntrada === "select" ? Identificador : ""}
         className="EntradaDeTexto"
         disabled={
-          Desactivado ? true : TipoDeEntrada !== "select" ? true : false
+          Desactivado ? true : TipoDeEntrada !== "select" ? true 
+          : TipoDeEntrada === "TextInputDinamic" ? true
+          : false
         }
         onChange={ManejarCambio}
-        hidden={TipoDeEntrada !== "select" ? true : false}
+        hidden={TipoDeEntrada !== "select" ? true 
+                : TipoDeEntrada === "TextInputDinamic" ? true
+                : false}
         value={TipoDeEntrada !== "select" ? "" : Valor}
       >
         {OpcionesDelDesplegable.map((item) => (
@@ -85,7 +96,17 @@ const TextInput = ({
         ))}
       </select>
       
-      <TextInputDinamic />
+      <TextInputDinamic
+        id={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
+        name={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
+        className="EntradaDeTexto"
+        disabled={
+          Desactivado ? true : TipoDeEntrada !== "TextInputDinamic" ? true : false
+        }
+        onChange={ManejarCambio}
+        hidden={TipoDeEntrada !== "TextInputDinamic" ? true : false}
+        value={TipoDeEntrada !== "TextInputDinamic" ? "" : Valor}
+      />
 
     </div>
   );

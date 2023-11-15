@@ -89,7 +89,7 @@ const CreateEvent = () => {
       divClase: "itemContainer",
       Etiqueta: "Requisitos",
       TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
+      TipoDeEntrada: "TextInputDinamic",
       Identificador: "Requisitos",
       Desactivado: false,
       OpcionesDelDesplegable: [

@@ -15,8 +15,10 @@ export default function Boton({ children, f, TipoDeBoton, ClaseDeBoton }) {
           ? "botonAmarilloPeq"
           : ClaseDeBoton === "botonAzul"
           ? "botonAzul"
-          : ClaseDeBoton === "AzulPequeño"
-          ? "AzulPequeño"
+          : ClaseDeBoton === "botonAzulPequeño"
+          ? "botonAzulPequeño"
+          : ClaseDeBoton === "botonGris"
+          ? "botonGris"
           : ""
       }
       `}

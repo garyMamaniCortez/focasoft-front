@@ -39,10 +39,19 @@ button{
     height: 50px;
 }
 
-.AzulPequeño{
+.botonAzulPequeño{
     background-color: #192795;
     width: 160px;
     height: 50px;
+}
+
+.botonGris{
+    background-color: #b3b3b3;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+    margin-top: 5px;
 }
 
 button:hover{

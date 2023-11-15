@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import Boton from '../boton/Boton';
 
-const TextInputDinamic = () => {
+import './TextInputDinamic.css';
+
+const TextInputDinamic = ({disabled,hidden}) => {
   const [datos, setDatos] = useState([]);
   const [nuevoDato, setNuevoDato] = useState('');
 
@@ -13,19 +16,28 @@ const TextInputDinamic = () => {
     }
   };
 
+  // Eliminar un dato de la lista
+  const eliminarDato = (indice) => {
+    // Crear una copia del estado de datos
+    const copiaDatos = [...datos];
+    // Eliminar el dato en el índice dado
+    copiaDatos.splice(indice, 1);
+    // Actualizar el estado de datos
+    setDatos(copiaDatos);
+  };
+
   return (
-    <div>
+    <div disabled={disabled}
+    hidden={hidden}  className='w3-margin-top'>
       <div>
-        <label>Nuevo Dato:</label>
         <input
           type="text"
           value={nuevoDato}
-          onChange={(e) => setNuevoDato(e.target.value)}
-        />
-        <button onClick={agregarDato}>Agregar</button>
+          onChange={(e) => setNuevoDato(e.target.value)}/>
+        <Boton f={agregarDato} ClaseDeBoton="botonGris" >+</Boton>
+        <Boton f={eliminarDato} ClaseDeBoton="botonGris">-</Boton>
       </div>
       <div>
-        <h2>Lista de Datos:</h2>
         <ul>
           {datos.map((dato, index) => (
             <li key={index}>{dato}</li>
