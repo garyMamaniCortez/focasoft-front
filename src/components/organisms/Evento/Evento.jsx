@@ -19,12 +19,12 @@ const Evento = (props) => {
         <div className="w3-col l7 ContenedoresAtributo">
           <div className="ContenderTituloEvento09">
             <Etiqueta TipoDeEtiqueta="FormTitle">
-              Competencia de clasificaion umss
+              {props.Datos.TituloDelEvento}
             </Etiqueta>
           </div>
           <Fondo Tipo="FondoAtributo1">
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">
-              Tipo de evento: {props.Datos.TituloDelEvento}{" "}
+              Tipo de evento: {props.Datos.Tipo}{" "}
             </Etiqueta>
           </Fondo>
           <Fondo Tipo="FondoAtributo1">
