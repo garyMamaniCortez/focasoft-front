@@ -96,7 +96,7 @@ const CreateEvent = () => {
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos:
-        "Un requisito solo debe contener caracteres alfanumericos y deben separarse con una coma",
+        "Un requisito solo debe contener caracteres alfanumericos",
     },
     {
       divClase: "itemContainer",

@@ -1,5 +1,6 @@
 import "./TextInput.css";
 import TextInputDinamic from "../TextInputDinamic/TextInputDinamic";
+import React, { useEffect, useState } from "react";  
 
 const TextInput = ({
   TipoDeEntrada,
@@ -9,6 +10,22 @@ const TextInput = ({
   Desactivado,
   Valor,
 }) => {
+  const [valorList, setValorList] = useState([]);
+
+  const handleAdd = (value) => {
+    setValorList([...valorList, value]);
+  };
+  const handleRemove = () => {
+    setValorList(valorList.slice(0, -1));
+  };
+
+  useEffect(() => {
+    if (TipoDeEntrada === "TextInputDinamic") {
+      ManejarCambio({ target: { name: Identificador, value: valorList } });
+    }
+  }, [valorList]);
+
+  //console.log(valorList);
   return (
     <div className="TextInputMap">
       <input
@@ -103,11 +120,13 @@ const TextInput = ({
         disabled={
           Desactivado ? true : TipoDeEntrada !== "TextInputDinamic" ? true : false
         }
-        onChange={ManejarCambio}
-        hidden={TipoDeEntrada !== "TextInputDinamic" ? true : false}
-        value={TipoDeEntrada !== "TextInputDinamic" ? "" : Valor}
-      />
+        hidden={TipoDeEntrada !== "TextInputDinamic" ? true : false}        
+        lista= {valorList}
+        agregar={handleAdd}
+        remover={handleRemove} 
+        ManejarCambio = {ManejarCambio}
 
+      />
     </div>
   );
 };

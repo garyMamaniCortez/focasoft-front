@@ -15,7 +15,7 @@ const CreateEventSection = (props) => {
   const [imagen, setImagen] = useState(null);
 
   const [formData, setFormData] = useState(props.Evento);
-
+  console.log(formData);
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name != "AficheDelEvento") {
