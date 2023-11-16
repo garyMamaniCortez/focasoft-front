@@ -10,7 +10,7 @@ const TextInput = ({
 }) => {
   return (
     <>
-      {TipoDeEntrada === "text" ? (
+      {TipoDeEntrada !== "select" ? (
         <input
           id={Identificador}
           name={Identificador}
