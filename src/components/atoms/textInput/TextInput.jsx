@@ -10,7 +10,7 @@ const TextInput = ({
 }) => {
   return (
     <>
-      {TipoDeEntrada === "text" ? (
+      {TipoDeEntrada !== "select" ? (
         <input
           id={Identificador}
           name={Identificador}
@@ -20,7 +20,7 @@ const TextInput = ({
               : TipoDeEntrada === "date"
               ? "EntradaDeTexto"
               : TipoDeEntrada === "description"
-              ? "EntradaDeTexto"
+              ? "Descripcion"
               : TipoDeEntrada === "file"
               ? "EntradaDeTexto"
               : TipoDeEntrada === "select"
@@ -32,8 +32,7 @@ const TextInput = ({
               : TipoDeEntrada === "User"
               ? "User"
               : ""
-          }
-    `}
+          }`}
           type={`${
             TipoDeEntrada === "text"
               ? "text"
