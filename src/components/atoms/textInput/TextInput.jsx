@@ -27,7 +27,45 @@ const TextInput = ({
 
   //console.log(valorList);
   return (
-    <div className="TextInputMap">
+    <>
+    {TipoDeEntrada === "select" ? (
+      <select
+      id={TipoDeEntrada === "select" ? Identificador : ""}
+      name={TipoDeEntrada === "select" ? Identificador : ""}
+      className="EntradaDeTexto"
+      disabled={
+        Desactivado ? true : TipoDeEntrada !== "select" ? true 
+        : TipoDeEntrada === "TextInputDinamic" ? true
+        : false
+      }
+      onChange={ManejarCambio}
+      hidden={TipoDeEntrada !== "select" ? true 
+              : TipoDeEntrada === "TextInputDinamic" ? true
+              : false}
+      value={TipoDeEntrada !== "select" ? "" : Valor}
+    >
+      {OpcionesDelDesplegable.map((item) => (
+        <option value={item.Valor}>{item.Etiqueta}</option>
+      ))}
+    </select>
+    ) : TipoDeEntrada === "TextInputDinamic" ? (
+
+      <TextInputDinamic
+        id={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
+        name={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
+        className="EntradaDeTexto"
+        disabled={
+          Desactivado ? true : TipoDeEntrada !== "TextInputDinamic" ? true : false
+        }
+        hidden={TipoDeEntrada !== "TextInputDinamic" ? true : false}        
+        lista= {valorList}
+        agregar={handleAdd}
+        remover={handleRemove} 
+        ManejarCambio = {ManejarCambio}
+      />
+
+    ) : (
+
       <input
         id={TipoDeEntrada !== "select" ? Identificador : ""}
         name={TipoDeEntrada !== "select" ? Identificador : ""}
@@ -93,41 +131,8 @@ const TextInput = ({
             : Valor 
         }
       />
-      <select
-        id={TipoDeEntrada === "select" ? Identificador : ""}
-        name={TipoDeEntrada === "select" ? Identificador : ""}
-        className="EntradaDeTexto"
-        disabled={
-          Desactivado ? true : TipoDeEntrada !== "select" ? true 
-          : TipoDeEntrada === "TextInputDinamic" ? true
-          : false
-        }
-        onChange={ManejarCambio}
-        hidden={TipoDeEntrada !== "select" ? true 
-                : TipoDeEntrada === "TextInputDinamic" ? true
-                : false}
-        value={TipoDeEntrada !== "select" ? "" : Valor}
-      >
-        {OpcionesDelDesplegable.map((item) => (
-          <option value={item.Valor}>{item.Etiqueta}</option>
-        ))}
-      </select>
-      
-      <TextInputDinamic
-        id={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
-        name={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
-        className="EntradaDeTexto"
-        disabled={
-          Desactivado ? true : TipoDeEntrada !== "TextInputDinamic" ? true : false
-        }
-        hidden={TipoDeEntrada !== "TextInputDinamic" ? true : false}        
-        lista= {valorList}
-        agregar={handleAdd}
-        remover={handleRemove} 
-        ManejarCambio = {ManejarCambio}
-
-      />
-    </div>
+    )}
+    </>
   );
 };
 
