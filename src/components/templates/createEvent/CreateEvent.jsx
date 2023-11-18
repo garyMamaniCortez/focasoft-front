@@ -1,5 +1,6 @@
 import CreateEventSection from "../../organisms/createEventSection/CreateEventSection";
 import "./CreateEvent.css";
+
 const CreateEvent = () => {
   const evento = {
     TituloDelEvento: " ",
