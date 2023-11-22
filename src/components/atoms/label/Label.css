@@ -27,6 +27,13 @@
   padding-bottom: 20px;
 }
 
+.FormularioTitulo2{
+  font-size: 24px;
+  color: white;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
 .FormularioRequisitos,
 .DescripcionCampo {
   font-size: 16px;
