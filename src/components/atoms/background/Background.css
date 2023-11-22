@@ -42,3 +42,19 @@
     padding: 20px;
     width: 1000px;
 }
+
+.FondoParticipante1 {
+    background-color: white;
+    padding: 4px 0px;
+    width: 750px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.FondoParticipante2 {
+    background-color: #FEBA12;
+    padding: 4px 0px;
+    width: 750px;
+    display: flex;
+    justify-content: space-around;
+}
