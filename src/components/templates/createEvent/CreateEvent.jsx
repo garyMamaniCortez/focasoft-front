@@ -6,11 +6,11 @@ const CreateEvent = () => {
     TituloDelEvento: " ",
     FechaDelEvento: " ",
     TipoDelEvento: " ",
-    Descripcion: " ",
+    Descripcion: " ",    
+    Patrocinadores: [" "],
+    Contacto: [" "],
     Requisitos: [" "],
     Premios: [" "],
-    Patrocinadores: [" "],
-    Contactos: [" "],
   };
 
   const Campos = [
@@ -88,31 +88,6 @@ const CreateEvent = () => {
     },
     {
       divClase: "itemContainer",
-      Etiqueta: "Requisitos",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "TextInputDinamic",
-      Identificador: "Requisitos",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos:
-        "Un requisito solo debe contener caracteres alfanumericos",
-    },
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Premios",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
-      Identificador: "Premios",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos: "Un premio solo debe contener caracteres alfanumericos y deben separarse con una coma",
-    },
-    {
-      divClase: "itemContainer",
       Etiqueta: "Patrocinadores",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
@@ -125,15 +100,40 @@ const CreateEvent = () => {
     },
     {
       divClase: "itemContainer",
-      Etiqueta: "Contactos",
+      Etiqueta: "Contacto",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
-      Identificador: "Contactos",
+      Identificador: "Contacto",
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
+    },
+    {
+      divClase: "itemContainer",
+      Etiqueta: "Requisitos",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "TextInputDinamic",
+      Identificador: "Requisitos",
+      Desactivado: false,
+      OpcionesDelDesplegable: [
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      ],
+      Requisitos:
+        "Un requisito solo debe contener caracteres alfanumericos",
+    },        
+    {
+      divClase: "itemContainer",
+      Etiqueta: "Premios",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "TextInputDinamic",
+      Identificador: "Premios",
+      Desactivado: false,
+      OpcionesDelDesplegable: [
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      ],
+      Requisitos: "Un premio solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
   ];
 

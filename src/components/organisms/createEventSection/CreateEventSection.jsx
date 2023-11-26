@@ -214,11 +214,11 @@ const CreateEventSection = (props) => {
             tipo: formData.TipoDelEvento,
             descripcion: formData.Descripcion,
             afiche: formData.AficheDelEvento,
-            id_formulario: props.Evento.id_formulario,
+            id_formulario: props.Evento.id_formulario,            
+            patrocinadores: formData.Patrocinadores,
+            contacto: formData.Contacto,
             requisitos: formData.Requisitos,
             premios: formData.Premios,
-            patrocinadores: formData.Patrocinadores,
-            contactos: formData.Contactos,
           })
           .then(function (response) {
             console.log(response);
