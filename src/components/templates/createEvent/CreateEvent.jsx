@@ -15,7 +15,6 @@ const CreateEvent = () => {
 
   const Campos = [
     {
-      divClase: "itemContainer",
       Etiqueta: "* Titulo del evento",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
@@ -28,7 +27,6 @@ const CreateEvent = () => {
         "El Titulo del evento solo debe contener caracteres alfanumericos",
     },
     {
-      divClase: "itemContainer",
       Etiqueta: "* Fecha del evento",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "date",
