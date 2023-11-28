@@ -50,7 +50,7 @@ const Participantes = () => {
 
 
   return (
-    <div className="CreateEventContent vistaContent w3-right">
+    <div className="CreateEventContent vistaContent w3-right participanteContent">
       <h1 className="TituloDeSeccion">Lista de participantes</h1>
       <h2 className="Subtitulo">{EventoTitulo}</h2>
       <div className="CreateEventSection">

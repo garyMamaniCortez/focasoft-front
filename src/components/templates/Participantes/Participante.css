@@ -33,5 +33,9 @@
   @media print {
     .Botones, .navbarContent {
       display: none;
+      visibility: hidden;
+    }
+    .participanteContent{
+      width: 100% !important; 
     }
   }
