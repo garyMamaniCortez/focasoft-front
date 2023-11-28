@@ -7,7 +7,18 @@
     padding-left: 16px;
 }
 
+.Subtitulo {
+    color: #153A65;
+    font-size: 24px;
+    padding-left: 16px;
+}
+
 .CentrarContenido {
     display: grid;
     place-content: center;
+}
+
+.JustigicarContenidoAlrededor {
+    display: flex;
+    justify-content: space-around;
 }

@@ -2,6 +2,7 @@
     padding-bottom: 8px;
     display: flex;
     justify-content: center;
+    width: 680px
   };
 
   .invisible{
@@ -11,4 +12,8 @@
 
   .ContenedorEntrada{
     width: 480px;
+  }
+
+  .ContenedorEntradaPequeño{
+    width: 150px;
   }

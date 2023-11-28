@@ -9,11 +9,10 @@ function VistaEventosAdmin(){
         <div className="vistaContent w3-right">
             <div className="w3-row titulo-buscador">
                 <div className="w3-col l3">
-                    <h1 className="TituloDeSeccion">Inicio</h1>
+                    <h1 className="TituloDeSeccion">Eventos</h1>
                 </div>
             </div>
             <div className="tituloSeccion w3-col l12">
-                <h2 className="cardSTi">Eventos</h2>
                 <div className="botones w3-center w3-row" >
                     <div className="botonesContent">
                             <div className="boton w3-col l4">
