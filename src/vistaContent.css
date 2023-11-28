@@ -17,3 +17,8 @@
     display: grid;
     place-content: center;
 }
+
+.JustigicarContenidoAlrededor {
+    display: flex;
+    justify-content: space-around;
+}
