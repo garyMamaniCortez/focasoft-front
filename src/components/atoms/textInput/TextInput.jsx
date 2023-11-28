@@ -10,14 +10,39 @@ const TextInput = ({
 }) => {
   return (
     <>
-      {TipoDeEntrada !== "select" ? (
+      {TipoDeEntrada === "checkbox" ? (
+        <input
+          id={Identificador}
+          name={Identificador}
+          className=""
+          type="checkbox"
+          onChange={ManejarCambio}
+          disabled={Desactivado}
+        />
+      ) : TipoDeEntrada.includes("select") ? (
+        <select
+          id={Identificador}
+          name={Identificador}
+          className={`${
+            TipoDeEntrada === "selectPequeño"
+              ? "EntradaDeTextoPequeño"
+              : "EntradaDeTexto"
+          }`}
+          disabled={Desactivado}
+          onChange={ManejarCambio}
+        >
+          {OpcionesDelDesplegable.map((item) => (
+            <option value={item.Valor}>{item.Etiqueta}</option>
+          ))}
+        </select>
+      ) : (
         <input
           id={Identificador}
           name={Identificador}
           className={`${
-            TipoDeEntrada === "text"
+            (TipoDeEntrada === "text" || TipoDeEntrada === "texto")
               ? "EntradaDeTexto"
-              : TipoDeEntrada === "date"
+              : (TipoDeEntrada === "date" || TipoDeEntrada === "fecha") 
               ? "EntradaDeTexto"
               : TipoDeEntrada === "description"
               ? "Descripcion"
@@ -31,14 +56,16 @@ const TextInput = ({
               ? "Contrasena"
               : TipoDeEntrada === "User"
               ? "User"
+              : TipoDeEntrada === "campo"
+              ? "EntradaDeNuevoCampo"
               : ""
           }`}
           type={`${
-            TipoDeEntrada === "text"
+            (TipoDeEntrada === "text" || TipoDeEntrada === "texto")
               ? "text"
               : TipoDeEntrada === "description"
               ? "text"
-              : TipoDeEntrada === "date"
+              : (TipoDeEntrada === "date" || TipoDeEntrada === "fecha") 
               ? "date"
               : TipoDeEntrada === "file"
               ? "file"
@@ -70,22 +97,6 @@ const TextInput = ({
               : Valor
           }
         />
-      ) : (
-        <select
-          id={TipoDeEntrada === "select" ? Identificador : ""}
-          name={TipoDeEntrada === "select" ? Identificador : ""}
-          className="EntradaDeTexto"
-          disabled={
-            Desactivado ? true : TipoDeEntrada !== "select" ? true : false
-          }
-          onChange={ManejarCambio}
-          hidden={TipoDeEntrada !== "select" ? true : false}
-          value={TipoDeEntrada !== "select" ? "" : Valor}
-        >
-          {OpcionesDelDesplegable.map((item) => (
-            <option value={item.Valor}>{item.Etiqueta}</option>
-          ))}
-        </select>
       )}
     </>
   );
