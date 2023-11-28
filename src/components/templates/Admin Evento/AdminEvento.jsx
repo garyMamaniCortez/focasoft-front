@@ -53,7 +53,7 @@ const AdminEvento = () => {
               <li  className="w3-bar-item w3-button"><Link to={"/AgregarFormulario/"+id}>Agregar formulario</Link></li>
               <li  className="w3-bar-item w3-button"><Link to={""}>Agregar ganadores</Link></li>
               <li  className="w3-bar-item w3-button"><Link to={""}>Reporte</Link></li>
-
+              <li  className="w3-bar-item w3-button"><Link to={"/Participantes/"+evento.titulo+"/"+evento.id_formulario}>Participantes</Link></li>
             </ul>
           </div>
       </div>

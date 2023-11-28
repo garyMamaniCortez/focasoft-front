@@ -41,7 +41,7 @@ function App() {
         <Route path="/Evento/:id" element={<Evento />} />
         <Route path="/admin" element={<VistaEventosAdmin />} />
         <Route path="/admin/Evento/:id" element={<AdminEvento />} />
-        <Route path="/admin/Evento/Participantes" element={<Participantes />} />
+        <Route path="/Participantes/:EventoTitulo/:idForm" element={<Participantes />} />
       </Routes>
     </div>
   );
