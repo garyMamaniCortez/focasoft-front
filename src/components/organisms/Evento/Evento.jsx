@@ -80,7 +80,7 @@ const Evento = (props) => {
                 : props.Datos.Afiche
             }`}>
           <Fondo Tipo="FondoAtributo2">
-            <Afiche src={props.Datos.Afiche}></Afiche>
+            <Afiche src={props.Datos.Afiche} Class={"imagenGrande"}></Afiche>
           </Fondo></div>
           <br />
           <div

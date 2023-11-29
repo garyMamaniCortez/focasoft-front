@@ -1,0 +1,46 @@
+.CamposEspacio{
+    width: 100% !important;
+
+}
+
+.mi-tabla {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse:collapse !important;
+  }
+
+  .mi-tabla th, .mi-tabla td {
+    padding: 8px;
+    text-align: left;
+    height: 50px;
+    width: max-content;
+  }
+
+  .mi-tabla .Datos td{
+    margin-top: 15px !important;
+    background-color: #FFFFFF;
+
+  }
+
+  .fila-amarilla  td{
+    background-color: #FEBA12 !important;
+    margin-bottom: 15px !important;
+  }
+  .espacio{
+    height:10px;
+  }
+
+  @media print {
+    .Botones, .navbarContent {
+      display: none;
+      visibility: hidden;
+    }
+    .participanteContent{
+      width: 100% !important; 
+    }
+  }
+
+  td{
+    min-width: 70px !important;
+    max-width: 300px !important;
+  }

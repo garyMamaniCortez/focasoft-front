@@ -275,7 +275,7 @@ const RegisterParticipantsSec = () => {
   };
 
   return (
-    <Background>
+    <Background Tipo="FondoParticipantes">
       <Label TipoDeEtiqueta="FormTitle">{evento}</Label>
       <form onSubmit={handleSubmit} id="FormularioParaRegistrarParticipante">
         <Formulario

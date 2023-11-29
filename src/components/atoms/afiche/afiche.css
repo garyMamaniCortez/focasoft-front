@@ -13,3 +13,8 @@
     height: 160px;
     object-fit: contain;
 }
+
+.imagenGrande{
+    width: 100%;
+    object-fit: contain;   
+}
