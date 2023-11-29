@@ -3,7 +3,7 @@ import TextInput from "../../atoms/textInput/TextInput";
 
 import "./Formulario.css";
 
-const Formulario = ({ CamposDeEntrada, handleChange, FormData, Desactivado }) => {
+const Formulario = ({ CamposDeEntrada, handleChange, FormData, Desactivado,Lista }) => {
   return (
     <>
       {CamposDeEntrada.map((item) => (
@@ -17,6 +17,7 @@ const Formulario = ({ CamposDeEntrada, handleChange, FormData, Desactivado }) =>
             OpcionesDelDesplegable={item.OpcionesDelDesplegable}
             Desactivado={Desactivado}
             Valor={FormData[item.Identificador]}
+            Lista={Lista}
           />
            <Label TipoDeEtiqueta="FormularioRequisitos">{item.Requisitos}</Label> 
           </div>

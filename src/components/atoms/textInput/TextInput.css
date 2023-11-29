@@ -1,6 +1,6 @@
 .EntradaDeTexto, .Descripcion {
     font-size: 16px;
-    height: 24px;
+    height: 40px;
     width: 480px;
     text-align: center;
     background-color: white;
@@ -17,7 +17,7 @@
 
 .EntradaDeTexto::file-selector-button {
     width: 480px;
-    height: 24px;
+    height: 40px;
     background-color: white;
   }
 

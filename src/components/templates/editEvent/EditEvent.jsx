@@ -49,7 +49,7 @@ const EditEvent = () => {
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
       Identificador: "TituloDelEvento",
-      Desactivado: false,
+      Desactivado: true,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
@@ -114,46 +114,20 @@ const EditEvent = () => {
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos: "El Afiche debe ser un archivo en fomato jpeg",
-    },
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Requisitos",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
-      Identificador: "Requisitos",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos:
-        "Un requisito solo debe contener caracteres alfanumericos\n Los requisitos deben separarse con una coma",
-    },
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Premios",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
-      Identificador: "Premios",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos:
-        "Un premio solo debe contener caracteres alfanumericos\n Los premios deben separarse con una coma",
-    },
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Patrocinadores",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
-      Identificador: "Patrocinadores",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos:
-        "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
-    },
+    },    
+    // {
+    //   divClase: "itemContainer",
+    //   Etiqueta: "Patrocinadores",
+    //   TipoDeEtiqueta: "FormLabel",
+    //   TipoDeEntrada: "text",
+    //   Identificador: "Patrocinadores",
+    //   Desactivado: false,
+    //   OpcionesDelDesplegable: [
+    //     { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+    //   ],
+    //   Requisitos:
+    //     "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
+    // },
     {
       divClase: "itemContainer",
       Etiqueta: "Contactos",
@@ -167,13 +141,40 @@ const EditEvent = () => {
       Requisitos:
         "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
+    {
+      divClase: "itemContainer",
+      Etiqueta: "Requisitos",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "TextInputDinamic",
+      Identificador: "Requisitos",
+      Desactivado: false,
+      OpcionesDelDesplegable: [
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      ],
+      Requisitos:
+        "Un requisito solo debe contener caracteres alfanumericos\n Los requisitos deben separarse con una coma",
+    },
+    {
+      divClase: "itemContainer",
+      Etiqueta: "Premios",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "TextInputDinamic",
+      Identificador: "Premios",
+      Desactivado: false,
+      OpcionesDelDesplegable: [
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      ],
+      Requisitos:
+        "Un premio solo debe contener caracteres alfanumericos\n Los premios deben separarse con una coma",
+    },
   ];
 
   return (
     <div className="CreateEventContent vistaContent w3-right">
       <h1 className="TituloDeSeccion">Editar evento</h1>
-      <div className="CreateEventSection">
-        <CreateEventSection
+      <h2 className="TituloEvento">{evento.TituloDelEvento}</h2>
+      <div className="CreateEventSection">              
+        <CreateEventSection          
           Campos={Campos}
           Accion="editar"
           Evento={evento}

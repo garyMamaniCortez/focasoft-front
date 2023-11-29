@@ -1,17 +1,43 @@
 import CreateEventSection from "../../organisms/createEventSection/CreateEventSection";
 import "./CreateEvent.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+
 const CreateEvent = () => {
   const evento = {
     TituloDelEvento: " ",
     FechaDelEvento: " ",
     TipoDelEvento: " ",
-    Descripcion: " ",
+    Equipo: false,
+    Descripcion: " ",    
+    Patrocinadores: [" "],
+    Contacto: [" "],
     Requisitos: [" "],
     Premios: [" "],
-    Patrocinadores: [" "],
-    Contactos: [" "],
   };
 
+  const [datosRecibidos, setDatos] = useState([]);
+    useEffect(() => {
+      const datosRecibidos = async () => {
+        try {
+          const response = axios.get("http://localhost:8000/api/patrocinadores");
+          const data = (await response).data;
+          setDatos(data);
+        } catch (error) {
+          console.error('Error al obtener datos:', error);
+        }
+      };
+      datosRecibidos();
+    }, []);
+      console.log(datosRecibidos);
+      const datosTransformados = datosRecibidos.map(item => {
+        return {
+          Valor: item.nombre,
+          Etiqueta: item.nombre
+        };
+      });
+      
   const Campos = [
     {
       Etiqueta: "* Titulo del evento",
@@ -45,19 +71,30 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-        { Valor: "Reclutamiento", Etiqueta: "Reclutamiento" },
+        { Valor: "Reclutamiento", Etiqueta: "Reclutamiento"},
         {
           Valor: "Taller de entrenamiento",
-          Etiqueta: "Taller de entrenamiento",
+          Etiqueta: "Taller de entrenamiento",          
         },
         {
           Valor: "Competencia de entrenamiento",
-          Etiqueta: "Competencia de entrenamiento",
+          Etiqueta: "Competencia de entrenamiento",        
         },
-        { Valor: "Clasificatorio interno", Etiqueta: "Clasificatorio interno" },
+        { Valor: "Clasificatorio interno", Etiqueta: "Clasificatorio interno"},
         { Valor: "Competencia", Etiqueta: "Competencia" },
       ],
       Requisitos: "Se debe selecionar una talla de polera",
+    },
+    {
+      divClase: "itemContainer",
+      Etiqueta: "¿evento por equipos?",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "checkbox",
+      Identificador: "Equipo",
+      Desactivado: false,
+      OpcionesDelDesplegable: [
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      ],
     },
     {
       divClase: "itemContainer",
@@ -85,52 +122,50 @@ const CreateEvent = () => {
     },
     {
       divClase: "itemContainer",
-      Etiqueta: "Requisitos",
+      Etiqueta: "Patrocinador",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "select",
+      Identificador: "Patrocinadores",
+      Desactivado: false,
+      OpcionesDelDesplegable:datosTransformados,
+      Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
+    },
+    {
+      divClase: "itemContainer",
+      Etiqueta: "Contacto",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
+      Identificador: "Contacto",
+      Desactivado: false,
+      OpcionesDelDesplegable: [
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      ],
+      Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
+    },
+    {
+      divClase: "itemContainer",
+      Etiqueta: "Requisitos",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "TextInputDinamic",
       Identificador: "Requisitos",
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos:
-        "Un requisito solo debe contener caracteres alfanumericos y deben separarse con una coma",
-    },
+        "Un requisito solo debe contener caracteres alfanumericos",
+    },        
     {
       divClase: "itemContainer",
       Etiqueta: "Premios",
       TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
+      TipoDeEntrada: "TextInputDinamic",
       Identificador: "Premios",
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos: "Un premio solo debe contener caracteres alfanumericos y deben separarse con una coma",
-    },
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Patrocinadores",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
-      Identificador: "Patrocinadores",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
-    },
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Contactos",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
-      Identificador: "Contactos",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
   ];
 
