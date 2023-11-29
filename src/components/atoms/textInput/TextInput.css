@@ -6,6 +6,15 @@
     background-color: white;
 }
 
+.EntradaDeTextoPequeño {
+    font-size: 16px;
+    display: block;
+    height: 24px;
+    width: 160px;
+    text-align: center;
+    background-color: white;
+}
+
 .EntradaDeTexto::file-selector-button {
     width: 480px;
     height: 40px;

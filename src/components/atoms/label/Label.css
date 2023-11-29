@@ -27,6 +27,11 @@
   padding-bottom: 20px;
 }
 
+.FormularioTitulo2 {
+  font-size: 24px;
+  color: white;
+}
+
 .FormularioRequisitos,
 .DescripcionCampo {
   font-size: 16px;
@@ -55,4 +60,25 @@
   color: black;
   display: inline-block;
   text-align: center;
+}
+
+.NombreDeParticipante {
+  padding-left: 4px;
+  font-size: 12px;
+  width: 160px;
+  display: inline-block;
+}
+
+.ApellidoDeParticipante {
+  padding-left: 4px;
+  font-size: 12px;
+  width: 160px;
+  display: inline-block;
+}
+
+.CorreoDeParticipante {
+  padding-left: 4px;
+  font-size: 12px;
+  width: 160px;
+  display: inline-block;
 }
