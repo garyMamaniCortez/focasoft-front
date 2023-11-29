@@ -19,16 +19,10 @@ const TextInput = ({
     setValorList(valorList.slice(0, -1));
   };
 
-  useEffect(() => {
-    if (TipoDeEntrada === "TextInputDinamic") {
-      ManejarCambio({ target: { name: Identificador, value: valorList } });
-    }
-  }, [valorList]);
 
-  //console.log(valorList);
   return (
     <>
-    {TipoDeEntrada === "select" ? (
+    {TipoDeEntrada === "select" ? (      
       <select
       id={TipoDeEntrada === "select" ? Identificador : ""}
       name={TipoDeEntrada === "select" ? Identificador : ""}
@@ -39,14 +33,11 @@ const TextInput = ({
         : false
       }
       onChange={ManejarCambio}
-      hidden={TipoDeEntrada !== "select" ? true 
-              : TipoDeEntrada === "TextInputDinamic" ? true
-              : false}
       value={TipoDeEntrada !== "select" ? "" : Valor}
     >
       {OpcionesDelDesplegable.map((item) => (
         <option value={item.Valor}>{item.Etiqueta}</option>
-      ))}
+      ))}                            
     </select>
     ) : TipoDeEntrada === "TextInputDinamic" ? (
 
@@ -57,7 +48,6 @@ const TextInput = ({
         disabled={
           Desactivado ? true : TipoDeEntrada !== "TextInputDinamic" ? true : false
         }
-        hidden={TipoDeEntrada !== "TextInputDinamic" ? true : false}        
         lista= {valorList}
         agregar={handleAdd}
         remover={handleRemove} 
@@ -67,8 +57,8 @@ const TextInput = ({
     ) : (
 
       <input
-        id={TipoDeEntrada !== "select" ? Identificador : ""}
-        name={TipoDeEntrada !== "select" ? Identificador : ""}
+        id={Identificador}
+        name={Identificador}
         className={`${
           TipoDeEntrada === "text"
             ? "EntradaDeTexto"
@@ -88,6 +78,8 @@ const TextInput = ({
             ? "User"
             : TipoDeEntrada === "TextInputDinamic"
             ? "EntradaDeTexto"
+            : TipoDeEntrada === "checkbox"
+            ? "EntradaDeTexto"
             : ""
         }
         `}
@@ -105,7 +97,9 @@ const TextInput = ({
             : TipoDeEntrada === "password"
             ? "password"
             : TipoDeEntrada === "User"
-            ? "text"            
+            ? "text"
+            : TipoDeEntrada === "checkbox"
+            ? "checkbox"            
             : ""
         }`}
 
@@ -118,9 +112,6 @@ const TextInput = ({
           Desactivado ? true : TipoDeEntrada === "select" ? true                               
                               : false
         }
-        hidden={TipoDeEntrada === "select" ? true 
-                : TipoDeEntrada === "TextInputDinamic" ? true
-                : false}
         value={
           TipoDeEntrada === "file"
             ? ""

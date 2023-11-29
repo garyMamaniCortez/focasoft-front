@@ -46,17 +46,29 @@ const CreateEvent = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-        { Valor: "Reclutamiento", Etiqueta: "Reclutamiento" },
+        { Valor: "Reclutamiento", Etiqueta: "Reclutamiento"},
         {
           Valor: "Taller de entrenamiento",
-          Etiqueta: "Taller de entrenamiento",
+          Etiqueta: "Taller de entrenamiento",          
         },
         {
           Valor: "Competencia de entrenamiento",
-          Etiqueta: "Competencia de entrenamiento",
+          Etiqueta: "Competencia de entrenamiento",        
         },
-        { Valor: "Clasificatorio interno", Etiqueta: "Clasificatorio interno" },
+        { Valor: "Clasificatorio interno", Etiqueta: "Clasificatorio interno"},
         { Valor: "Competencia", Etiqueta: "Competencia" },
+      ],
+      Requisitos: "Se debe selecionar una talla de polera",
+    },
+    {
+      divClase: "itemContainer",
+      Etiqueta: "¿evento por equipos?",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "checkbox",
+      Identificador: "EsPorEquipos",
+      Desactivado: false,
+      OpcionesDelDesplegable: [
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos: "Se debe selecionar una talla de polera",
     },
