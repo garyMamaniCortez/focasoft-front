@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 import swal from "sweetalert";
 
@@ -15,7 +15,6 @@ const CreateEventSection = (props) => {
   const [imagen, setImagen] = useState(null);
 
   const [formData, setFormData] = useState(props.Evento);
-  console.log(formData);
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name != "AficheDelEvento") {
@@ -242,6 +241,7 @@ const CreateEventSection = (props) => {
           handleChange={handleChange}
           Desactivado={false}
           FormData={formData}
+          Lista={props.Evento.Requisitos}
         />
         <div className="w3-row w3-center">
           <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">

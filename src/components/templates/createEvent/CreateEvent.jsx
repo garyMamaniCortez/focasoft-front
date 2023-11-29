@@ -1,11 +1,15 @@
 import CreateEventSection from "../../organisms/createEventSection/CreateEventSection";
 import "./CreateEvent.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 
 const CreateEvent = () => {
   const evento = {
     TituloDelEvento: " ",
     FechaDelEvento: " ",
     TipoDelEvento: " ",
+    Equipo: false,
     Descripcion: " ",    
     Patrocinadores: [" "],
     Contacto: [" "],
@@ -13,6 +17,27 @@ const CreateEvent = () => {
     Premios: [" "],
   };
 
+  const [datosRecibidos, setDatos] = useState([]);
+    useEffect(() => {
+      const datosRecibidos = async () => {
+        try {
+          const response = axios.get("http://localhost:8000/api/patrocinadores");
+          const data = (await response).data;
+          setDatos(data);
+        } catch (error) {
+          console.error('Error al obtener datos:', error);
+        }
+      };
+      datosRecibidos();
+    }, []);
+      console.log(datosRecibidos);
+      const datosTransformados = datosRecibidos.map(item => {
+        return {
+          Valor: item.id,
+          Etiqueta: item.nombre
+        };
+      });
+      
   const Campos = [
     {
       Etiqueta: "* Titulo del evento",
@@ -65,12 +90,11 @@ const CreateEvent = () => {
       Etiqueta: "¿evento por equipos?",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "checkbox",
-      Identificador: "EsPorEquipos",
+      Identificador: "Equipo",
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Se debe selecionar una talla de polera",
     },
     {
       divClase: "itemContainer",
@@ -98,14 +122,12 @@ const CreateEvent = () => {
     },
     {
       divClase: "itemContainer",
-      Etiqueta: "Patrocinadores",
+      Etiqueta: "Patrocinador",
       TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
+      TipoDeEntrada: "select",
       Identificador: "Patrocinadores",
       Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
+      OpcionesDelDesplegable: datosTransformados,
       Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
     {

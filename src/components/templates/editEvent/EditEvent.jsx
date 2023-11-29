@@ -49,7 +49,7 @@ const EditEvent = () => {
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
       Identificador: "TituloDelEvento",
-      Desactivado: false,
+      Desactivado: true,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
@@ -115,19 +115,19 @@ const EditEvent = () => {
       ],
       Requisitos: "El Afiche debe ser un archivo en fomato jpeg",
     },    
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Patrocinadores",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "text",
-      Identificador: "Patrocinadores",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos:
-        "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
-    },
+    // {
+    //   divClase: "itemContainer",
+    //   Etiqueta: "Patrocinadores",
+    //   TipoDeEtiqueta: "FormLabel",
+    //   TipoDeEntrada: "text",
+    //   Identificador: "Patrocinadores",
+    //   Desactivado: false,
+    //   OpcionesDelDesplegable: [
+    //     { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+    //   ],
+    //   Requisitos:
+    //     "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
+    // },
     {
       divClase: "itemContainer",
       Etiqueta: "Contactos",
@@ -172,8 +172,9 @@ const EditEvent = () => {
   return (
     <div className="CreateEventContent vistaContent w3-right">
       <h1 className="TituloDeSeccion">Editar evento</h1>
-      <div className="CreateEventSection">
-        <CreateEventSection
+      <h2 className="TituloEvento">{evento.TituloDelEvento}</h2>
+      <div className="CreateEventSection">              
+        <CreateEventSection          
           Campos={Campos}
           Accion="editar"
           Evento={evento}

@@ -9,6 +9,7 @@ const TextInput = ({
   OpcionesDelDesplegable,
   Desactivado,
   Valor,
+  Lista,
 }) => {
   const [valorList, setValorList] = useState([]);
 
@@ -19,26 +20,40 @@ const TextInput = ({
     setValorList(valorList.slice(0, -1));
   };
 
+  useEffect(() => {
+    console.log(Lista);
+    if (Lista !== undefined){
+    setValorList(Lista);
+    }
+  }, [Lista]);
 
   return (
     <>
-    {TipoDeEntrada === "select" ? (      
-      <select
-      id={TipoDeEntrada === "select" ? Identificador : ""}
-      name={TipoDeEntrada === "select" ? Identificador : ""}
-      className="EntradaDeTexto"
-      disabled={
-        Desactivado ? true : TipoDeEntrada !== "select" ? true 
-        : TipoDeEntrada === "TextInputDinamic" ? true
-        : false
-      }
-      onChange={ManejarCambio}
-      value={TipoDeEntrada !== "select" ? "" : Valor}
-    >
-      {OpcionesDelDesplegable.map((item) => (
-        <option value={item.Valor}>{item.Etiqueta}</option>
-      ))}                            
-    </select>
+    {TipoDeEntrada === "checkbox" ? (
+        <input
+          id={Identificador}
+          name={Identificador}
+          className=""
+          type="checkbox"
+          onChange={ManejarCambio}
+          disabled={Desactivado}
+        />
+      ) : TipoDeEntrada.includes("select") ? (
+        <select
+          id={Identificador}
+          name={Identificador}
+          className={`${
+            TipoDeEntrada === "selectPequeño"
+              ? "EntradaDeTextoPequeño"
+              : "EntradaDeTexto"              
+          }`}
+          disabled={Desactivado}
+          onChange={ManejarCambio}
+        >
+          {OpcionesDelDesplegable.map((item) => (
+            <option value={item.Valor}>{item.Etiqueta}</option>
+          ))}
+        </select>
     ) : TipoDeEntrada === "TextInputDinamic" ? (
 
       <TextInputDinamic
@@ -78,8 +93,6 @@ const TextInput = ({
             ? "User"
             : TipoDeEntrada === "TextInputDinamic"
             ? "EntradaDeTexto"
-            : TipoDeEntrada === "checkbox"
-            ? "EntradaDeTexto"
             : ""
         }
         `}
@@ -98,8 +111,6 @@ const TextInput = ({
             ? "password"
             : TipoDeEntrada === "User"
             ? "text"
-            : TipoDeEntrada === "checkbox"
-            ? "checkbox"            
             : ""
         }`}
 
@@ -117,100 +128,10 @@ const TextInput = ({
             ? ""
             : TipoDeEntrada === "Select"
             ? ""
-            : TipoDeEntrada === "TextInputDinamic"
-            ? ""
             : Valor 
         }
       />
     )}
-      {TipoDeEntrada === "checkbox" ? (
-        <input
-          id={Identificador}
-          name={Identificador}
-          className=""
-          type="checkbox"
-          onChange={ManejarCambio}
-          disabled={Desactivado}
-        />
-      ) : TipoDeEntrada.includes("select") ? (
-        <select
-          id={Identificador}
-          name={Identificador}
-          className={`${
-            TipoDeEntrada === "selectPequeño"
-              ? "EntradaDeTextoPequeño"
-              : "EntradaDeTexto"
-          }`}
-          disabled={Desactivado}
-          onChange={ManejarCambio}
-        >
-          {OpcionesDelDesplegable.map((item) => (
-            <option value={item.Valor}>{item.Etiqueta}</option>
-          ))}
-        </select>
-      ) : (
-        <input
-          id={Identificador}
-          name={Identificador}
-          className={`${
-            (TipoDeEntrada === "text" || TipoDeEntrada === "texto")
-              ? "EntradaDeTexto"
-              : (TipoDeEntrada === "date" || TipoDeEntrada === "fecha") 
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "description"
-              ? "Descripcion"
-              : TipoDeEntrada === "file"
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "select"
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "email"
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "password"
-              ? "Contrasena"
-              : TipoDeEntrada === "User"
-              ? "User"
-              : TipoDeEntrada === "campo"
-              ? "EntradaDeNuevoCampo"
-              : ""
-          }`}
-          type={`${
-            (TipoDeEntrada === "text" || TipoDeEntrada === "texto")
-              ? "text"
-              : TipoDeEntrada === "description"
-              ? "text"
-              : (TipoDeEntrada === "date" || TipoDeEntrada === "fecha") 
-              ? "date"
-              : TipoDeEntrada === "file"
-              ? "file"
-              : TipoDeEntrada === "email"
-              ? "email"
-              : TipoDeEntrada === "password"
-              ? "password"
-              : TipoDeEntrada === "User"
-              ? "text"
-              : ""
-          }`}
-          placeholder={`${
-            TipoDeEntrada === "password"
-              ? "contraseña"
-              : TipoDeEntrada === "User"
-              ? "usuario"
-              : ""
-          }`}
-          accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}
-          onChange={ManejarCambio}
-          disabled={
-            Desactivado ? true : TipoDeEntrada === "select" ? true : false
-          }
-          value={
-            TipoDeEntrada === "file"
-              ? ""
-              : TipoDeEntrada === "Select"
-              ? ""
-              : Valor
-          }
-        />
-      )}
     </>
   );
 };
