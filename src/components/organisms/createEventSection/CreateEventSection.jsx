@@ -15,6 +15,7 @@ const CreateEventSection = (props) => {
   const [imagen, setImagen] = useState(null);
 
   const [formData, setFormData] = useState(props.Evento);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name != "AficheDelEvento") {
@@ -33,6 +34,7 @@ const CreateEventSection = (props) => {
 
       reader.readAsDataURL(file);
     }
+    console.log(formData);
   };
 
   const handleSubmit = (event) => {
@@ -187,13 +189,15 @@ const CreateEventSection = (props) => {
             fecha_ini: formData.FechaDelEvento,
             fecha_fin: null,
             tipo: formData.TipoDelEvento,
-            equipo: formData.Equipo,
+            equipo: formData.Equipo
+              == "on" ? true : false
+            ,
             descripcion: formData.Descripcion,
             afiche: formData.AficheDelEvento,
             id_formulario: props.Evento.id_formulario,
             requisitos: formData.Requisitos,
             premios: formData.Premios,
-            patrocinadores: formData.Patrocinadores,
+            patrocinadores: [formData.Patrocinadores],
             contactos: formData.Contactos,
           })
           .then(function (response) {
@@ -241,7 +245,7 @@ const CreateEventSection = (props) => {
           handleChange={handleChange}
           Desactivado={false}
           FormData={formData}
-          Lista={props.Evento.Requisitos}
+          Lista={props.Accion === "crear" ? [] : props.Evento.Requisitos }
         />
         <div className="w3-row w3-center">
           <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">

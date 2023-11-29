@@ -3,7 +3,7 @@ import Boton from '../boton/Boton';
 
 import './TextInputDinamic.css';
 
-const TextInputDinamic = ({disabled,hidden,agregar,remover,lista,ManejarCambio}) => {
+const TextInputDinamic = ({disabled,hidden,agregar,remover,lista}) => {
   const [nuevoDato, setNuevoDato] = useState('');
   
   const handleChange = (event) => {

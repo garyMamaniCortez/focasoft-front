@@ -33,7 +33,7 @@ const CreateEvent = () => {
       console.log(datosRecibidos);
       const datosTransformados = datosRecibidos.map(item => {
         return {
-          Valor: item.id,
+          Valor: item.nombre,
           Etiqueta: item.nombre
         };
       });
@@ -127,7 +127,7 @@ const CreateEvent = () => {
       TipoDeEntrada: "select",
       Identificador: "Patrocinadores",
       Desactivado: false,
-      OpcionesDelDesplegable: datosTransformados,
+      OpcionesDelDesplegable:datosTransformados,
       Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
     {
