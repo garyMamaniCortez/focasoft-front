@@ -26,22 +26,22 @@ const CreateFormRegisterSec = (props) => {
       {
         pregunta: "Nombres",
         obligatorio: true,
-        tipo: "texto",
+        tipo: "nombre",
       },
       {
         pregunta: "Telefono",
         obligatorio: true,
-        tipo: "texto",
+        tipo: "telefono",
       },
       {
         pregunta: "Fecha",
         obligatorio: true,
-        tipo: "fecha",
+        tipo: "fecha_AFA",
       },
       {
         pregunta: "Email",
         obligatorio: true,
-        tipo: "texto",
+        tipo: "email",
       },
     ],
   });
@@ -67,7 +67,7 @@ const CreateFormRegisterSec = (props) => {
       Identificador: "Apellidos",
       Desactivado: false,
       OpcionesDelDesplegable: [],
-      Requisitos: "Recibe un una cadena de caracteres alfanumerico",
+      Requisitos: "Recibe un una cadena de caracteres numerico",
     },
     {
       Etiqueta: "Fecha",
@@ -121,28 +121,11 @@ const CreateFormRegisterSec = (props) => {
     event.preventDefault();
     axios
       .post("http://localhost:8000/api/formularios/registro", {
-        nombres: 1,
-        apellidos: 1,
-        fecha_nacimiento: 1,
-        correo_electronico: 1,
-        numero_celular: 1,
-        carrera: formData.Carrera,
-        talla_polera: formData.TallaDePolera,
-        carnet_identidad: formData.CarnetDeIdentidad,
-        codigo_sis_o_institucion: formData.CodigoSISOInstitucion,
-        semestre: formData.Semestre,
+        "id_evento": id,
+        "preguntas": formData.preguntas
       })
       .then(function (response) {
         console.log(response.data.id);
-        setId(response.data.id);
-        axios
-          .post("http://localhost:8000/api/evento/agregarFormulario", {
-            id_evento: id,
-            id_formulario: response.data.id,
-          })
-          .then(function (response) {
-            console.log(response);
-          });
         navigate("/admin");
       });
   };
@@ -301,7 +284,7 @@ const CreateFormRegisterSec = (props) => {
                       Etiqueta: "Texto",
                     },
                     {
-                      Valor: "fecha",
+                      Valor: "fecha_AFA",
                       Etiqueta: "Fecha",
                     },
                     {

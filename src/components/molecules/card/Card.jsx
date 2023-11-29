@@ -47,12 +47,12 @@ function Card(props){
                 </div>
     </div>*/}
             
-            {/*<div className={props.claseDiv} >
+            <div className={props.claseDiv} >
                 
                 <Link to={idFormulario}>
                     <Boton ClaseDeBoton={"botonRojoGrand"} TipoDeBoton={"button"}>Registrarse</Boton>
                 </Link>
-    </div>*/}
+    </div>
 
         </div>
     )
