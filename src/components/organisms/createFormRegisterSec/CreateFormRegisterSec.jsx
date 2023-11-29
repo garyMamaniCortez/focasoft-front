@@ -26,22 +26,22 @@ const CreateFormRegisterSec = (props) => {
       {
         pregunta: "Nombres",
         obligatorio: true,
-        tipo: "texto",
+        tipo: "nombre",
       },
       {
         pregunta: "Telefono",
         obligatorio: true,
-        tipo: "texto",
+        tipo: "telefono",
       },
       {
         pregunta: "Fecha",
         obligatorio: true,
-        tipo: "fecha",
+        tipo: "fecha_AFA",
       },
       {
         pregunta: "Email",
         obligatorio: true,
-        tipo: "texto",
+        tipo: "email",
       },
     ],
   });
@@ -67,7 +67,7 @@ const CreateFormRegisterSec = (props) => {
       Identificador: "Apellidos",
       Desactivado: false,
       OpcionesDelDesplegable: [],
-      Requisitos: "Recibe un una cadena de caracteres alfanumerico",
+      Requisitos: "Recibe un una cadena de caracteres numerico",
     },
     {
       Etiqueta: "Fecha",
@@ -284,7 +284,7 @@ const CreateFormRegisterSec = (props) => {
                       Etiqueta: "Texto",
                     },
                     {
-                      Valor: "fecha",
+                      Valor: "fecha_AFA",
                       Etiqueta: "Fecha",
                     },
                     {

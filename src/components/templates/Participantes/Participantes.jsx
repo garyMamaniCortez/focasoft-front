@@ -11,10 +11,11 @@ import './Participante.css';
 import 'w3-css/w3.css';
 
 const Participantes = () => {
-  const {EventoTitulo, idForm } = useParams();
+  const {EventoTitulo, idForm, id } = useParams();
   const [datosDelEvento, setDatosDelEvento] = useState({});
   const [eventoCargado, setEventoCargado] = useState(false);
-  const [preguntas, setPreguntas] = useState([])
+  const [preguntas, setPreguntas] = useState([]);
+  const [participantes, setParticipantes] = useState([]);
 
   useEffect(() => {
     const getCampos = async () => {
@@ -32,8 +33,24 @@ const Participantes = () => {
         console.error("Error al obtener las preguntas del evento:", error);
       }
     };
+    const getParticipantes = async () => {
+      try {
+        if (id) {
+          axios
+              .post("http://localhost:8000/api/formularios/participantes", {
+                "id_evento": id,
+              })
+              .then(function (response) {
+                setParticipantes(response.data)
+                console.log(response.data);
+              });
+      }} catch (error) {
+        console.log("Error al obtener las preguntas del evento:", error);
+      }
+    };
 
     getCampos();
+    getParticipantes();
   }, [idForm]);
 
   const imprimirTabla = () => {
@@ -67,21 +84,27 @@ const Participantes = () => {
           <div className="CentrarContenido">
           <table className="mi-tabla">
                   <tr className="CamposEspacio fila-amarilla" >
-                    <td>ID</td>
                     {
                       preguntas.map((pregunta) => <td>{pregunta.texto_pregunta}</td>)
                       
                       }
+                                          <td>ID</td>
+
                   </tr>
                   <tr class="espacio"></tr>
 
-              <tr className="Datos">
-                <td>Soleado</td>
-
-                <td>Mayormente soleado</td>
-
-                <td>Parcialmente nublado</td>
-              </tr>
+              {
+                
+                participantes.map(
+                  (elemento, index)=>
+                
+                <tr className="Datos" key={index}>
+                {Object.values(elemento).map((valor, index) => (
+        <td key={index}>{valor}</td>
+      ))}
+                </tr>)
+              
+              }
           </table>
           </div>
         </Background>

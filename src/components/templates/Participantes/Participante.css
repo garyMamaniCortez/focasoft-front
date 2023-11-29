@@ -39,3 +39,8 @@
       width: 100% !important; 
     }
   }
+
+  td{
+    min-width: 70px !important;
+    max-width: 300px !important;
+  }
