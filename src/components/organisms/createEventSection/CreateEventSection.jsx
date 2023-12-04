@@ -19,8 +19,6 @@ const CreateEventSection = (props) => {
     const { name, value } = event.target;
     if (name != "AficheDelEvento") {
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    }else if (name == "Requisitos" || name == "Premios"){
-        setFormData((prevFormData) => ({ ...prevFormData, [name]: value.split(",") }));
     }else {
       const file = event.target.files[0];
       const reader = new FileReader();
