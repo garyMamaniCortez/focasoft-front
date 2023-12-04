@@ -9,7 +9,6 @@ const TextInput = ({
   OpcionesDelDesplegable,
   Desactivado,
   Valor,
-  Lista,
 }) => {
   const [valorList, setValorList] = useState([]);
 
@@ -21,11 +20,10 @@ const TextInput = ({
   };
 
   useEffect(() => {
-    console.log(Lista);
-    if (Lista !== undefined){
-    setValorList(Lista);
+    if(TipoDeEntrada === "TextInputDinamic"){
+      ManejarCambio({target: {name: Identificador, value: valorList}});
     }
-  }, [Lista]);
+  }, [valorList]);
 
   return (
     <>
@@ -57,8 +55,8 @@ const TextInput = ({
     ) : TipoDeEntrada === "TextInputDinamic" ? (
 
       <TextInputDinamic
-        id={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
-        name={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
+        id="TextInputDinamic"
+        name="TextInputDinamic"
         className="EntradaDeTexto"
         disabled={
           Desactivado ? true : TipoDeEntrada !== "TextInputDinamic" ? true : false

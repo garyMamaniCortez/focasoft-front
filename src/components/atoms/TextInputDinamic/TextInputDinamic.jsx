@@ -3,7 +3,7 @@ import Boton from '../boton/Boton';
 
 import './TextInputDinamic.css';
 
-const TextInputDinamic = ({disabled,hidden,agregar,remover,lista}) => {
+const TextInputDinamic = ({disabled,agregar,remover,lista}) => {
   const [nuevoDato, setNuevoDato] = useState('');
   
   const handleChange = (event) => {
@@ -22,8 +22,7 @@ const TextInputDinamic = ({disabled,hidden,agregar,remover,lista}) => {
   }
   
   return (
-    <div disabled={disabled}
-    hidden={hidden}> 
+    <div disabled={disabled}> 
         <input
           type="text"
           value={nuevoDato}

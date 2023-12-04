@@ -13,14 +13,15 @@ const CreateEventSection = (props) => {
   const navigate = useNavigate();
   const id = useAppContext();
   const [imagen, setImagen] = useState(null);
-
   const [formData, setFormData] = useState(props.Evento);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name != "AficheDelEvento") {
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    } else {
+    }else if (name == "Requisitos" || name == "Premios"){
+        setFormData((prevFormData) => ({ ...prevFormData, [name]: value.split(",") }));
+    }else {
       const file = event.target.files[0];
       const reader = new FileReader();
 
@@ -244,12 +245,11 @@ const CreateEventSection = (props) => {
           CamposDeEntrada={props.Campos}
           handleChange={handleChange}
           Desactivado={false}
-          FormData={formData}
-          Lista={props.Accion === "crear" ? [] : props.Evento.Requisitos }
+          FormData={formData}          
         />
         <div className="w3-row w3-center">
           <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">
-            {props.Accion == "crear" ? "Crear evento" : "Editar evento"}
+            {props.Accion === "crear" ? "Crear evento" : "Editar evento"}
           </Boton>
         </div>
       </form>
