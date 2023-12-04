@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import "./Evento.css";
 
 const Evento = (props) => {
+  
   console.log(props.Datos.Afiche);
   let idFormulario =
     "/RegistrarParticipante/" +
@@ -53,7 +54,7 @@ const Evento = (props) => {
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">Premios:</Etiqueta>
             <br />
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
-              {props.Datos.Premios}
+              {props.Datos.Premios.join(", ")}
             </Etiqueta>
           </Fondo></div>
           <div className={`${
@@ -67,7 +68,7 @@ const Evento = (props) => {
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">Requisitos:</Etiqueta>
             <br />
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
-              {props.Datos.Requisitos}
+              {props.Datos.Requisitos.join(", ")}
             </Etiqueta>
           </Fondo></div>
         </div>
