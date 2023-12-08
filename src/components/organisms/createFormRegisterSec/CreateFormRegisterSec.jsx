@@ -26,12 +26,12 @@ const CreateFormRegisterSec = (props) => {
       {
         pregunta: "Nombres",
         obligatorio: true,
-        tipo: "nombre",
+        tipo: "texto",
       },
       {
         pregunta: "Telefono",
         obligatorio: true,
-        tipo: "telefono",
+        tipo: "texto",
       },
       {
         pregunta: "Fecha",

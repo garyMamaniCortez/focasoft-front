@@ -1,6 +1,6 @@
 import "./TextInput.css";
 import TextInputDinamic from "../TextInputDinamic/TextInputDinamic";
-import React, { useEffect, useState } from "react";  
+import React, { useEffect, useState } from "react";
 
 const TextInput = ({
   TipoDeEntrada,
@@ -22,14 +22,14 @@ const TextInput = ({
 
   useEffect(() => {
     console.log(Lista);
-    if (Lista !== undefined){
-    setValorList(Lista);
+    if (Lista !== undefined) {
+      setValorList(Lista);
     }
   }, [Lista]);
 
   return (
     <>
-    {TipoDeEntrada === "checkbox" ? (
+      {TipoDeEntrada === "checkbox" ? (
         <input
           id={Identificador}
           name={Identificador}
@@ -45,7 +45,7 @@ const TextInput = ({
           className={`${
             TipoDeEntrada === "selectPequeño"
               ? "EntradaDeTextoPequeño"
-              : "EntradaDeTexto"              
+              : "EntradaDeTexto"
           }`}
           disabled={Desactivado}
           onChange={ManejarCambio}
@@ -54,84 +54,87 @@ const TextInput = ({
             <option value={item.Valor}>{item.Etiqueta}</option>
           ))}
         </select>
-    ) : TipoDeEntrada === "TextInputDinamic" ? (
-
-      <TextInputDinamic
-        id={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
-        name={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
-        className="EntradaDeTexto"
-        disabled={
-          Desactivado ? true : TipoDeEntrada !== "TextInputDinamic" ? true : false
-        }
-        lista= {valorList}
-        agregar={handleAdd}
-        remover={handleRemove} 
-        ManejarCambio = {ManejarCambio}
-      />
-
-    ) : (
-
-      <input
-        id={Identificador}
-        name={Identificador}
-        className={`${
-          TipoDeEntrada === "text"
-            ? "EntradaDeTexto"
-            : TipoDeEntrada === "date"
-            ? "EntradaDeTexto"
-            : TipoDeEntrada === "description"
-            ? "EntradaDeTexto"
-            : TipoDeEntrada === "file"
-            ? "EntradaDeTexto"
-            : TipoDeEntrada === "select"
-            ? "EntradaDeTexto"
-            : TipoDeEntrada === "email"
-            ? "EntradaDeTexto"
-            : TipoDeEntrada === "password"
-            ? "Contrasena"
-            : TipoDeEntrada === "User"
-            ? "User"
-            : TipoDeEntrada === "TextInputDinamic"
-            ? "EntradaDeTexto"
-            : ""
-        }
+      ) : TipoDeEntrada === "TextInputDinamic" ? (
+        <TextInputDinamic
+          id={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
+          name={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
+          className="EntradaDeTexto"
+          disabled={
+            Desactivado
+              ? true
+              : TipoDeEntrada !== "TextInputDinamic"
+              ? true
+              : false
+          }
+          lista={valorList}
+          agregar={handleAdd}
+          remover={handleRemove}
+          ManejarCambio={ManejarCambio}
+        />
+      ) : (
+        <input
+          id={Identificador}
+          name={Identificador}
+          className={`${
+            TipoDeEntrada === "text" || TipoDeEntrada === "texto"
+              ? "EntradaDeTexto"
+              : TipoDeEntrada === "date" || TipoDeEntrada === "Fecha_AFA"
+              ? "EntradaDeTexto"
+              : TipoDeEntrada === "description"
+              ? "EntradaDeTexto"
+              : TipoDeEntrada === "file"
+              ? "EntradaDeTexto"
+              : TipoDeEntrada === "select"
+              ? "EntradaDeTexto"
+              : TipoDeEntrada === "email"
+              ? "EntradaDeTexto"
+              : TipoDeEntrada === "password"
+              ? "Contrasena"
+              : TipoDeEntrada === "User"
+              ? "User"
+              : TipoDeEntrada === "TextInputDinamic"
+              ? "EntradaDeTexto"
+              : ""
+          }
         `}
-        type={`${
-          TipoDeEntrada === "text"
-            ? "text"
-            : TipoDeEntrada === "description"
-            ? "text"
-            : TipoDeEntrada === "date"
-            ? "date"
-            : TipoDeEntrada === "file"
-            ? "file"
-            : TipoDeEntrada === "email"
-            ? "email"
-            : TipoDeEntrada === "password"
-            ? "password"
-            : TipoDeEntrada === "User"
-            ? "text"
-            : ""
-        }`}
-
-        placeholder={`${TipoDeEntrada === "password" ? "contraseña" : 
-                        TipoDeEntrada === "User" ? "usuario" : ""}`}
-
-        accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}
-        onChange={ManejarCambio}
-        disabled={
-          Desactivado ? true : TipoDeEntrada === "select" ? true                               
-                              : false
-        }
-        value={
-          TipoDeEntrada === "file"
-            ? ""
-            : TipoDeEntrada === "Select"
-            ? ""
-            : Valor 
-        }
-      />
-    )}
+          type={`${
+            TipoDeEntrada === "text" || TipoDeEntrada === "texto"
+              ? "text"
+              : TipoDeEntrada === "description"
+              ? "text"
+              : TipoDeEntrada === "date" || TipoDeEntrada === "Fecha_AFA"
+              ? "date"
+              : TipoDeEntrada === "file"
+              ? "file"
+              : TipoDeEntrada === "email"
+              ? "email"
+              : TipoDeEntrada === "password"
+              ? "password"
+              : TipoDeEntrada === "User"
+              ? "text"
+              : ""
+          }`}
+          placeholder={`${
+            TipoDeEntrada === "password"
+              ? "contraseña"
+              : TipoDeEntrada === "User"
+              ? "usuario"
+              : ""
+          }`}
+          accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}
+          onChange={ManejarCambio}
+          disabled={
+            Desactivado ? true : TipoDeEntrada === "select" ? true : false
+          }
+          value={
+            TipoDeEntrada === "file"
+              ? ""
+              : TipoDeEntrada === "Select"
+              ? ""
+              : Valor
+          }
+        />
+      )}
     </>
   );
 };
