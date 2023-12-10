@@ -3,4 +3,5 @@ export const ENDPOINTS = {
     obtenerEvento: '/evento/',
     obtenerEventos: '/eventos',
     obtenerPatrocinadores: '/patrocinadores',
+    registrarPatrocinador: '/patrocinador',
 }
