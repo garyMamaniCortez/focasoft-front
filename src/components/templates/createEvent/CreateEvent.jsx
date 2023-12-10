@@ -17,6 +17,23 @@ const CreateEvent = () => {
     Premios: [" "],
   };
 
+  // const [checkbox, setCheckbox] = useState(true);
+
+  // const NoEsCompetencia = () => {
+  //   if (evento.TipoDelEvento === 'Competencia') {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   setCheckbox(NoEsCompetencia());
+  //   console.log(evento);
+  //   console.log(NoEsCompetencia());
+  // }, [evento.TipoDelEvento]);
+  
+
   const [datosRecibidos, setDatos] = useState([]);
     useEffect(() => {
       const datosRecibidos = async () => {
@@ -30,7 +47,6 @@ const CreateEvent = () => {
       };
       datosRecibidos();
     }, []);
-      console.log(datosRecibidos);
       const datosTransformados = datosRecibidos.map(item => {
         return {
           Valor: item.nombre,
@@ -78,7 +94,7 @@ const CreateEvent = () => {
         },
         {
           Valor: "Competencia de entrenamiento",
-          Etiqueta: "Competencia de entrenamiento",        
+          Etiqueta: "Competencia de entrenamiento",    
         },
         { Valor: "Clasificatorio interno", Etiqueta: "Clasificatorio interno"},
         { Valor: "Competencia", Etiqueta: "Competencia" },
@@ -91,7 +107,7 @@ const CreateEvent = () => {
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "checkbox",
       Identificador: "Equipo",
-      Desactivado: false,
+      Desactivado: true,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
@@ -119,16 +135,6 @@ const CreateEvent = () => {
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos: "El Afiche debe ser un archivo en fomato jpeg",
-    },
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Patrocinador",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "select",
-      Identificador: "Patrocinadores",
-      Desactivado: false,
-      OpcionesDelDesplegable:datosTransformados,
-      Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
     {
       divClase: "itemContainer",

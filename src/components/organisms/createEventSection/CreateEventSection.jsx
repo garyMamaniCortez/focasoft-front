@@ -11,12 +11,23 @@ import axios from "axios";
 
 const CreateEventSection = (props) => {
   const navigate = useNavigate();
-  const id = useAppContext();
-  const [imagen, setImagen] = useState(null);
   const [formData, setFormData] = useState(props.Evento);
+  const [misCampos, setMisCampos] = useState(props.Campos);
+
+  const modificar = 3;
+
+  const copiaCampos = [...misCampos];
+  
+  copiaCampos[modificar]= {
+    ...copiaCampos[modificar],
+    Desactivado: 
+      (formData.TipoDelEvento === "Competencia" ? false
+      : true)
+  };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target;   
+    setMisCampos(copiaCampos);  
     if (name != "AficheDelEvento") {
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     }else {
@@ -34,6 +45,7 @@ const CreateEventSection = (props) => {
       reader.readAsDataURL(file);
     }
     console.log(formData);
+    console.log(misCampos);
   };
 
   const handleSubmit = (event) => {
@@ -196,7 +208,7 @@ const CreateEventSection = (props) => {
             id_formulario: props.Evento.id_formulario,
             requisitos: formData.Requisitos,
             premios: formData.Premios,
-            patrocinadores: [formData.Patrocinadores],
+            patrocinadores: null,
             contactos: formData.Contactos,
           })
           .then(function (response) {
@@ -240,7 +252,7 @@ const CreateEventSection = (props) => {
     <Background  Tipo="Predeterminado">
       <form onSubmit={handleSubmit}>
         <Formulario
-          CamposDeEntrada={props.Campos}
+          CamposDeEntrada={misCampos}
           handleChange={handleChange}
           Desactivado={false}
           FormData={formData}          

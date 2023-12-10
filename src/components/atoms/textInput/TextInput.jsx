@@ -11,7 +11,7 @@ const TextInput = ({
   Valor,
 }) => {
   const [valorList, setValorList] = useState([]);
-
+  
   const handleAdd = (value) => {
     setValorList([...valorList, value]);
   };
