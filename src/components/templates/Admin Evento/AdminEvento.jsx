@@ -7,12 +7,38 @@ import "./Evento.css"
 import ReclutamientoIm from "../../icons/reclutamiento.png"
 import EntrenamientoIm from "../../icons/entrenamiento.png"
 import CompetenciaIm from "../../icons/competencia.png"
+import subirGanadores from "../../icons/iconoarchivo.png"
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
+import Boton from "../../atoms/boton/Boton";
 
 const AdminEvento = () => {
   const { id } = useParams();
   const [evento, setEvento] = useState({});
   const [eventoCargado, setEventoCargado] = useState(false);
+  const [modalAbierto, setModalAbierto] = useState(false);  
+  const [nombreArchivo, setNombreArchivo] = useState('');  
+
+  const cambioArchivo = (e) => {  
+    const archivo = e.target.files[0];
+    if(!archivo || archivo.length === 0){
+      setNombreArchivo("o arrastre un archivo aqui");
+    }else{
+      setNombreArchivo(archivo.name);
+    }
+  };
+
+  useEffect(() => {
+    setNombreArchivo("o arrastre un archivo aqui");
+  }, []);
+
+  const handleOpenModal = () => {
+    setModalAbierto(true);
+  }
+
+  const handleCloseModal = () => {
+    setModalAbierto(false);
+  }
 
   useEffect(() => {
     const getEvent = async () => {
@@ -23,11 +49,26 @@ const AdminEvento = () => {
       } catch (error) {
         console.error('Error al obtener el evento:', error);
       }
-    }
-
+    }    
     getEvent();
   }, [id]);
 
+
+
+  const subirExcel = async () => {
+    try {
+      const response = await axios.post(`http://localhost:8000/api/evento/ganadores`,
+        {
+          "excel": cambioArchivo,            
+          "id_evento": id,          
+        },      
+      );
+      console.log(response);
+      handleCloseModal();
+    } catch (error) {
+      console.error('Error al subir el archivo:', error);
+    }
+  }
 
   const Datos = 
     {
@@ -51,15 +92,43 @@ const AdminEvento = () => {
             <ul>
               <li className="w3-bar-item w3-button"><Link to={"/EditarEvento/"+id}>Modificar evento</Link></li>
               <li  className="w3-bar-item w3-button"><Link to={"/AgregarFormulario/"+id}>Agregar formulario</Link></li>
-              <li  className="w3-bar-item w3-button"><Link to={""}>Agregar ganadores</Link></li>
+              <li  className="w3-bar-item w3-button" ><button className="botoncito" onClick={handleOpenModal}>Agregar ganadores</button></li>
               <li  className="w3-bar-item w3-button"><Link to={""}>Reporte</Link></li>
               <li  className="w3-bar-item w3-button"><Link to={"/Patrocinadores/"+id}>Patrocinadores</Link></li>
               <li  className={evento.id_formulario === null ? 'invisible' : "w3-bar-item w3-button" }><Link to={"/Participantes/"+evento.titulo+"/"+evento.id_formulario+"/"+id}>Participantes</Link></li>
             </ul>
           </div>
       </div>
+
+    
+        <Modal
+          isOpen={modalAbierto}
+          onRequestClose={handleCloseModal}
+          contentLabel="subirGanadores"
+          className="Modal">   
+            <div className="ModalContent">         
+                <h2>Insertar archivo de ganadores</h2>
+              
+                <div className="ModalBody">
+                  <form id="formularioArchivo">
+                    <input className="ingresoArchivo" type="file" 
+                    id="file" 
+                    name="file"
+                    onChange={cambioArchivo}/>
+                    <label for="file">
+                      <img src={subirGanadores} alt="archivo"/>
+                    </label>                      
+                    <Boton ClaseDeBoton="botonAmarilloPeq" tipo="submit" f={subirExcel}>Subir</Boton>
+                    <span>{nombreArchivo}</span>
+                  </form>
+                </div>
+                <div className="modalFooter">
+                  <Boton ClaseDeBoton="botonAzulPequeño" f={handleCloseModal}>Cancelar</Boton>                  
+                </div>
+             </div>
+          </Modal>
       
-      <div className="CentrarSeccion">
+      <div className="CentrarSeccion">              
         <Informacion Datos={Datos}/>
       </div>
     </div>
