@@ -1,6 +1,6 @@
 import "./TextInput.css";
 import TextInputDinamic from "../TextInputDinamic/TextInputDinamic";
-import React, { useEffect, useState } from "react";  
+import React, { useEffect, useState } from "react";
 
 const TextInput = ({
   TipoDeEntrada,
@@ -27,7 +27,7 @@ const TextInput = ({
 
   return (
     <>
-    {TipoDeEntrada === "checkbox" ? (
+      {TipoDeEntrada === "checkbox" ? (
         <input
           id={Identificador}
           name={Identificador}
@@ -43,7 +43,7 @@ const TextInput = ({
           className={`${
             TipoDeEntrada === "selectPequeño"
               ? "EntradaDeTextoPequeño"
-              : "EntradaDeTexto"              
+              : "EntradaDeTexto"
           }`}
           disabled={Desactivado}
           onChange={ManejarCambio}
@@ -94,42 +94,44 @@ const TextInput = ({
             : ""
         }
         `}
-        type={`${
-          TipoDeEntrada === "text"
-            ? "text"
-            : TipoDeEntrada === "description"
-            ? "text"
-            : TipoDeEntrada === "date"
-            ? "date"
-            : TipoDeEntrada === "file"
-            ? "file"
-            : TipoDeEntrada === "email"
-            ? "email"
-            : TipoDeEntrada === "password"
-            ? "password"
-            : TipoDeEntrada === "User"
-            ? "text"
-            : ""
-        }`}
-
-        placeholder={`${TipoDeEntrada === "password" ? "contraseña" : 
-                        TipoDeEntrada === "User" ? "usuario" : ""}`}
-
-        accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}
-        onChange={ManejarCambio}
-        disabled={
-          Desactivado ? true : TipoDeEntrada === "select" ? true                               
-                              : false
-        }
-        value={
-          TipoDeEntrada === "file"
-            ? ""
-            : TipoDeEntrada === "Select"
-            ? ""
-            : Valor 
-        }
-      />
-    )}
+          type={`${
+            TipoDeEntrada === "text" || TipoDeEntrada === "texto"
+              ? "text"
+              : TipoDeEntrada === "description"
+              ? "text"
+              : TipoDeEntrada === "date" || TipoDeEntrada === "Fecha_AFA"
+              ? "date"
+              : TipoDeEntrada === "file"
+              ? "file"
+              : TipoDeEntrada === "email"
+              ? "email"
+              : TipoDeEntrada === "password"
+              ? "password"
+              : TipoDeEntrada === "User"
+              ? "text"
+              : ""
+          }`}
+          placeholder={`${
+            TipoDeEntrada === "password"
+              ? "contraseña"
+              : TipoDeEntrada === "User"
+              ? "usuario"
+              : ""
+          }`}
+          accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}
+          onChange={ManejarCambio}
+          disabled={
+            Desactivado ? true : TipoDeEntrada === "select" ? true : false
+          }
+          value={
+            TipoDeEntrada === "file"
+              ? ""
+              : TipoDeEntrada === "Select"
+              ? ""
+              : Valor
+          }
+        />
+      )}
     </>
   );
 };
