@@ -59,10 +59,18 @@ const RegisterParticipantsSec = () => {
       OpcionesDelDesplegable: [],
       Requisitos:
         dato.tipo === "texto"
-          ? "Requisitos 1"
-          : dato.tipo === "fecha_AFA"
-          ? "Requisito 2"
-          : "Requisito 3",
+
+          ? "Solo se deben ingresar caracteres alfanumericos"
+          : dato.tipo === "Fecha_AFA"
+          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          : dato.tipo === "telefono"
+          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          : dato.tipo === "email"
+          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          : dato.tipo === "nombre"
+          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          : "Tipo de dato desconocido",
+
     };
   });
 

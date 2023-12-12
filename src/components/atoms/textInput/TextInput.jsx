@@ -33,7 +33,7 @@ const TextInput = ({
         <input
           id={Identificador}
           name={Identificador}
-          className=""
+          className="widthAuto"
           type="checkbox"
           onChange={ManejarCambio}
           disabled={Desactivado}

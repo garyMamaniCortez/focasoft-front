@@ -52,3 +52,7 @@
 .Contrasena:focus, .User:focus {
     box-shadow: 0px 0px 3px 1px rgb(12, 6, 41)
 }
+
+.widthAuto {
+    width: auto;
+}
