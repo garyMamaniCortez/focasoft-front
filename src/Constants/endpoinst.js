@@ -5,4 +5,5 @@ export const ENDPOINTS = {
     obtenerPatrocinadores: '/patrocinadores',
     registrarPatrocinador: '/patrocinador',
     registrarEventoExterno: '/evento/externo',
+    obtenerEventosExternos: '/eventos/externos',
 }
