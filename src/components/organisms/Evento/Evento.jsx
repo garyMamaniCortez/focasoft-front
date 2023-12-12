@@ -5,14 +5,38 @@ import Boton from "../../atoms/boton/Boton";
 import { Link } from "react-router-dom";
 
 import "./Evento.css";
+import { useEffect, useState } from "react";
 
 const Evento = (props) => {
   console.log(props.Datos.Afiche);
+  const [premios,setPremios] = useState([]);
+  const [requisitos,setRequisitos] = useState([]);
+  const [contactos,setContactos] = useState([])
+  console.log(contactos)
   let idFormulario =
     "/RegistrarParticipante/" +
     props.Datos.Formulario +
     "/" +
     props.Datos.TituloDelEvento;
+
+    useEffect(() => {
+      const ponerArrays=()=>{
+        if(props.Datos.Premios!= null){
+          setPremios(props.Datos.Premios)
+        }
+        if(props.Datos.Requisitos!= null){
+          setRequisitos(props.Datos.Requisitos)
+        }
+        if(props.Datos.Contactos!= null){
+          setContactos(props.Datos.Contactos)
+        }
+      }
+      ponerArrays();
+    }, [props.Datos]);
+    console.log(premios)
+    console.log(requisitos)
+    console.log(contactos)
+
   return (
     <Fondo Tipo="FondoEvento">
       <div className="w3-row">
@@ -53,7 +77,9 @@ const Evento = (props) => {
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">Premios:</Etiqueta>
             <br />
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
-              {props.Datos.Premios}
+            {premios.map((c)=>{
+                  return (<div>{c}</div>)
+                })}
             </Etiqueta>
           </Fondo></div>
           <div className={`${
@@ -67,7 +93,9 @@ const Evento = (props) => {
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">Requisitos:</Etiqueta>
             <br />
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
-              {props.Datos.Requisitos}
+            {requisitos.map((c)=>{
+                  return (<div>{c}</div>)
+                })}
             </Etiqueta>
           </Fondo></div>
         </div>
@@ -93,10 +121,12 @@ const Evento = (props) => {
             }`}
           >
             <Fondo Tipo="FondoAtributo2">
-              <Etiqueta TipoDeEtiqueta="AtributoEvento1">Contacto:</Etiqueta>
+              <Etiqueta TipoDeEtiqueta="AtributoEvento1">Contactos:</Etiqueta>
               <br />
               <Etiqueta TipoDeEtiqueta="AtributoEvento2">
-                {props.Datos.Contactos}
+                {contactos.map((c)=>{
+                  return (<div>{c}</div>)
+                })}
               </Etiqueta>
             </Fondo>
           </div>

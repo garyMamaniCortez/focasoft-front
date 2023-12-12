@@ -16,6 +16,7 @@ const Participantes = () => {
   const [eventoCargado, setEventoCargado] = useState(false);
   const [preguntas, setPreguntas] = useState([]);
   const [participantes, setParticipantes] = useState([]);
+  const [nombre, setNombre] = useState();
 
   useEffect(() => {
     const getCampos = async () => {
@@ -56,6 +57,26 @@ const Participantes = () => {
   const imprimirTabla = () => {
     window.print();
   }; 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+      setNombre(value)
+
+  };
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+        const response = axios.post("http://localhost:8000/api/formularios/participantes/buscar" ,{
+        id_evento: id,    
+        busqueda: nombre
+        }).then(function (response) {
+            console.log(response);
+            setParticipantes(response.data)
+          })
+          .catch(function (error) {
+            console.log(error.response.data.error);
+            alert(error.response.data.error);
+          });            
+    }
+  }
 
 
   const ListaParticipantes = [
@@ -78,7 +99,7 @@ const Participantes = () => {
                 <Boton ClaseDeBoton= 'botonAmarilloGrand' TipoDeBoton= 'button' f={imprimirTabla}>Imprimir registro</Boton>
               </div>
               <div className="inputBuscar w3-col m4 l3 w3-right">
-                <InputBuscar text="Buscar registrado"></InputBuscar>
+                <InputBuscar text="Buscar registrado" Modificar={handleChange} TeclaPresionada={handleKeyPress}></InputBuscar>
               </div>
           </div>
           <div className="CentrarContenido">

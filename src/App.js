@@ -10,6 +10,7 @@ import Evento from "./components/templates/Evento/Evento";
 import VistaEventosAdmin from "./components/templates/admin/VistaEventosAdmin";
 import { useAppContext } from "./Context";
 import AdminEvento from "./components/templates/Admin Evento/AdminEvento";
+import Patrocinadores from "./components/templates/Patrocinadores/Patrocinadores";
 
 import "w3-css";
 import { Routes, Route } from "react-router-dom";
@@ -42,6 +43,7 @@ function App() {
         <Route path="/admin" element={<VistaEventosAdmin />} />
         <Route path="/admin/Evento/:id" element={<AdminEvento />} />
         <Route path="/Participantes/:EventoTitulo/:idForm/:id" element={<Participantes />} />
+        <Route path="/Patrocinadores/:id" element={<Patrocinadores />} />
       </Routes>
     </div>
   );

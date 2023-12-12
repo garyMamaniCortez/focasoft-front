@@ -1,0 +1,22 @@
+.misPatrocinadores{
+    width: fit-content;
+    margin: auto; 
+    text-align: center;   
+    margin-top: 2%;
+}
+.miCheckbox{
+    width: 70px;
+}
+td{
+    width: 210px;
+    text-align: center;
+}
+
+.misPatrocinadores .botonRojoGrand{
+    margin-top: 25px;
+}
+
+.patrocinadoresContent{
+    padding: 1%;
+    padding-top: 5px;
+}

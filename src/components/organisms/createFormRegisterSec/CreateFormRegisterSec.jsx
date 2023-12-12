@@ -52,13 +52,13 @@ const CreateFormRegisterSec = (props) => {
   });
   const [preguntas, setPreguntas] = useState([
     {
-      Etiqueta: "Nombres",
+      Etiqueta: "Nombre completo",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
       Identificador: "Nombres",
       Desactivado: false,
       OpcionesDelDesplegable: [],
-      Requisitos: "Recibe un una cadena de caracteres alfanumerico",
+      Requisitos: "Recibe una cadena de caracteres alfanumerico",
     },
     {
       Etiqueta: "Telefono",
@@ -67,25 +67,25 @@ const CreateFormRegisterSec = (props) => {
       Identificador: "Apellidos",
       Desactivado: false,
       OpcionesDelDesplegable: [],
-      Requisitos: "Recibe un una cadena de caracteres numerico",
+      Requisitos: "Recibe una cadena de caracteres numerico",
     },
     {
-      Etiqueta: "Fecha",
+      Etiqueta: "Fecha de nacimiento",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
       Identificador: "FechaDenacimiento",
       Desactivado: false,
       OpcionesDelDesplegable: [],
-      Requisitos: "Recibe un una facha en el formato dd/mm/aa",
+      Requisitos: "Recibe una fecha en el formato dd/mm/aa",
     },
     {
-      Etiqueta: "Email",
+      Etiqueta: "Correo electronico",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "email",
       Identificador: "email",
       Desactivado: false,
       OpcionesDelDesplegable: [],
-      Requisitos: "Recibe un una facha en el formato dd/mm/aa",
+      Requisitos: "Recibe una cadena de caracteres alfanumericos",
     },
   ]);
 
@@ -264,7 +264,9 @@ const CreateFormRegisterSec = (props) => {
             </Label>
             <br /> <br />
             <div className="ContenedorCampo">
+
               <Label TipoDeEtiqueta="FormLabel">Nombre del campo</Label>
+
               <div className="ContenedorEntrada">
                 <TextInput
                   TipoDeEntrada="text"
@@ -327,7 +329,9 @@ const CreateFormRegisterSec = (props) => {
                   Desactivado={false}
                 />
                 <Label TipoDeEtiqueta="FormularioRequisitos">
+
                   Se debe indicar si es que el campo sera obligatorio o no
+
                 </Label>
               </div>
             </div>
