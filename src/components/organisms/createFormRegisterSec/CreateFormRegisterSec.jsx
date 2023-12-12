@@ -121,8 +121,8 @@ const CreateFormRegisterSec = (props) => {
     event.preventDefault();
     axios
       .post("http://localhost:8000/api/formularios/registro", {
-        "id_evento": id,
-        "preguntas": formData.preguntas
+        id_evento: id,
+        preguntas: formData.preguntas,
       })
       .then(function (response) {
         console.log(response.data.id);
@@ -253,9 +253,18 @@ const CreateFormRegisterSec = (props) => {
         />
         {Tipo !== "Competencia" && (
           <div className="ContenedorSeleccionarCampo">
-            <Label TipoDeEtiqueta="EtiquetaFormulario2">Agregar un Campo</Label>
+            <Label TipoDeEtiqueta="EtiquetaFormulario2">
+              Modificar campos de entrada
+            </Label>
+            <Label TipoDeEtiqueta="FormularioRequisitos">
+              Esta seccion se podra agregar, eliminar y modificar campos del
+              formulario de registro de participante, para esto es necesario
+              indicar el nombre del campo, que tipo de dato admite y si es
+              obligatorio o no
+            </Label>
+            <br /> <br />
             <div className="ContenedorCampo">
-              <Label TipoDeEtiqueta="FormLabel">Nombre</Label>
+              <Label TipoDeEtiqueta="FormLabel">Nombre del campo</Label>
               <div className="ContenedorEntrada">
                 <TextInput
                   TipoDeEntrada="text"
@@ -264,7 +273,9 @@ const CreateFormRegisterSec = (props) => {
                   OpcionesDelDesplegable={[]}
                   Desactivado={false}
                 />
-                <Label TipoDeEtiqueta="FormularioRequisitos">A</Label>
+                <Label TipoDeEtiqueta="FormularioRequisitos">
+                  Se debe introducir una cadena de caracteres
+                </Label>
               </div>
             </div>
             <div className="ContenedorCampo">
@@ -280,8 +291,16 @@ const CreateFormRegisterSec = (props) => {
                       Etiqueta: ". . .",
                     },
                     {
+                      Valor: "nombre",
+                      Etiqueta: "Nombre",
+                    },
+                    {
                       Valor: "texto",
                       Etiqueta: "Texto",
+                    },
+                    {
+                      Valor: "telefono",
+                      Etiqueta: "Telefono",
                     },
                     {
                       Valor: "fecha_AFA",
@@ -295,7 +314,7 @@ const CreateFormRegisterSec = (props) => {
                   Desactivado={false}
                 />
                 <Label TipoDeEtiqueta="FormularioRequisitos">
-                  Tipo de dato
+                  Se debe seleccionr que tipo de de dato admitira el campo
                 </Label>
               </div>
               <Label TipoDeEtiqueta="FormLabel">Obligatorio</Label>
@@ -308,13 +327,13 @@ const CreateFormRegisterSec = (props) => {
                   Desactivado={false}
                 />
                 <Label TipoDeEtiqueta="FormularioRequisitos">
-                  ¿es obligatorio?
+                  Se debe indicar si es que el campo sera obligatorio o no
                 </Label>
               </div>
             </div>
             <div className="Botones">
               <Boton
-                ClaseDeBoton="AzulPequeño"
+                ClaseDeBoton="botonAzulPequeño"
                 TipoDeBoton="button"
                 f={AgregarCampo}
               >
