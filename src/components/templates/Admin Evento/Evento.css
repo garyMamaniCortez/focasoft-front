@@ -54,8 +54,8 @@ li button:hover{
 .ModalContent{
     background-color: #153A65;
     border-radius: 10px;
-    width: 1151px;
-    height: 523px;
+    width: 790px;
+    height: 508px;
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -66,8 +66,7 @@ li button:hover{
     color: white;    
 }
 
-.ModalBody{
-    background-color: white;
+.ModalBody{    
     width: 80%;
     height: 60%;
     display: flex;
@@ -86,7 +85,7 @@ li button:hover{
 #formularioArchivo{
     display: flex;
     flex-direction: column;
-    justify-content: center;   
+    justify-content: center;  
     gap: 10px;
     align-items: center;
     height: 100%;
@@ -97,6 +96,21 @@ li button:hover{
     width: 100%;
     height: 20%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#imgarchivo{
+    width: 120px;
+    height: 120px;
+}
+
+#subirganador{ 
+    width: 100%;
+    height: 100%;   
+    display: flex;
+    flex-direction: column;
+    background-color: white;    
     justify-content: center;
     align-items: center;
 }

@@ -16,21 +16,13 @@ const AdminEvento = () => {
   const { id } = useParams();
   const [evento, setEvento] = useState({});
   const [eventoCargado, setEventoCargado] = useState(false);
-  const [modalAbierto, setModalAbierto] = useState(false);  
-  const [nombreArchivo, setNombreArchivo] = useState('');  
-
-  const cambioArchivo = (e) => {  
+  const [modalAbierto, setModalAbierto] = useState(false); 
+  const [archivosubido, setArchivosubido] = useState(null);
+  
+  const obtenerArchivo = (e) => {
     const archivo = e.target.files[0];
-    if(!archivo || archivo.length === 0){
-      setNombreArchivo("o arrastre un archivo aqui");
-    }else{
-      setNombreArchivo(archivo.name);
-    }
+    setArchivosubido(archivo);
   };
-
-  useEffect(() => {
-    setNombreArchivo("o arrastre un archivo aqui");
-  }, []);
 
   const handleOpenModal = () => {
     setModalAbierto(true);
@@ -51,25 +43,22 @@ const AdminEvento = () => {
       }
     }    
     getEvent();
-  }, [id]);
-
-
+  }, [id]);  
 
   const subirExcel = async () => {
     try {
-      const response = await axios.post(`http://localhost:8000/api/evento/ganadores`,
-        {
-          "excel": cambioArchivo,            
-          "id_evento": id,          
-        },      
-      );
+      const formData = new FormData();
+      formData.append('excel', setArchivosubido);
+      formData.append('id_evento', id);
+      const response = await axios.post(`http://localhost:8000/api/evento/ganadores`,formData);
       console.log(response);
+      console.log("Archivo subido");
       handleCloseModal();
     } catch (error) {
       console.error('Error al subir el archivo:', error);
     }
   }
-
+  
   const Datos = 
     {
       TituloDelEvento: evento.titulo,
@@ -114,12 +103,12 @@ const AdminEvento = () => {
                     <input className="ingresoArchivo" type="file" 
                     id="file" 
                     name="file"
-                    onChange={cambioArchivo}/>
-                    <label for="file">
-                      <img src={subirGanadores} alt="archivo"/>
-                    </label>                      
+                    onChange={obtenerArchivo}/>
+                    <label for="file" id="subirganador">                    
+                      <img src={subirGanadores} alt="click para subir archivo" id="imgarchivo"/>
+                      <span>{archivosubido ? archivosubido.name : "haga click para subir un archivo"}</span>
+                    </label>                                                              
                     <Boton ClaseDeBoton="botonAmarilloPeq" tipo="submit" f={subirExcel}>Subir</Boton>
-                    <span>{nombreArchivo}</span>
                   </form>
                 </div>
                 <div className="modalFooter">
