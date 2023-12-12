@@ -7,10 +7,9 @@ import Boton from "../../atoms/boton/Boton";
 import Formulario from "../../molecules/formulario/Formulario";
 import TextInput from "../../atoms/textInput/TextInput";
 import Label from "../../atoms/label/Label";
-
-import axios from "axios";
-
+import axiosInterceptorInstance from "../../../axios/interceptor";
 import swal from "sweetalert";
+import { ENDPOINTS } from "../../../Constants/endpoinst";
 
 import "../Formulario/Formulario.css";
 
@@ -26,7 +25,7 @@ const CreateFormRegisterSec = (props) => {
       {
         pregunta: "Nombres",
         obligatorio: true,
-        tipo: "texto",
+        tipo: "nombre",
       },
       {
         pregunta: "Telefono",
@@ -119,8 +118,8 @@ const CreateFormRegisterSec = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("http://localhost:8000/api/formularios/registro", {
+    axiosInterceptorInstance
+      .post(ENDPOINTS.crearFormulario, {
         id_evento: id,
         preguntas: formData.preguntas,
       })

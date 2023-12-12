@@ -1,8 +1,6 @@
 import Card from "../../molecules/card/Card";
 import 'w3-css/w3.css';
 import "./cardSection.css"
-import axios from "axios"
-
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { async } from "q";
@@ -12,9 +10,8 @@ import InputBuscar from "../../atoms/inputBuscar/InputBuscar";
 import CompetenciaIm from "../../icons/competencia.png"
 import ReclutamientoIm from "../../icons/reclutamiento.png"
 import EntrenamientoIm from "../../icons/entrenamiento.png"
-
-
-const endpoint = 'http:///localhost:8000/api'
+import axiosInterceptorInstance from "../../../axios/interceptor";
+import { ENDPOINTS } from '../../../Constants/endpoinst'
 
 function CardSection(props){
     const [eventos, setEventos] = useState( [] );
@@ -25,15 +22,9 @@ function CardSection(props){
     },[])
 
     const getAllEvents = async () => {
-        const response = await axios.get("http://localhost:8000/api/eventos")
+        const response = await axiosInterceptorInstance.get(ENDPOINTS.obtenerEventos)
         setEventos(response.data)
     }
-
-    const getImagen = async (urlImagen) => {
-        const response = await axios.get("http://"+urlImagen)
-        console.log(response)
-        return(response.data)
-    }  
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -43,7 +34,7 @@ function CardSection(props){
       };
       const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            const response = axios.post("http://localhost:8000/api/evento/buscar" ,{
+            const response = axiosInterceptorInstance.post(ENDPOINTS.buscarEvento ,{
                 busqueda: nombreEvento
             }).then(function (response) {
                 console.log(response);

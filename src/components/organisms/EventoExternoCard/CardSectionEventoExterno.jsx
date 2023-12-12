@@ -15,9 +15,6 @@ import EntrenamientoIm from "../../icons/entrenamiento.png"
 import axiosInterceptorInstance from "../../../axios/interceptor";
 import { ENDPOINTS } from "../../../Constants/endpoinst";
 
-
-const endpoint = 'http:///localhost:8000/api'
-
 function CardSectionEventoExterno(props){
     const [eventos, setEventos] = useState( [] );
 

@@ -6,9 +6,9 @@ import Label from "../../atoms/label/Label.jsx";
 import Formulario from "../../molecules/formulario/Formulario.jsx";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import axiosInterceptorInstance from "../../../axios/interceptor.js";
+import { ENDPOINTS } from "../../../Constants/endpoinst.js";
 import swal from "sweetalert";
 
 const RegisterParticipantsSec = () => {
@@ -22,8 +22,8 @@ const RegisterParticipantsSec = () => {
     const getAllForms = async () => {
       try{
       if(id){
-        const response = await axios.get(
-          "http://localhost:8000/api/formularios/registro/" + id
+        const response = await axiosInterceptorInstance.get(
+          ENDPOINTS.ObtenerForm + id
         );
         setFormulario(response.data);
         setHayForm(true)
@@ -100,8 +100,8 @@ const RegisterParticipantsSec = () => {
     //***
     //aqui se mandan las respuestas
     console.log(respuestas);
-    axios
-    .post("http://localhost:8000/api/formularios/participante", {
+    axiosInterceptorInstance
+    .post(ENDPOINTS.registrarParticipante, {
       "id_formulario": id,
       "respuestas": respuestas
     })

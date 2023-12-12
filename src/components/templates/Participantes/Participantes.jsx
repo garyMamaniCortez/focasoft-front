@@ -1,8 +1,8 @@
 import Background from "../../atoms/background/Background";
 import Label from "../../atoms/label/Label";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import Participante from "../../molecules/Participante/Participante";
+import axiosInterceptorInstance from "../../../axios/interceptor";
+import { ENDPOINTS } from "../../../Constants/endpoinst";
 import { useEffect } from "react";
 import { useState } from "react";
 import Boton from "../../atoms/boton/Boton";
@@ -23,8 +23,8 @@ const Participantes = () => {
       try {
         if (idForm) {
           console.log(idForm);
-          const response = await axios.get(
-            `http://localhost:8000/api/formularios/registro/${idForm}`
+          const response = await axiosInterceptorInstance.get(
+            ENDPOINTS.ObtenerForm+idForm
           );
           setPreguntas(response.data);
           console.log(response.data);
@@ -37,8 +37,8 @@ const Participantes = () => {
     const getParticipantes = async () => {
       try {
         if (id) {
-          axios
-              .post("http://localhost:8000/api/formularios/participantes", {
+          axiosInterceptorInstance
+              .post(ENDPOINTS.obtenerParticipantes, {
                 "id_evento": id,
               })
               .then(function (response) {
@@ -64,7 +64,7 @@ const Participantes = () => {
   };
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-        const response = axios.post("http://localhost:8000/api/formularios/participantes/buscar" ,{
+        const response = axiosInterceptorInstance.post(ENDPOINTS.participanteBuscar ,{
         id_evento: id,    
         busqueda: nombre
         }).then(function (response) {

@@ -2,13 +2,12 @@ import React from "react";
 import Background from "../../atoms/background/Background";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axiosInterceptorInstance from "../../../axios/interceptor";
+import { ENDPOINTS } from "../../../Constants/endpoinst";
 import Boton from "../../atoms/boton/Boton";
 import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import "./patrocinadores.css"
-import axiosInterceptorInstance from "../../../axios/interceptor";
-import { ENDPOINTS } from "../../../Constants/endpoinst";
 
 import 'w3-css/w3.css';
 
@@ -42,8 +41,8 @@ const Patrocinadores = () =>{
   useEffect(() => {
     const getEvent = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/evento/${id}`
+        const response = await axiosInterceptorInstance.get(
+          ENDPOINTS.obtenerEvento+id
         );
         setDatosDelEvento(response.data);
         setEventoCargado(true); // Marcar el evento como cargado
@@ -88,8 +87,8 @@ const Patrocinadores = () =>{
           const patrocinadoresSeleccionados = patrocinadores.filter((p) => p.seleccionado);
           const nombresPatrocinadoresSeleccionados = patrocinadoresSeleccionados.map((p) => p.nombre);
           console.log(nombresPatrocinadoresSeleccionados);
-          axios
-          .put(`http://localhost:8000/api/evento/${id}`, {
+          axiosInterceptorInstance
+          .put(ENDPOINTS.obtenerEvento+id, {
             "titulo": datosDelEvento.titulo,
             "fecha_ini": datosDelEvento.fecha_ini,
             "tipo": datosDelEvento.tipo,
