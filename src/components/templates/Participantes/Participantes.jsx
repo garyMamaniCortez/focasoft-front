@@ -1,8 +1,8 @@
 import Background from "../../atoms/background/Background";
 import Label from "../../atoms/label/Label";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import Participante from "../../molecules/Participante/Participante";
+import axiosInterceptorInstance from "../../../axios/interceptor";
+import { ENDPOINTS } from "../../../Constants/endpoinst";
 import { useEffect } from "react";
 import { useState } from "react";
 import Boton from "../../atoms/boton/Boton";
@@ -16,14 +16,15 @@ const Participantes = () => {
   const [eventoCargado, setEventoCargado] = useState(false);
   const [preguntas, setPreguntas] = useState([]);
   const [participantes, setParticipantes] = useState([]);
+  const [nombre, setNombre] = useState();
 
   useEffect(() => {
     const getCampos = async () => {
       try {
         if (idForm) {
           console.log(idForm);
-          const response = await axios.get(
-            `http://localhost:8000/api/formularios/registro/${idForm}`
+          const response = await axiosInterceptorInstance.get(
+            ENDPOINTS.ObtenerForm+idForm
           );
           setPreguntas(response.data);
           console.log(response.data);
@@ -36,8 +37,8 @@ const Participantes = () => {
     const getParticipantes = async () => {
       try {
         if (id) {
-          axios
-              .post("http://localhost:8000/api/formularios/participantes", {
+          axiosInterceptorInstance
+              .post(ENDPOINTS.obtenerParticipantes, {
                 "id_evento": id,
               })
               .then(function (response) {
@@ -56,6 +57,26 @@ const Participantes = () => {
   const imprimirTabla = () => {
     window.print();
   }; 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+      setNombre(value)
+
+  };
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+        const response = axiosInterceptorInstance.post(ENDPOINTS.participanteBuscar ,{
+        id_evento: id,    
+        busqueda: nombre
+        }).then(function (response) {
+            console.log(response);
+            setParticipantes(response.data)
+          })
+          .catch(function (error) {
+            console.log(error.response.data.error);
+            alert(error.response.data.error);
+          });            
+    }
+  }
 
 
   const ListaParticipantes = [
@@ -78,7 +99,7 @@ const Participantes = () => {
                 <Boton ClaseDeBoton= 'botonAmarilloGrand' TipoDeBoton= 'button' f={imprimirTabla}>Imprimir registro</Boton>
               </div>
               <div className="inputBuscar w3-col m4 l3 w3-right">
-                <InputBuscar text="Buscar registrado"></InputBuscar>
+                <InputBuscar text="Buscar registrado" Modificar={handleChange} TeclaPresionada={handleKeyPress}></InputBuscar>
               </div>
           </div>
           <div className="CentrarContenido">

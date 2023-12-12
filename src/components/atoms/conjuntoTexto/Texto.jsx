@@ -1,10 +1,16 @@
 import React from "react";
 import "./texto.css"
+import { Link } from "react-router-dom";
 function Texto(props){
 return(
     <div className="textContent">
-        <p className="categoryEvent">{props.category}</p>
-        <p className="titleEvent">{props.title}</p>
+        <p className="categoryEvent">{props.title}</p>
+        <p className="titleEvent ">{props.category}</p>
+        <Link to={props.url} > 
+       <div className="miURL">
+       <p className="url">{props.url}</p>
+       </div>
+        </Link>
         <p>Fecha: {props.date}</p>
         <p>{props.description}</p>
 

@@ -16,6 +16,7 @@ function Card(props){
             </div>
             <Texto 
             category={props.category} 
+            url={props.url}
             title={props.title} 
             date={props.date} 
             description={props.description}

@@ -58,3 +58,6 @@
     display: flex;
     justify-content: space-around;
 }
+.FondoPatrocinadores{
+    width: fit-content;
+}

@@ -1,7 +1,8 @@
 import CreateEventSection from "../../organisms/createEventSection/CreateEventSection";
 import "./CreateEvent.css";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axiosInterceptorInstance from "../../../axios/interceptor";
+import { ENDPOINTS } from "../../../Constants/endpoinst";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -13,8 +14,8 @@ const EditEvent = () => {
   useEffect(() => {
     const getEvent = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/evento/${id}`
+        const response = await axiosInterceptorInstance.get(
+          ENDPOINTS.obtenerEvento+id
         );
         setDatosDelEvento(response.data);
         setEventoCargado(true); // Marcar el evento como cargado

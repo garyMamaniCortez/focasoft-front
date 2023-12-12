@@ -4,10 +4,11 @@ import Label from "../../atoms/label/Label";
 import Boton from "../../atoms/boton/Boton.jsx";
 import Formulario from "../../molecules/formulario/Formulario.jsx";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Usuario from "./../../icons/usuario.png";
 import "./IniciarSesionSection.css";
 import { useAppContext } from "../../../Context";
+import axiosInterceptorInstance from "../../../axios/interceptor.js";
+import { ENDPOINTS } from "../../../Constants/endpoinst.js";
 
 const IniciarSesionSection = () => {
   const { setDatos } = useAppContext();
@@ -65,9 +66,9 @@ const IniciarSesionSection = () => {
   const handleSubmit = (sesion) => {
     sesion.preventDefault();
     console.log(formData);
-    axios
+    axiosInterceptorInstance
       .post(
-        "http://localhost:8000/api/login",
+        ENDPOINTS.login,
         {
           email: formData.Usuario,
           password: formData.Contrasena,

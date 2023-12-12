@@ -1,6 +1,5 @@
 import Informacion from "../../organisms/Evento/Evento";
 import { useParams } from 'react-router-dom';
-import axios from "axios"
 import { useEffect } from "react";
 import { useState } from "react";
 import "./Evento.css"
@@ -8,6 +7,8 @@ import ReclutamientoIm from "../../icons/reclutamiento.png"
 import EntrenamientoIm from "../../icons/entrenamiento.png"
 import CompetenciaIm from "../../icons/competencia.png"
 import { Link } from "react-router-dom";
+import axiosInterceptorInstance from '../../../axios/interceptor'
+import { ENDPOINTS } from "../../../Constants/endpoinst";
 
 const AdminEvento = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const AdminEvento = () => {
   useEffect(() => {
     const getEvent = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/evento/${id}`);
+        const response = await axiosInterceptorInstance.get(ENDPOINTS.obtenerEvento+id);
         setEvento(response.data);
         setEventoCargado(true); // Marcar el evento como cargado
       } catch (error) {
@@ -53,7 +54,8 @@ const AdminEvento = () => {
               <li  className="w3-bar-item w3-button"><Link to={"/AgregarFormulario/"+id}>Agregar formulario</Link></li>
               <li  className="w3-bar-item w3-button"><Link to={""}>Agregar ganadores</Link></li>
               <li  className="w3-bar-item w3-button"><Link to={""}>Reporte</Link></li>
-              <li  className="w3-bar-item w3-button"><Link to={"/Participantes/"+evento.titulo+"/"+evento.id_formulario+"/"+id}>Participantes</Link></li>
+              <li  className="w3-bar-item w3-button"><Link to={"/Patrocinadores/"+id}>Patrocinadores</Link></li>
+              <li  className={evento.id_formulario === null ? 'invisible' : "w3-bar-item w3-button" }><Link to={"/Participantes/"+evento.titulo+"/"+evento.id_formulario+"/"+id}>Participantes</Link></li>
             </ul>
           </div>
       </div>
