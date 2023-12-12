@@ -1,0 +1,39 @@
+.ReactModal__Content {
+    background-color: #153A65 !important;
+    width: 50% !important;
+    height: fit-content;
+    padding: 5% !important;
+    margin: auto;
+    text-align: center;
+    color: white !important;
+}
+.ReactModal__Content h2, label{
+    color: white;
+    margin-bottom: 4%;
+}
+label{
+    padding: 5px !important;
+    font-size: 17px;
+}
+input{
+    margin: 10px;
+}
+
+.ReactModal__Content h2{
+    margin-top: 0;
+    padding: 0;
+}
+.ReactModal__Content .botones{
+    padding: 0;
+    margin-top: 6%;
+    width: 80%;
+}
+
+.botonRojoPeq{
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.botonDiv{
+    width: 50%;
+}
