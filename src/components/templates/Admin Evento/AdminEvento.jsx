@@ -51,9 +51,7 @@ const AdminEvento = () => {
       const formData = new FormData();
       formData.append('excel', setArchivosubido);
       formData.append('id_evento', id);
-      const response = await axios.post(`http://localhost:8000/api/evento/ganadores`,formData);
-      console.log(response);
-      console.log("Archivo subido");
+      await axiosInterceptorInstance.post(ENDPOINTS.subirGanadores, formData);
       handleCloseModal();
     } catch (error) {
       console.error('Error al subir el archivo:', error);
