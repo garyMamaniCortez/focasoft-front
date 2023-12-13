@@ -18,6 +18,7 @@ const Formulario = ({ CamposDeEntrada, handleChange, FormData, Desactivado,Lista
             Desactivado={Desactivado}
             Valor={FormData[item.Identificador]}
           />
+          <br/>
            <Label TipoDeEtiqueta="FormularioRequisitos">{item.Requisitos}</Label> 
           </div>
         </div>
