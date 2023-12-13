@@ -8,6 +8,8 @@ import Boton from "../../atoms/boton/Boton.jsx";
 import Background from "../../atoms/background/Background.jsx";
 import { useAppContext } from "../../../Context";
 import axios from "axios";
+import axiosInterceptorInstance from "../../../axios/interceptor";
+import { ENDPOINTS } from "../../../Constants/endpoinst";
 
 const CreateEventSection = (props) => {
   const navigate = useNavigate();
@@ -194,8 +196,7 @@ const CreateEventSection = (props) => {
       swal({ icon: "error", text: "Errores:\n\n" + errors.join("\n") });
     } else {
       if (props.Accion == "crear") {
-        axios
-          .post("http://localhost:8000/api/evento", {
+        axiosInterceptorInstance.post(ENDPOINTS.crearEvento, {
             titulo: formData.TituloDelEvento,
             fecha_ini: formData.FechaDelEvento,
             fecha_fin: null,
@@ -221,8 +222,7 @@ const CreateEventSection = (props) => {
             swal({ icon: "error", text: error.response.data.error });
           });
       } else {
-        axios
-          .put(`http://localhost:8000/api/evento/${props.idEvento}`, {
+        axiosInterceptorInstance.put(ENDPOINTS.editarEvento + props.Evento.id, {
             titulo: formData.TituloDelEvento,
             fecha_ini: formData.FechaDelEvento,
             fecha_fin: null,

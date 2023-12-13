@@ -115,59 +115,21 @@ const EditEvent = () => {
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos: "El Afiche debe ser un archivo en fomato jpeg",
-    },    
-    // {
-    //   divClase: "itemContainer",
-    //   Etiqueta: "Patrocinadores",
-    //   TipoDeEtiqueta: "FormLabel",
-    //   TipoDeEntrada: "text",
-    //   Identificador: "Patrocinadores",
-    //   Desactivado: false,
-    //   OpcionesDelDesplegable: [
-    //     { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-    //   ],
-    //   Requisitos:
-    //     "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
-    // },
+    },
     {
       divClase: "itemContainer",
-      Etiqueta: "Contactos",
+      Etiqueta: "Contacto",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
-      Identificador: "Contactos",
+      Identificador: "Contacto",
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos:
-        "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
+        "solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Requisitos",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "TextInputDinamic",
-      Identificador: "Requisitos",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos:
-        "Un requisito solo debe contener caracteres alfanumericos\n Los requisitos deben separarse con una coma",
-    },
-    {
-      divClase: "itemContainer",
-      Etiqueta: "Premios",
-      TipoDeEtiqueta: "FormLabel",
-      TipoDeEntrada: "TextInputDinamic",
-      Identificador: "Premios",
-      Desactivado: false,
-      OpcionesDelDesplegable: [
-        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
-      ],
-      Requisitos:
-        "Un premio solo debe contener caracteres alfanumericos\n Los premios deben separarse con una coma",
-    },
+    ,
   ];
 
   return (

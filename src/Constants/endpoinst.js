@@ -14,4 +14,5 @@ export const ENDPOINTS = {
     obtenerParticipantes: '/formularios/participantes',
     participanteBuscar: '/formularios/participantes/buscar',
     subirGanadores: '/evento/ganadores',
+    crearEvento: '/evento',
 }
