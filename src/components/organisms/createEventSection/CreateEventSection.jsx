@@ -249,7 +249,7 @@ const CreateEventSection = (props) => {
   };
 
   return (
-    <Background  Tipo="Predeterminado">
+    <Background  Tipo="FondoEvento">
       <form onSubmit={handleSubmit}>
         <Formulario
           CamposDeEntrada={misCampos}

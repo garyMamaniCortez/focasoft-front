@@ -242,7 +242,7 @@ const CreateFormRegisterSec = (props) => {
   };
 
   return (
-    <Background Tipo="Predeterminado CentrarContenido">
+    <Background Tipo="Predeterminado">
       <form onSubmit={handleSubmit}>
         <Formulario
           CamposDeEntrada={preguntas}
