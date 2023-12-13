@@ -9,10 +9,9 @@ const TextInput = ({
   OpcionesDelDesplegable,
   Desactivado,
   Valor,
-  Lista,
 }) => {
   const [valorList, setValorList] = useState([]);
-
+  
   const handleAdd = (value) => {
     setValorList([...valorList, value]);
   };
@@ -21,11 +20,10 @@ const TextInput = ({
   };
 
   useEffect(() => {
-    console.log(Lista);
-    if (Lista !== undefined) {
-      setValorList(Lista);
+    if(TipoDeEntrada === "TextInputDinamic"){
+      ManejarCambio({target: {name: Identificador, value: valorList}});
     }
-  }, [Lista]);
+  }, [valorList]);
 
   return (
     <>
@@ -54,48 +52,47 @@ const TextInput = ({
             <option value={item.Valor}>{item.Etiqueta}</option>
           ))}
         </select>
-      ) : TipoDeEntrada === "TextInputDinamic" ? (
-        <TextInputDinamic
-          id={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
-          name={TipoDeEntrada === "TextInputDinamic" ? Identificador : ""}
-          className="EntradaDeTexto"
-          disabled={
-            Desactivado
-              ? true
-              : TipoDeEntrada !== "TextInputDinamic"
-              ? true
-              : false
-          }
-          lista={valorList}
-          agregar={handleAdd}
-          remover={handleRemove}
-          ManejarCambio={ManejarCambio}
-        />
-      ) : (
-        <input
-          id={Identificador}
-          name={Identificador}
-          className={`${
-            TipoDeEntrada === "text" || TipoDeEntrada === "texto"
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "date" || TipoDeEntrada === "Fecha_AFA"
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "description"
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "file"
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "select"
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "email"
-              ? "EntradaDeTexto"
-              : TipoDeEntrada === "password"
-              ? "Contrasena"
-              : TipoDeEntrada === "User"
-              ? "User"
-              : TipoDeEntrada === "TextInputDinamic"
-              ? "EntradaDeTexto"
-              : ""
-          }
+    ) : TipoDeEntrada === "TextInputDinamic" ? (
+
+      <TextInputDinamic
+        id="TextInputDinamic"
+        name="TextInputDinamic"
+        className="EntradaDeTexto"
+        disabled={
+          Desactivado ? true : TipoDeEntrada !== "TextInputDinamic" ? true : false
+        }
+        lista= {valorList}
+        agregar={handleAdd}
+        remover={handleRemove} 
+        ManejarCambio = {ManejarCambio}
+      />
+
+    ) : (
+
+      <input
+        id={Identificador}
+        name={Identificador}
+        className={`${
+          TipoDeEntrada === "text"
+            ? "EntradaDeTexto"
+            : TipoDeEntrada === "date"
+            ? "EntradaDeTexto"
+            : TipoDeEntrada === "description"
+            ? "EntradaDeTexto"
+            : TipoDeEntrada === "file"
+            ? "EntradaDeTexto"
+            : TipoDeEntrada === "select"
+            ? "EntradaDeTexto"
+            : TipoDeEntrada === "email"
+            ? "EntradaDeTexto"
+            : TipoDeEntrada === "password"
+            ? "Contrasena"
+            : TipoDeEntrada === "User"
+            ? "User"
+            : TipoDeEntrada === "TextInputDinamic"
+            ? "EntradaDeTexto"
+            : ""
+        }
         `}
           type={`${
             TipoDeEntrada === "text" || TipoDeEntrada === "texto"

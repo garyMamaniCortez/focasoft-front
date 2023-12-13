@@ -19,7 +19,96 @@ ul{
     margin: auto;
 }
 
+.botoncito{
+    all:unset;
+    color: white;
+    background-color: #153A65;
+    margin: -15px;
+    padding: 15px;
+    outline: none;
+}
+
+li button:hover{
+    color: #153A65;
+    background-color: white;
+}
+
 .barra{
     width: fit-content;
     margin: auto;
+}
+
+.Modal{
+    display: flex;  
+    margin-top: 20vh;
+    width: 25%;
+    height: 60%;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;    
+    border-radius: 25px;
+}
+
+.ModalContent{
+    background-color: #153A65;
+    border-radius: 10px;
+    width: 790px;
+    height: 508px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.ModalContent h2{
+    color: white;    
+}
+
+.ModalBody{    
+    width: 80%;
+    height: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ingresoArchivo{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;    
+}
+
+#formularioArchivo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    gap: 10px;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.modalFooter{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#imgarchivo{
+    width: 120px;
+    height: 120px;
+}
+
+#subirganador{ 
+    width: 100%;
+    height: 100%;   
+    display: flex;
+    flex-direction: column;
+    background-color: white;    
+    justify-content: center;
+    align-items: center;
 }

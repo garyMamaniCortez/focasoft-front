@@ -8,19 +8,31 @@ import Boton from "../../atoms/boton/Boton.jsx";
 import Background from "../../atoms/background/Background.jsx";
 import { useAppContext } from "../../../Context";
 import axios from "axios";
+import axiosInterceptorInstance from "../../../axios/interceptor";
+import { ENDPOINTS } from "../../../Constants/endpoinst";
 
 const CreateEventSection = (props) => {
   const navigate = useNavigate();
-  const id = useAppContext();
-  const [imagen, setImagen] = useState(null);
-
   const [formData, setFormData] = useState(props.Evento);
+  const [misCampos, setMisCampos] = useState(props.Campos);
+
+  const modificar = 3;
+
+  const copiaCampos = [...misCampos];
+  
+  copiaCampos[modificar]= {
+    ...copiaCampos[modificar],
+    Desactivado: 
+      (formData.TipoDelEvento === "Competencia" ? false
+      : true)
+  };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target;   
+    setMisCampos(copiaCampos);  
     if (name != "AficheDelEvento") {
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    } else {
+    }else {
       const file = event.target.files[0];
       const reader = new FileReader();
 
@@ -35,6 +47,7 @@ const CreateEventSection = (props) => {
       reader.readAsDataURL(file);
     }
     console.log(formData);
+    console.log(misCampos);
   };
 
   const handleSubmit = (event) => {
@@ -183,8 +196,7 @@ const CreateEventSection = (props) => {
       swal({ icon: "error", text: "Errores:\n\n" + errors.join("\n") });
     } else {
       if (props.Accion == "crear") {
-        axios
-          .post("http://localhost:8000/api/evento", {
+        axiosInterceptorInstance.post(ENDPOINTS.crearEvento, {
             titulo: formData.TituloDelEvento,
             fecha_ini: formData.FechaDelEvento,
             fecha_fin: null,
@@ -197,7 +209,7 @@ const CreateEventSection = (props) => {
             id_formulario: props.Evento.id_formulario,
             requisitos: formData.Requisitos,
             premios: formData.Premios,
-            patrocinadores: [formData.Patrocinadores],
+            patrocinadores: null,
             contactos: formData.Contactos,
           })
           .then(function (response) {
@@ -210,8 +222,7 @@ const CreateEventSection = (props) => {
             swal({ icon: "error", text: error.response.data.error });
           });
       } else {
-        axios
-          .put(`http://localhost:8000/api/evento/${props.idEvento}`, {
+        axiosInterceptorInstance.put(ENDPOINTS.editarEvento + props.Evento.id, {
             titulo: formData.TituloDelEvento,
             fecha_ini: formData.FechaDelEvento,
             fecha_fin: null,
@@ -238,18 +249,17 @@ const CreateEventSection = (props) => {
   };
 
   return (
-    <Background  Tipo="Predeterminado">
+    <Background  Tipo="FondoEvento">
       <form onSubmit={handleSubmit}>
         <Formulario
-          CamposDeEntrada={props.Campos}
+          CamposDeEntrada={misCampos}
           handleChange={handleChange}
           Desactivado={false}
-          FormData={formData}
-          Lista={props.Accion === "crear" ? [] : props.Evento.Requisitos }
+          FormData={formData}          
         />
         <div className="w3-row w3-center">
           <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="submit">
-            {props.Accion == "crear" ? "Crear evento" : "Editar evento"}
+            {props.Accion === "crear" ? "Crear evento" : "Editar evento"}
           </Boton>
         </div>
       </form>

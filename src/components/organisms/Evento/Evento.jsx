@@ -8,6 +8,7 @@ import "./Evento.css";
 import { useEffect, useState } from "react";
 
 const Evento = (props) => {
+
   console.log(props.Datos.Afiche);
   const [premios,setPremios] = useState([]);
   const [requisitos,setRequisitos] = useState([]);
