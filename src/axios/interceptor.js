@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosInterceptorInstance = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "http://34.176.22.220:8000/api",
 });
 
 
