@@ -6,9 +6,9 @@ import Label from "../../atoms/label/Label.jsx";
 import Formulario from "../../molecules/formulario/Formulario.jsx";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import axiosInterceptorInstance from "../../../axios/interceptor.js";
+import { ENDPOINTS } from "../../../Constants/endpoinst.js";
 import swal from "sweetalert";
 
 const RegisterParticipantsSec = () => {
@@ -22,8 +22,8 @@ const RegisterParticipantsSec = () => {
     const getAllForms = async () => {
       try{
       if(id){
-        const response = await axios.get(
-          "http://localhost:8000/api/formularios/registro/" + id
+        const response = await axiosInterceptorInstance.get(
+          ENDPOINTS.ObtenerForm + id
         );
         setFormulario(response.data);
         setHayForm(true)
@@ -59,10 +59,18 @@ const RegisterParticipantsSec = () => {
       OpcionesDelDesplegable: [],
       Requisitos:
         dato.tipo === "texto"
-          ? "Requisitos 1"
-          : dato.tipo === "fecha_AFA"
-          ? "Requisito 2"
-          : "Requisito 3",
+
+          ? "Solo se deben ingresar caracteres alfanumericos"
+          : dato.tipo === "Fecha_AFA"
+          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          : dato.tipo === "telefono"
+          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          : dato.tipo === "email"
+          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          : dato.tipo === "nombre"
+          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          : "Tipo de dato desconocido",
+
     };
   });
 
@@ -92,8 +100,8 @@ const RegisterParticipantsSec = () => {
     //***
     //aqui se mandan las respuestas
     console.log(respuestas);
-    axios
-    .post("http://localhost:8000/api/formularios/participante", {
+    axiosInterceptorInstance
+    .post(ENDPOINTS.registrarParticipante, {
       "id_formulario": id,
       "respuestas": respuestas
     })

@@ -16,3 +16,7 @@
 .textContent p{
     font-size: 16px;
 }
+.url{
+    width: fit-content;
+    font-size: 12px !important;
+}

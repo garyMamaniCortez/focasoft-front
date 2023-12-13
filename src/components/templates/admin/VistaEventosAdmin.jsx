@@ -5,11 +5,16 @@ import Boton from "../../atoms/boton/Boton";
 import ModalRegistroPatrocinador from "../ModalPatrocinador/ModalPatrocinador";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import ModalEventoExterno from "../ModalEventoExterno/ModalEventoExterno";
 import "./vistaEventos.css"
 function VistaEventosAdmin(){
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen2, setModalIsOpen2] = useState(false);
+
 const abrirModal = () => setModalIsOpen(true);
+const abrirModal2 = () => setModalIsOpen2(true);
 const cerrarModal = () => setModalIsOpen(false);
+const cerrarModal2 = () => setModalIsOpen2(false);
 
     return(
         <div className="vistaContent w3-right">
@@ -28,10 +33,15 @@ const cerrarModal = () => setModalIsOpen(false);
                             
                             </div>
                             <div className="boton w3-col l3">
-                            <Boton ClaseDeBoton={"botonAmarilloPeq"} TipoDeBoton={"button"}>Promocionar evento</Boton>
+                            <Boton ClaseDeBoton={"botonAmarilloPeq"} TipoDeBoton={"button"} f={abrirModal2}>Promocionar evento</Boton>
+                            <ModalEventoExterno
+                                isOpen={modalIsOpen2}
+                                closeModal={cerrarModal2}
+                            />
+                                
                             </div>
                             <div className="boton w3-col l3">
-                            <Boton ClaseDeBoton={"botonAmarilloPeq"} TipoDeBoton={"button"}>Generar reporte</Boton>
+                            <Boton ClaseDeBoton={"botonAmarilloPeq"} TipoDeBoton={"button"} >Generar reporte</Boton>
                             </div>
                             <div className="boton w3-col l3">
                             <Boton ClaseDeBoton={"botonAmarilloPeq"} TipoDeBoton={"button"} f={abrirModal}>Registrar patrocinador</Boton>

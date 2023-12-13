@@ -1,8 +1,8 @@
 import CreateEventSection from "../../organisms/createEventSection/CreateEventSection";
 import "./CreateEvent.css";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
+import axiosInterceptorInstance from "../../../axios/interceptor";
+import { ENDPOINTS } from "../../../Constants/endpoinst";
 
 const CreateEvent = () => {
   const evento = {
@@ -38,7 +38,7 @@ const CreateEvent = () => {
     useEffect(() => {
       const datosRecibidos = async () => {
         try {
-          const response = axios.get("http://localhost:8000/api/patrocinadores");
+          const response = axiosInterceptorInstance.get(ENDPOINTS.obtenerPatrocinadores);
           const data = (await response).data;
           setDatos(data);
         } catch (error) {
