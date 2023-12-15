@@ -21,6 +21,9 @@ function Navbar(props){
                 <li className="option">
                 <Link to={props.Boton=="Iniciar sesión" ? "/EventosExternos" : "/EventosExternos"}>Eventos externos</Link>
                 </li>
+                <li className="option">
+                <Link to={props.Boton=="Iniciar sesión" ? "/admin" : "/admin"}>admin</Link>
+                </li>
             </ul>
             <div className="iconsNav">
             <a href=""><img src={face} /></a>
