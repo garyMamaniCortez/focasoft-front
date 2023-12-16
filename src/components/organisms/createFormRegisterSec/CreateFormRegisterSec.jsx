@@ -214,10 +214,10 @@ const CreateFormRegisterSec = (props) => {
   const EliminarCampo = () => {
     if (auxFormData.pregunta !== "") {
       if (
-        auxFormData.pregunta !== "Nombres" &&
+        auxFormData.pregunta !== "Nombre completo" &&
         auxFormData.pregunta !== "Telefono" &&
-        auxFormData.pregunta !== "Fecha" &&
-        auxFormData.pregunta !== "Email"
+        auxFormData.pregunta !== "Fecha de nacimiento" &&
+        auxFormData.pregunta !== "Correo electronico"
       ) {
         setPreguntas((prevPreguntas) =>
           prevPreguntas.filter(
@@ -293,15 +293,15 @@ const CreateFormRegisterSec = (props) => {
                     },
                     {
                       Valor: "nombre",
-                      Etiqueta: "Nombre",
+                      Etiqueta: "Alfabetico",
                     },
                     {
                       Valor: "texto",
-                      Etiqueta: "Texto",
+                      Etiqueta: "Alfanumerico",
                     },
                     {
                       Valor: "telefono",
-                      Etiqueta: "Telefono",
+                      Etiqueta: "Numerico",
                     },
                     {
                       Valor: "fecha_AFA",
