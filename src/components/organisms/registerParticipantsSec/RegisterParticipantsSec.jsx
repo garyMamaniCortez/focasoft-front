@@ -28,7 +28,7 @@ const RegisterParticipantsSec = () => {
         setFormulario(response.data);
         setHayForm(true)
       }}catch (error) {
-        console.error("Error al obtener el producto:", error);
+        console.error("Error al obtener el formulario:", error);
       }
       
     };
@@ -61,14 +61,14 @@ const RegisterParticipantsSec = () => {
         dato.tipo === "texto"
 
           ? "Solo se deben ingresar caracteres alfanumericos"
-          : dato.tipo === "Fecha_AFA"
-          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          : dato.tipo === "fecha_AFA"
+          ? "Solo se debe ingresar una fecha valida"
           : dato.tipo === "telefono"
-          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          ? "Solo se debe ingresar caracteres numericos"
           : dato.tipo === "email"
-          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          ? "Solo se debe ingresar un correo electronico valido"
           : dato.tipo === "nombre"
-          ? "Solo se debe ingresar una fecha que sea posterior a la de hoy"
+          ? "Solo se debe caracteres alfabeticos"
           : "Tipo de dato desconocido",
 
     };

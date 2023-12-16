@@ -99,7 +99,7 @@ const TextInput = ({
               ? "text"
               : TipoDeEntrada === "description"
               ? "text"
-              : TipoDeEntrada === "date" || TipoDeEntrada === "Fecha_AFA"
+              : TipoDeEntrada === "date" || TipoDeEntrada === "fecha_AFA"
               ? "date"
               : TipoDeEntrada === "file"
               ? "file"
