@@ -232,7 +232,7 @@ const CreateEventSection = (props) => {
             afiche: formData.AficheDelEvento,
             id_formulario: props.Evento.id_formulario,            
             patrocinadores: formData.Patrocinadores,
-            contacto: formData.Contacto,            
+            contacto: formData.Contacto,                     
           })
           .then(function (response) {
             console.log(response);
