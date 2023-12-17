@@ -47,16 +47,22 @@ const AdminEvento = () => {
   }, [id]);  
 
   const subirExcel = async () => {
-    try {
-      const formData = new FormData();
-      formData.append('excel', setArchivosubido);
-      formData.append('id_evento', id);
-      await axiosInterceptorInstance.post(ENDPOINTS.subirGanadores, formData);
-      handleCloseModal();
-    } catch (error) {
-      console.error('Error al subir el archivo:', error);
+    
+      try {                 
+        // verificar que el archivo sea excel 
+        if (archivosubido.type != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+          alert("El archivo debe ser excel");
+        }else{
+          const formData = new FormData();   
+          formData.append('excel', setArchivosubido);
+          formData.append('id_evento', id); 
+          await axiosInterceptorInstance.post(ENDPOINTS.subirGanadores, formData);
+          alert("Archivo subido correctamente");
+        }     
+      } catch (error) {
+        console.error('Error al subir el archivo:', error);   
+      }
     }
-  }
   
   const Datos = 
     {
@@ -106,17 +112,17 @@ const AdminEvento = () => {
                     <label for="file" id="subirganador">                    
                       <img src={subirGanadores} alt="click para subir archivo" id="imgarchivo"/>
                       <span>{archivosubido ? archivosubido.name : "haga click para subir un archivo"}</span>
-                    </label>                                                              
+                    </label>                                                                           
                     <Boton ClaseDeBoton="botonAmarilloPeq" tipo="submit" f={subirExcel}>Subir</Boton>
                   </form>
                 </div>
-                <div className="modalFooter">
-                  <Boton ClaseDeBoton="botonAzulPequeño" f={handleCloseModal}>Cancelar</Boton>                  
+                <div className="modalFooter">                    
+                  <Boton ClaseDeBoton="botonAzulPequeño" f={handleCloseModal}>Cancelar</Boton>                              
                 </div>
              </div>
           </Modal>
       
-      <div className="CentrarSeccion">              
+      <div className="CentrarSeccion"> 
         <Informacion Datos={Datos}/>
       </div>
     </div>
