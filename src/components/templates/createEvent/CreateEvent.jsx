@@ -141,7 +141,7 @@ const CreateEvent = () => {
       Etiqueta: "Contacto",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
-      Identificador: "Contacto",
+      Identificador: "Contactos",
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
