@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.12b27798.css",
-    "main.js": "/static/js/main.3c956eb7.js",
+    "main.js": "/static/js/main.9bf89ed5.js",
     "static/media/reclutamiento.png": "/static/media/reclutamiento.03b510ead3babb314250.png",
     "static/media/entrenamiento.png": "/static/media/entrenamiento.625d9f47ad30acc9af48.png",
     "static/media/whatsapp.png": "/static/media/whatsapp.961d9dc2b2bd6168579d.png",
@@ -9,10 +9,10 @@
     "static/media/competencia.png": "/static/media/competencia.097ab1fa85081533cf2a.png",
     "index.html": "/index.html",
     "main.12b27798.css.map": "/static/css/main.12b27798.css.map",
-    "main.3c956eb7.js.map": "/static/js/main.3c956eb7.js.map"
+    "main.9bf89ed5.js.map": "/static/js/main.9bf89ed5.js.map"
   },
   "entrypoints": [
     "static/css/main.12b27798.css",
-    "static/js/main.3c956eb7.js"
+    "static/js/main.9bf89ed5.js"
   ]
 }
