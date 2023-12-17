@@ -113,7 +113,7 @@ const CreateEventSection = (props) => {
       );
     }
 
-    //Validacion para Requisitos
+    // Validacion para Requisitos
     formData.Requisitos =
       formData.Requisitos === null
         ? [" "]
@@ -233,8 +233,6 @@ const CreateEventSection = (props) => {
             id_formulario: props.Evento.id_formulario,            
             patrocinadores: formData.Patrocinadores,
             contacto: formData.Contacto,
-            requisitos: formData.Requisitos,
-            premios: formData.Premios,
           })
           .then(function (response) {
             console.log(response);
