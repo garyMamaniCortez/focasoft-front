@@ -17,7 +17,8 @@ const EditEvent = () => {
         const response = await axiosInterceptorInstance.get(
           ENDPOINTS.obtenerEvento+id
         );
-        setDatosDelEvento(response.data);
+        const data = response.data;
+        setDatosDelEvento(data);
         setEventoCargado(true); // Marcar el evento como cargado
       } catch (error) {
         console.error("Error al obtener el evento:", error);
@@ -75,7 +76,7 @@ const EditEvent = () => {
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "select",
       Identificador: "TipoDelEvento",
-      Desactivado: false,
+      Desactivado: true,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
         { Valor: "Reclutamiento", Etiqueta: "Reclutamiento" },
@@ -129,7 +130,31 @@ const EditEvent = () => {
       Requisitos:
         "solo debe contener caracteres alfanumericos y deben separarse con una coma",
     },
-    ,
+    {
+      divClase: "itemContainer",
+      Etiqueta: "Requisitos",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "TextInputDinamic",
+      Identificador: "Requisitos",
+      Desactivado: false,
+      OpcionesDelDesplegable: [
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      ],
+      Requisitos:
+        "Un requisito solo debe contener caracteres alfanumericos",
+    },        
+    {
+      divClase: "itemContainer",
+      Etiqueta: "Premios",
+      TipoDeEtiqueta: "FormLabel",
+      TipoDeEntrada: "TextInputDinamic",
+      Identificador: "Premios",
+      Desactivado: false,
+      OpcionesDelDesplegable: [
+        { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
+      ],
+      Requisitos: "Un premio solo debe contener caracteres alfanumericos y deben separarse con una coma",
+    },
   ];
 
   return (
