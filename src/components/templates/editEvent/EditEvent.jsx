@@ -122,7 +122,7 @@ const EditEvent = () => {
       Etiqueta: "Contacto",
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "text",
-      Identificador: "Contacto",
+      Identificador: "Contactos",
       Desactivado: false,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
@@ -136,7 +136,7 @@ const EditEvent = () => {
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "TextInputDinamic",
       Identificador: "Requisitos",
-      Desactivado: false,
+      Desactivado: true,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
@@ -149,7 +149,7 @@ const EditEvent = () => {
       TipoDeEtiqueta: "FormLabel",
       TipoDeEntrada: "TextInputDinamic",
       Identificador: "Premios",
-      Desactivado: false,
+      Desactivado: true,
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
