@@ -107,10 +107,10 @@ const CreateEventSection = (props) => {
       typeof formData.Descripcion === "undefined"
     ) {
       errors.push("- El campo descripción no puede estar vacío.");
-    } else if (!validarDescripcion.test(formData.Descripcion)) {
-      errors.push(
-        "- El campo descripción solo debe contener caracteres alfanumericos"
-      );
+    // } else if (!validarDescripcion.test(formData.Descripcion)) {
+    //   errors.push(
+    //     "- El campo descripción solo debe contener caracteres alfanumericos"
+    //   );
     }
 
     // Validacion para Requisitos
