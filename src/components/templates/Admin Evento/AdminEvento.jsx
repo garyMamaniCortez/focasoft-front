@@ -63,6 +63,9 @@ const AdminEvento = () => {
         console.error('Error al subir el archivo:', error);   
       }
     }
+
+
+    const link = axiosInterceptorInstance.defaults.baseURL + ENDPOINTS.descargarPlantillaGanadores+id;
   
   const Datos = 
     {
@@ -100,9 +103,11 @@ const AdminEvento = () => {
           onRequestClose={handleCloseModal}
           contentLabel="subirGanadores"
           className="Modal">   
-            <div className="ModalContent">         
+            <div className="ModalContent">
+              <div className="modalHeader">       
                 <h2>Insertar archivo de ganadores</h2>
-              
+                <Boton ClaseDeBoton="botonAmarilloPeq" tipo="button"><a href={link} target="_blank">Descargar Excel</a></Boton>                
+              </div>                
                 <div className="ModalBody">
                   <form id="formularioArchivo">
                     <input className="ingresoArchivo" type="file" 
