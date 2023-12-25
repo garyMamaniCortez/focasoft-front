@@ -65,7 +65,7 @@ const CreateEvent = () => {
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
       Requisitos:
-        "El Titulo del evento solo debe contener caracteres alfanumericos",
+        "El Titulo solo debe contener caracteres alfanumericos",
     },
     {
       Etiqueta: "* Fecha del evento",
@@ -76,7 +76,7 @@ const CreateEvent = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "La fecha posterior a la de hoy",
+      Requisitos: "La fecha debe ser posterior a la de hoy",
     },
     {
       divClase: "itemContainer",
@@ -99,7 +99,7 @@ const CreateEvent = () => {
         { Valor: "Clasificatorio interno", Etiqueta: "Clasificatorio interno"},
         { Valor: "Competencia", Etiqueta: "Competencia" },
       ],
-      Requisitos: "Se debe selecionar una talla de polera",
+      Requisitos: "Tipo de evento es un campo obligatorio",
     },
     {
       divClase: "itemContainer",
@@ -146,7 +146,7 @@ const CreateEvent = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Cada patrocinador solo debe contener caracteres alfanumericos y deben separarse con una coma",
+      Requisitos: "el contacto debe ser un correo o numero de telefono",
     },
     {
       divClase: "itemContainer",
@@ -171,7 +171,7 @@ const CreateEvent = () => {
       OpcionesDelDesplegable: [
         { Valor: "Sin Seleccionar", Etiqueta: "Seleccionar un tipo" },
       ],
-      Requisitos: "Un premio solo debe contener caracteres alfanumericos y deben separarse con una coma",
+      Requisitos: "Un premio solo debe contener caracteres alfanumericos",
     },
   ];
 
