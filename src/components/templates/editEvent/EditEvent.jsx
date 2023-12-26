@@ -9,6 +9,7 @@ import { useState } from "react";
 import Boton from "../../atoms/boton/Boton.jsx";
 import Formulario from "../../molecules/formulario/Formulario";
 import Background from "../../atoms/background/Background.jsx";
+import axios from "axios";
 
 import swal from "sweetalert";
 
@@ -32,11 +33,12 @@ const EditEvent = () => {
         const data = response.data;
         setDatosDelEvento(data);
         setEventoCargado(true); // Marcar el evento como cargado
+        console.log(data)
         const evento = {
           TituloDelEvento: data.titulo,
           FechaDelEvento: data.fecha_ini,
           TipoDelEvento: data.tipo,
-          AficheDelEvento: obtenerDatosImagen(data.afiche),
+          AficheDelEvento: data.afiche !=null ? obtenerDatosImagen(data.afiche) : null,
           Descripcion: data.descripcion,
           Requisitos: data.requisitos,
           Premios: data.premios,
@@ -58,7 +60,7 @@ const EditEvent = () => {
     const obtenerDatosImagen = async (url) => {
       if(imageUrl!=null){
         try {
-          const response = await axiosInterceptorInstance.get("http://"+url, { responseType: 'arraybuffer' });
+          const response = await axios.get("http://"+url, { responseType: 'arraybuffer' });
       
           // Convertir el ArrayBuffer a un array de bytes (Uint8Array)
           const uint8Array = new Uint8Array(response.data);
@@ -179,7 +181,7 @@ const EditEvent = () => {
             tipo: formData.TipoDelEvento,
             equipo: datosDelEvento.equipo,
             descripcion: formData.Descripcion,
-            afiche: formData.AficheDelEvento,
+            afiche: (formData.AficheDelEvento == null ? null : formData.AficheDelEvento),
             id_formulario: datosDelEvento.id_formulario,            
             patrocinadores: datosDelEvento.patrocinadores,
             premios:datosDelEvento.premios,

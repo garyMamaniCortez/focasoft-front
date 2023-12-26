@@ -17,4 +17,5 @@ export const ENDPOINTS = {
     crearEvento: '/evento',
     descargarPlantillaGanadores: '/evento/excel/',
     editarEvento:'/evento/',
+    eventosPasados: '/eventos/pasados',
 }
