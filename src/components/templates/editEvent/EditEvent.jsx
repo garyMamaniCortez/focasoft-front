@@ -34,11 +34,16 @@ const EditEvent = () => {
         setDatosDelEvento(data);
         setEventoCargado(true); // Marcar el evento como cargado
         console.log(data)
+        let aficheDelEvento = null;
+
+        if (data.afiche != null) {
+          aficheDelEvento = await obtenerDatosImagen(data.afiche);
+        }
         const evento = {
           TituloDelEvento: data.titulo,
           FechaDelEvento: data.fecha_ini,
           TipoDelEvento: data.tipo,
-          AficheDelEvento: data.afiche !=null ? obtenerDatosImagen(data.afiche) : null,
+          AficheDelEvento: aficheDelEvento,
           Descripcion: data.descripcion,
           Requisitos: data.requisitos,
           Premios: data.premios,
@@ -58,7 +63,6 @@ const EditEvent = () => {
     };
 
     const obtenerDatosImagen = async (url) => {
-      if(imageUrl!=null){
         try {
           const response = await axios.get("http://"+url, { responseType: 'arraybuffer' });
       
@@ -79,9 +83,6 @@ const EditEvent = () => {
         } catch (error) {
           console.error('Error al obtener los datos de la imagen:', error.message);
         }
-      }else{
-        return null
-      }
     };
     
     // Llamar a la función para obtener los datos de la imagen
