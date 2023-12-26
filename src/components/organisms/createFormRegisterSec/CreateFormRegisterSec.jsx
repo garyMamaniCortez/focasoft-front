@@ -33,7 +33,7 @@ const CreateFormRegisterSec = (props) => {
         tipo: "texto",
       },
       {
-        pregunta: "Fecha",
+        pregunta: "Fecha de nacimiento",
         obligatorio: true,
         tipo: "fecha_AFA",
       },
@@ -134,7 +134,7 @@ const CreateFormRegisterSec = (props) => {
       if (
         auxFormData.pregunta !== "Nombres" &&
         auxFormData.pregunta !== "Telefono" &&
-        auxFormData.pregunta !== "Fecha" &&
+        auxFormData.pregunta !== "Fecha de nacimiento" &&
         auxFormData.pregunta !== "Email"
       ) {
         const indiceCampo = preguntas.findIndex(
@@ -216,7 +216,7 @@ const CreateFormRegisterSec = (props) => {
       if (
         auxFormData.pregunta !== "Nombre completo" &&
         auxFormData.pregunta !== "Telefono" &&
-        auxFormData.pregunta !== "Fecha de nacimiento" &&
+        auxFormData.pregunta !== "Fecha" &&
         auxFormData.pregunta !== "Correo electronico"
       ) {
         setPreguntas((prevPreguntas) =>
