@@ -6,11 +6,11 @@ return(
     <div className="textContent">
         <p className="categoryEvent">{props.title}</p>
         <p className="titleEvent ">{props.category}</p>
-        <Link to={props.url} > 
        <div className="miURL">
-       <p className="url">{props.url}</p>
+       <a href={`//${props.url}`} className="url" target="_blank" rel="noopener noreferrer" >
+        <p className="url">{props.url}</p>
+        </a>
        </div>
-        </Link>
         <p>Fecha: {props.date}</p>
         <p>{props.description}</p>
 
