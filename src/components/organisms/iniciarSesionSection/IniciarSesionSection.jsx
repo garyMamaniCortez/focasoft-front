@@ -118,7 +118,7 @@ const IniciarSesionSection = () => {
               ClaseDeBoton="botonRojoGrand"
               form="FormularioParaInicioDeSesion"
             >
-              Iniciar sesion
+              Iniciar sesión
             </Boton>
           </div>
         </form>

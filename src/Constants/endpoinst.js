@@ -16,4 +16,6 @@ export const ENDPOINTS = {
     subirGanadores: '/evento/ganadores',
     crearEvento: '/evento',
     descargarPlantillaGanadores: '/evento/excel/',
+    editarEvento:'/evento/',
+    eventosPasados: '/eventos/pasados',
 }
