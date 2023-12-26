@@ -82,3 +82,7 @@
   width: 160px;
   display: inline-block;
 }
+
+.AtributoEvento2, .AtributoEvento1{
+  text-align: left;
+}

@@ -12,7 +12,8 @@ const Evento = (props) => {
   console.log(props.Datos.Afiche);
   const [premios,setPremios] = useState([]);
   const [requisitos,setRequisitos] = useState([]);
-  const [contactos,setContactos] = useState([])
+  const [contactos,setContactos] = useState([]);
+  const [patrocinadores, setpatrocinadores] = useState([]);
   console.log(contactos)
   let idFormulario =
     "/RegistrarParticipante/" +
@@ -31,12 +32,15 @@ const Evento = (props) => {
         if(props.Datos.Contactos!= null){
           setContactos(props.Datos.Contactos)
         }
+        if(props.Datos.Patrocinadores!= null){
+          setpatrocinadores(props.Datos.Patrocinadores)
+        }
       }
       ponerArrays();
     }, [props.Datos]);
     console.log(premios)
     console.log(requisitos)
-    console.log(contactos)
+    console.log(props.Datos)
 
   return (
     <Fondo Tipo="FondoEvento">
@@ -49,24 +53,20 @@ const Evento = (props) => {
           </div>
           <Fondo Tipo="FondoAtributo1">
             <Etiqueta TipoDeEtiqueta="AtributoEvento1">
-              Tipo de evento: {props.Datos.Tipo}{" "}
+              Tipo de evento: {props.Datos.Tipo}
+              <br />
+              Fecha del evento: {props.Datos.FechaDelEvento} 
             </Etiqueta>
           </Fondo>
           <Fondo Tipo="FondoAtributo1">
             <div>
-              {" "}
-              <Etiqueta TipoDeEtiqueta="AtributoEvento1">Descripcion:</Etiqueta>
+              <Etiqueta TipoDeEtiqueta="AtributoEvento1">Descripción:</Etiqueta>
             </div>
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
               {props.Datos.Descripcion}
             </Etiqueta>
           </Fondo>
-          <Fondo Tipo="FondoAtributo1">
-            <Etiqueta TipoDeEtiqueta="AtributoEvento1">Fecha:</Etiqueta>
-            <Etiqueta TipoDeEtiqueta="AtributoEvento1">
-              {props.Datos.FechaDelEvento}
-            </Etiqueta>
-          </Fondo>
+
           <div className={`${
               props.Datos.Premios === " "
                 ? "invisible"
@@ -79,7 +79,7 @@ const Evento = (props) => {
             <br />
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
             {premios.map((c)=>{
-                  return (<div>{c}</div>)
+                  return (<div className="premios">- {c}</div>)
                 })}
             </Etiqueta>
           </Fondo></div>
@@ -95,10 +95,29 @@ const Evento = (props) => {
             <br />
             <Etiqueta TipoDeEtiqueta="AtributoEvento2">
             {requisitos.map((c)=>{
-                  return (<div>{c}</div>)
+                  return (<div className="requisitos">- {c}</div>)
                 })}
             </Etiqueta>
-          </Fondo></div>
+          </Fondo>
+          </div>
+
+          <div className={`${
+              props.Datos.Patrocinadores === " "
+                ? "invisible"
+                : props.Datos.Patrocinadores === null
+                ? "invisible"
+                : props.Datos.Requisitos
+            }`}>
+          <Fondo Tipo="FondoAtributo1">
+            <Etiqueta TipoDeEtiqueta="AtributoEvento1">Patrocinadores:</Etiqueta>
+            <br />
+            <Etiqueta TipoDeEtiqueta="AtributoEvento2">
+            {patrocinadores.map((c)=>{
+                  return (<div className="requisitos">- {c}</div>)
+                })}
+            </Etiqueta>
+          </Fondo>
+          </div>
         </div>
         <div className="w3-col l5">
           <div className={`${
@@ -126,7 +145,7 @@ const Evento = (props) => {
               <br />
               <Etiqueta TipoDeEtiqueta="AtributoEvento2">
                 {contactos.map((c)=>{
-                  return (<div>{c}</div>)
+                  return (<div className="contactos">- {c}</div>)
                 })}
               </Etiqueta>
             </Fondo>
