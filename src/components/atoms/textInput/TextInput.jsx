@@ -113,9 +113,9 @@ const TextInput = ({
           }`}
           placeholder={`${
             TipoDeEntrada === "password"
-              ? "contraseña"
+              ? "Contraseña"
               : TipoDeEntrada === "User"
-              ? "usuario"
+              ? "Usuario"
               : ""
           }`}
           accept={`${TipoDeEntrada === "file" ? ".jpeg" : ""}`}

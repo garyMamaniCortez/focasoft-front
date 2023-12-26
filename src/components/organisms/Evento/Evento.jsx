@@ -104,7 +104,7 @@ const Evento = (props) => {
           <div className={`${
               props.Datos.Patrocinadores === " "
                 ? "invisible"
-                : props.Datos.Patrocinadores === null
+                : props.Datos.Patrocinadores == null
                 ? "invisible"
                 : props.Datos.Requisitos
             }`}>

@@ -107,51 +107,7 @@ const CreateEventSection = (props) => {
       typeof formData.Descripcion === "undefined"
     ) {
       errors.push("- El campo descripción no puede estar vacío.");
-    // } else if (!validarDescripcion.test(formData.Descripcion)) {
-    //   errors.push(
-    //     "- El campo descripción solo debe contener caracteres alfanumericos"
-    //   );
     }
-
-    // Validacion para Requisitos
-    // formData.Requisitos =
-    //   formData.Requisitos === null
-    //     ? [" "]
-    //     : formData.Requisitos === ""
-    //     ? [" "]
-    //     : formData.Requisitos;
-    // if (
-    //   !validarListas.test(formData.Requisitos) ||
-    //   typeof formData.Requisitos === "undefined"
-    // ) {
-    //   errors.push(
-    //     "- El campo Requisitos solo debe contener carcteres alfanumericos."
-    //   );
-    // } else if (formData.Requisitos.includes(",")) {
-    //   formData.Requisitos.split(",").map(function (item) {
-    //     return item.trim();
-    //   });
-    // }
-
-    //Validacion para Premios
-    // formData.Premios =
-    //   formData.Premios === null
-    //     ? [" "]
-    //     : formData.Premios === ""
-    //     ? [" "]
-    //     : formData.Premios;
-    // if (
-    //   !validarListas.test(formData.Premios) ||
-    //   typeof formData.Premios === "undefined"
-    // ) {
-    //   errors.push(
-    //     "- El campo Premios solo debe contener carcteres alfanumericos."
-    //   );
-    // } else if (formData.Premios.includes(",")) {
-    //   formData.Premios.split(",").map(function (item) {
-    //     return item.trim();
-    //   });
-    // }
 
     // Validacion para Patrocinadores
     formData.Patrocinadores =
