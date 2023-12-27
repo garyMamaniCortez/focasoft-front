@@ -3,7 +3,6 @@ import Etiqueta from "../../atoms/label/Label";
 import Afiche from "../../atoms/afiche/Afiche";
 import Boton from "../../atoms/boton/Boton";
 import { Link } from "react-router-dom";
-
 import "./Evento.css";
 import { useEffect, useState } from "react";
 

@@ -77,7 +77,8 @@ const AdminEvento = () => {
       Requisitos: evento.requisitos,
       Afiche: evento.afiche==null ?  ((evento.tipo == "Reclutamiento" ? ReclutamientoIm : (evento.tipo == "Taller de entrenamiento" ? EntrenamientoIm : CompetenciaIm) )): "http://"+(evento.afiche),
       Contactos: evento.contactos,
-      Formulario: evento.id_formulario
+      Formulario: evento.id_formulario,
+      Patrocinadores: evento.patrocinadores
     }
   
 
@@ -90,7 +91,6 @@ const AdminEvento = () => {
               <li className="w3-bar-item w3-button"><Link to={"/EditarEvento/"+id}>Modificar evento</Link></li>
               <li  className="w3-bar-item w3-button"><Link to={"/AgregarFormulario/"+id}>Agregar formulario</Link></li>
               <li  className="w3-bar-item w3-button" ><button className="botoncito" onClick={handleOpenModal}>Agregar ganadores</button></li>
-              <li  className="w3-bar-item w3-button"><Link to={""}>Reporte</Link></li>
               <li  className="w3-bar-item w3-button"><Link to={"/Patrocinadores/"+id}>Patrocinadores</Link></li>
               <li  className={evento.id_formulario === null ? 'invisible' : "w3-bar-item w3-button" }><Link to={"/Participantes/"+evento.titulo+"/"+evento.id_formulario+"/"+id}>Participantes</Link></li>
             </ul>

@@ -31,7 +31,7 @@ const ModalRegistroPatrocinador = ({ isOpen, closeModal }) => {
           .post(ENDPOINTS.registrarPatrocinador, {
             'nombre': nombre,
             'pagina_web': pagina,
-'logo': logo
+            'logo': logo
           })
           .then(function (response) {
             swal({ icon: "success", text: "Patrocinador registrado" });

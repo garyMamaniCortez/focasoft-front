@@ -8,6 +8,7 @@ import Boton from "../../atoms/boton/Boton";
 import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import "./patrocinadores.css"
+import axios from "axios";
 
 import 'w3-css/w3.css';
 
@@ -20,6 +21,7 @@ const Patrocinadores = () =>{
   const [datosDelEvento, setDatosDelEvento] = useState({});
   const [eventoCargado, setEventoCargado] = useState(false);
   const [patrocinadoresEvento,setPatrocinadoresEvento] =useState([])
+  const [image,setImage]=useState(null)
 
   useEffect(() => {
     const getPatro = async () => {
@@ -46,11 +48,34 @@ const Patrocinadores = () =>{
         );
         setDatosDelEvento(response.data);
         setEventoCargado(true); // Marcar el evento como cargado
+        let aficheDelEvento = null;
+
+        if (response.data.afiche != null) {
+          aficheDelEvento = await obtenerDatosImagen(response.data.afiche);
+          setImage(aficheDelEvento)
+        }
       } catch (error) {
         console.error("Error al obtener el evento:", error);
       }
     };
 
+    const obtenerDatosImagen = async (url) => {
+      try {
+        const response = await axios.get("http://"+url, { responseType: 'arraybuffer' });
+    
+        // Convertir el ArrayBuffer a un array de bytes (Uint8Array)
+        const uint8Array = new Uint8Array(response.data);
+    
+        // Convertir el Uint8Array a una cadena base64
+        const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
+        return(base64String)
+    
+        // Hacer algo con los datos en base64, por ejemplo, imprimir los primeros 100 caracteres
+        console.log('Datos de la imagen en base64:', base64String.slice(0, 100));
+      } catch (error) {
+        console.error('Error al obtener los datos de la imagen:', error.message);
+      }
+  };
     getEvent();
   }, [id]);
 
@@ -92,8 +117,8 @@ const Patrocinadores = () =>{
             "titulo": datosDelEvento.titulo,
             "fecha_ini": datosDelEvento.fecha_ini,
             "tipo": datosDelEvento.tipo,
+            "afiche":image,
             "descripcion": datosDelEvento.descripcion,
-            "afiche": datosDelEvento.afiche,
             "id_formulario": datosDelEvento.id_formulario,
             "fecha_fin": datosDelEvento.fecha_fin,
             "requisitos": datosDelEvento.requisitos,
