@@ -72,9 +72,9 @@ const TextInput = ({
       <input
         id={Identificador}
         name={Identificador}
-        className={`${
+        className={`${          
           TipoDeEntrada === "text"
-            ? "EntradaDeTexto"
+            ? "EntradaDeTexto"            
             : TipoDeEntrada === "date"
             ? "EntradaDeTexto"
             : TipoDeEntrada === "description"
@@ -89,13 +89,22 @@ const TextInput = ({
             ? "Contrasena"
             : TipoDeEntrada === "User"
             ? "User"
-            : TipoDeEntrada === "TextInputDinamic"
+            : TipoDeEntrada === "TextInputDinamic"                  
+            ? "EntradaDeTexto"
+            : TipoDeEntrada === "texto" ||
+                TipoDeEntrada === "fecha_AFA" ||
+                TipoDeEntrada === "telefono" ||
+                TipoDeEntrada === "email" ||
+                TipoDeEntrada === "nombre"
             ? "EntradaDeTexto"
             : ""
         }
         `}
           type={`${
-            TipoDeEntrada === "text" || TipoDeEntrada === "texto"
+              TipoDeEntrada === "text"||
+              TipoDeEntrada === "texto" ||
+              TipoDeEntrada === "telefono" ||
+              TipoDeEntrada === "nombre"
               ? "text"
               : TipoDeEntrada === "description"
               ? "text"
@@ -109,7 +118,7 @@ const TextInput = ({
               ? "password"
               : TipoDeEntrada === "User"
               ? "text"
-              : ""
+              : ""              
           }`}
           placeholder={`${
             TipoDeEntrada === "password"
