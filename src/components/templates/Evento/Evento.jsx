@@ -39,7 +39,8 @@ const Evento = () => {
       Requisitos: evento.requisitos,
       Afiche: evento.afiche==null ?  ((evento.tipo == "Reclutamiento" ? ReclutamientoIm : (evento.tipo == "Taller de entrenamiento" ? EntrenamientoIm : CompetenciaIm) )): "http://"+(evento.afiche),
       Contactos: evento.contactos,
-      Formulario: evento.id_formulario
+      Formulario: evento.id_formulario,
+      Patrocinadores:evento.patrocinadores
     }
   
 

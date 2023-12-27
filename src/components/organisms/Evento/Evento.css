@@ -21,5 +21,8 @@
 
 #modalGanadores{
     display: block;
-    place-content: center;    
+    place-content: center; 
+}  
+.contactos, .requisitos, .premios{
+  text-align: left;
 }

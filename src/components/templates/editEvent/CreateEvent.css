@@ -8,3 +8,8 @@
     justify-content: center;
     display: flex;
 }
+
+.contenidoEditar{
+    width: fit-content;
+    margin: auto;
+}

@@ -22,7 +22,7 @@ function Navbar(props){
                 <Link to={props.Boton=="Iniciar sesión" ? "/EventosExternos" : "/EventosExternos"}>Eventos externos</Link>
                 </li>
                 <li className="option">
-                <Link to={props.Boton=="Iniciar sesión" ? "/admin" : "/admin"}>admin</Link>
+                <Link to={props.Boton=="Iniciar sesión" ? "/EventosPasados" : "/EventosPasados"}>Eventos pasados</Link>
                 </li>
             </ul>
             <div className="iconsNav">

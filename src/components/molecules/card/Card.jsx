@@ -22,32 +22,6 @@ function Card(props){
             description={props.description}
             ></Texto>
             
-           {/* <div className={props.botonEditar}>
-                <div className="botones w3-row">
-                    <div className="w3-col l6 arriba">
-                        <Link to={idEvento}>
-                        <Boton ClaseDeBoton={"botonRojoPeq"} TipoDeBoton={"button"}>Modificar evento</Boton>
-                        </Link>
-                    </div>
-                    <div className="w3-col l6 arriba">
-                        <Link to={"/AgregarFormulario/"+props.idEvento}>
-                        <Boton ClaseDeBoton={"botonAmarilloPeq"} TipoDeBoton={"button"}>Agregar formulario</Boton>
-                        </Link>
-                    </div>
-                    <div className="w3-col l6">
-                        <Link to="">
-                        <Boton ClaseDeBoton={"botonAmarilloPeq"} TipoDeBoton={"button"}>Agregar ganadores</Boton>
-                        </Link>
-                    </div>
-                    <div className="w3-col l6">
-                        <Link to="">
-                        <Boton ClaseDeBoton={"botonRojoPeq"} TipoDeBoton={"button"}>Reporte</Boton>
-                        </Link>
-                    </div>
-                    
-                </div>
-    </div>*/}
-            
             <div className={props.claseDiv} >
                 
                 <Link to={idFormulario}>
