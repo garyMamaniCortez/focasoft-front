@@ -179,7 +179,7 @@ const Evento = (props) => {
           { ((Ganadores.length!=0) && (props.Datos.Tipo == "Competencia" ||props.Datos.Tipo == "Competencia de entrenamiento" )) ? (
             <div>              
                 <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="Button" f={handleOpenModal}>
-                  mostrar ganadores
+                  Mostrar ganadores
                 </Boton>
                 <Modal
                   isOpen={modalGanadores} 
@@ -190,12 +190,12 @@ const Evento = (props) => {
                   >
 
                   <h2>Ganadores de competencia</h2>
-                  <h2>{props.Datos.TituloDelEvento}</h2>
+                  <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
                   <table className="w3-table-all">                      
                           <tr className="CabGanadores">
                             
-                              <td>nombre</td>  
-                              <td>posición</td>                     
+                              <th>Nombre</th>  
+                              <th>Posición</th>                     
                           </tr>
                           <tr className="espacio"></tr>
                           {Ganadores != null ? 
@@ -209,7 +209,11 @@ const Evento = (props) => {
                           </tr>)   
                           }                  
                   </table>
+                  </div>
+                  <div className="botonCerrar">
                   <Boton ClaseDeBoton="botonAzulPequeño" f={handleCloseModal}>Cerrar</Boton>
+                  </div>
+                  
                 </Modal>
             </div>
           ) : (
