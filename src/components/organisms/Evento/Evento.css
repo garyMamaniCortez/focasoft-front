@@ -18,6 +18,11 @@
     display: none;
     visibility: hidden;
   }
+
+#modalGanadores{
+    display: block;
+    place-content: center; 
+}  
 .contactos, .requisitos, .premios{
   text-align: left;
 }
