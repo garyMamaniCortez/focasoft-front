@@ -36,7 +36,7 @@ const EditEvent = () => {
         console.log(data)
         let aficheDelEvento = null;
 
-        if (data.afiche != null) {
+        if (data.afiche !== null) {
           aficheDelEvento = await obtenerDatosImagen(data.afiche);
         }
         const evento = {
