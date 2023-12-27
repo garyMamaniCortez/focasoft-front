@@ -58,8 +58,8 @@ const RegisterParticipantsSec = () => {
       Desactivado: false,
       OpcionesDelDesplegable: [],
       Requisitos:
-        dato.tipo === "texto"
-
+        (dato.obligatorio===1 ? "CAMPO OBLIGATORIO ," : "") +
+        (dato.tipo === "texto"
           ? "Solo se deben ingresar caracteres alfanumericos"
           : dato.tipo === "fecha_AFA"
           ? "Solo se debe ingresar una fecha valida"
@@ -69,8 +69,7 @@ const RegisterParticipantsSec = () => {
           ? "Solo se debe ingresar un correo electronico valido"
           : dato.tipo === "nombre"
           ? "Solo se debe caracteres alfabeticos"
-          : "Tipo de dato desconocido",
-
+          : "Tipo de dato desconocido"),
     };
   });
 
@@ -91,11 +90,13 @@ const RegisterParticipantsSec = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    console.log(formData);
     const respuestas = Object.entries(formData).map(
       ([pregunta, respuesta]) => ({
         pregunta,
         respuesta,
       })
+    
     );
     //***
     //aqui se mandan las respuestas
