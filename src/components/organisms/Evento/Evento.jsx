@@ -50,13 +50,12 @@ const Evento = (props) => {
         }
       }
       const getGanadores = async () => {
-        try {          
+        try {                  
             const response = await axiosInterceptorInstance.get(
               ENDPOINTS.verGanadores+id);
-            setGanadores(response.data);  
-            console.log(response.data);      
+              setGanadores(response.data);     
         } catch (error) {
-          console.error("Error al obtener los ganadores del evento:", error);
+          console.error("Error al obtener los ganadores del evento:", error);          
         }
       };
 
@@ -177,7 +176,7 @@ const Evento = (props) => {
               props.Datos.Formulario == null ? "invisible" : "ContenderBoton09"
             }
           >
-          { setGanadores.length > 0 && (props.Datos.Tipo == "Competencia" ||props.Datos.Tipo == "Competencia de entrenamiento" ) ? (
+          { ((Ganadores.length!=0) && (props.Datos.Tipo == "Competencia" ||props.Datos.Tipo == "Competencia de entrenamiento" )) ? (
             <div>              
                 <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="Button" f={handleOpenModal}>
                   mostrar ganadores
@@ -199,12 +198,16 @@ const Evento = (props) => {
                               <td>posición</td>                     
                           </tr>
                           <tr className="espacio"></tr>
-                          {Ganadores.map((ganador, index) => (
+                          {Ganadores != null ? 
+                          (Ganadores.map((ganador, index) => (
                             <tr className="Datos" key={index}>
                               <td>{ganador.nombre}</td>
                               <td>{ganador.posicion}</td>
                             </tr>
-                          ))}                         
+                          ))) : (<tr className="Datos">
+                            <td>No hay ganadores</td>
+                          </tr>)   
+                          }                  
                   </table>
                   <Boton ClaseDeBoton="botonAzulPequeño" f={handleCloseModal}>Cerrar</Boton>
                 </Modal>
