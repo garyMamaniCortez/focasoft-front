@@ -26,3 +26,7 @@
 .contactos, .requisitos, .premios{
   text-align: left;
 }
+
+.botonCerrar{
+  padding: 2%;
+}
