@@ -3,16 +3,29 @@ import Etiqueta from "../../atoms/label/Label";
 import Afiche from "../../atoms/afiche/Afiche";
 import Boton from "../../atoms/boton/Boton";
 import { Link } from "react-router-dom";
-
+import { ENDPOINTS } from "../../../Constants/endpoinst";
+import axiosInterceptorInstance from "../../../axios/interceptor";
 import "./Evento.css";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Modal from 'react-modal';
 
 const Evento = (props) => {
 
-  console.log(props.Datos.Afiche);
+  const [Ganadores, setGanadores] = useState([]);
+  const { id } = useParams();
+
   const [premios,setPremios] = useState([]);
   const [requisitos,setRequisitos] = useState([]);
   const [contactos,setContactos] = useState([]);
+  const [modalGanadores, ModalGanadores] = useState(false);
+  
+  const handleOpenModal = () => {
+    ModalGanadores(true);
+  };
+  const handleCloseModal = () => {
+    ModalGanadores(false);
+  };
   const [patrocinadores, setpatrocinadores] = useState([]);
   console.log(contactos)
   let idFormulario =
@@ -36,11 +49,19 @@ const Evento = (props) => {
           setpatrocinadores(props.Datos.Patrocinadores)
         }
       }
-      ponerArrays();
+      const getGanadores = async () => {
+        try {                  
+            const response = await axiosInterceptorInstance.get(
+              ENDPOINTS.verGanadores+id);
+              setGanadores(response.data);     
+        } catch (error) {
+          console.error("Error al obtener los ganadores del evento:", error);          
+        }
+      };
+
+      getGanadores();
+      ponerArrays();     
     }, [props.Datos]);
-    console.log(premios)
-    console.log(requisitos)
-    console.log(props.Datos)
 
   return (
     <Fondo Tipo="FondoEvento">
@@ -155,11 +176,50 @@ const Evento = (props) => {
               props.Datos.Formulario == null ? "invisible" : "ContenderBoton09"
             }
           >
+          { ((Ganadores.length!=0) && (props.Datos.Tipo == "Competencia" ||props.Datos.Tipo == "Competencia de entrenamiento" )) ? (
+            <div>              
+                <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="Button" f={handleOpenModal}>
+                  mostrar ganadores
+                </Boton>
+                <Modal
+                  isOpen={modalGanadores} 
+                  closeModal={handleCloseModal}
+                  contentLabel="Ganadores"
+                  className="Modal"
+                  id="modalGanadores"
+                  >
+
+                  <h2>Ganadores de competencia</h2>
+                  <h2>{props.Datos.TituloDelEvento}</h2>
+                  <table className="w3-table-all">                      
+                          <tr className="CabGanadores">
+                            
+                              <td>nombre</td>  
+                              <td>posición</td>                     
+                          </tr>
+                          <tr className="espacio"></tr>
+                          {Ganadores != null ? 
+                          (Ganadores.map((ganador, index) => (
+                            <tr className="Datos" key={index}>
+                              <td>{ganador.nombre}</td>
+                              <td>{ganador.posicion}</td>
+                            </tr>
+                          ))) : (<tr className="Datos">
+                            <td>No hay ganadores</td>
+                          </tr>)   
+                          }                  
+                  </table>
+                  <Boton ClaseDeBoton="botonAzulPequeño" f={handleCloseModal}>Cerrar</Boton>
+                </Modal>
+            </div>
+          ) : (
             <Link to={idFormulario}>
               <Boton ClaseDeBoton="botonRojoGrand" TipoDeBoton="Button">
                 Registrarse
               </Boton>
             </Link>
+          )          
+          }          
           </div>
         </div>
       </div>
